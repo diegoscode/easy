@@ -79,18 +79,15 @@
 			</div>
 
 			<div class="box-typical box-typical-padding">
-				<table id="ticket_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+				<table id="contrato_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
 							<th style="width: 5%;">Numero de Contrato</th>
 							<th style="width: 5%;">Empresa</th>
-							<th class="d-none d-sm-table-cell" style="width: 15%;">Descripcion</th>
+							<th class="d-none d-sm-table-cell" style="width: 5%;">Descripcion</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Monto Mensual</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha de inicio</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha de vencimiento</th>
-							<th class="text-center" style="width: 5%;"></th>
 						</tr>
 					</thead>
 					<tbody>
