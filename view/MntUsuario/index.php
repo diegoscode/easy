@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Mantenimiento Usuario</title>
+	<title>AnderCode</>::Mantenimiento Usuario</title>
 </head>
 <body class="with-side-menu">
 
