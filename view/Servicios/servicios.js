@@ -88,7 +88,7 @@ $(document).ready(function(){
 function editar(num_serv){
     $('#mdservicios').html('Editar Servicio');
 
-    $.post("../../controller/usuario.php?op=mostrar", {num_serv : num_serv}, function (data) {
+    $.post("../../controller/servicios.php?op=mostrar", {num_serv : num_serv}, function (data) {
         data = JSON.parse(data);
         $('#num_serv').val(data.num_serv);
         $('#tip_serv').val(data.tip_serv);

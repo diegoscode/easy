@@ -10,7 +10,7 @@ function guardaryeditar(e){
     e.preventDefault();
 	var formData = new FormData($("#usuario_form")[0]);
     $.ajax({
-        url: "../../controller/servicios.php?op=guardaryeditar",
+        url: "../../controller/usuario.php?op=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
@@ -18,11 +18,11 @@ function guardaryeditar(e){
         success: function(datos){    
             console.log(datos);
             $('#usuario_form')[0].reset();
-            $("#modalservicios").modal('hide');
+            $("#modalmantenimiento").modal('hide');
             $('#usuario_data').DataTable().ajax.reload();
 
             swal({
-                title: "Admin",
+                title: "HelpDesk!",
                 text: "Completado.",
                 type: "success",
                 confirmButtonClass: "btn-success"
@@ -46,7 +46,7 @@ $(document).ready(function(){
                 'pdfHtml5'
                 ],
         "ajax":{
-            url: '../../controller/servicios.php?op=listar',
+            url: '../../controller/usuario.php?op=listar',
             type : "post",
             dataType : "json",						
             error: function(e){
@@ -85,26 +85,26 @@ $(document).ready(function(){
     }).DataTable(); 
 });
 
-function editar(num_serv){
-    $('#mdltitulo').html('Editar Servicio');
+function editar(usu_id){
+    $('#mdltitulo').html('Editar Registro');
 
-    $.post("../../controller/servicios.php?op=mostrar", {num_serv : num_serv}, function (data) {
+    $.post("../../controller/usuario.php?op=mostrar", {usu_id : usu_id}, function (data) {
         data = JSON.parse(data);
-        $('#num_serv').val(data.num_serv);
-        $('#cod_serv').val(data.ctip_serv);
-        $('#tip_serv').val(data.tip_serv);
-        $('#cat_id').val(data.cat_id);
-        $('#sub_cat').val(data.sub_cat);
-        $('#precio').val(data.precio).trigger('change');
+        $('#usu_id').val(data.usu_id);
+        $('#usu_nom').val(data.usu_nom);
+        $('#usu_ape').val(data.usu_ape);
+        $('#usu_correo').val(data.usu_correo);
+        $('#usu_pass').val(data.usu_pass);
+        $('#rol_id').val(data.rol_id).trigger('change');
     }); 
 
-    $('#modalservicios').modal('show');
+    $('#modalmantenimiento').modal('show');
 }
 
-function eliminar(num_serv){
+function eliminar(usu_id){
     swal({
-        title: "Admin",
-        text: "Procede a eliminar el servicio",
+        title: "HelpDesk",
+        text: "Esta seguro de Eliminar el registro?",
         type: "error",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -114,15 +114,15 @@ function eliminar(num_serv){
     },
     function(isConfirm) {
         if (isConfirm) {
-            $.post("../../controller/servicios.php?op=eliminar", {num_serv : num_serv}, function (data) {
+            $.post("../../controller/usuario.php?op=eliminar", {usu_id : usu_id}, function (data) {
 
             }); 
 
             $('#usuario_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Admin",
-                text: "Servicio Eliminado.",
+                title: "HelpDesk!",
+                text: "Registro Eliminado.",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
@@ -131,9 +131,9 @@ function eliminar(num_serv){
 }
 
 $(document).on("click","#btnnuevo", function(){
-    $('#mdltitulo').html('Nuevo Servicio');
+    $('#mdltitulo').html('Nuevo Registro');
     $('#usuario_form')[0].reset();
-    $('#modalservicios').modal('show');
+    $('#modalmantenimiento').modal('show');
 });
 
 init();
