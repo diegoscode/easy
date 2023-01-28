@@ -18,7 +18,13 @@
                 $sub_array[] = $row["descrip_contrat"];
                 $sub_array[] = $row["tip_serv"];
                 $sub_array[] = $row["cost_serv"];
-                $sub_array[] = $row["contrat_est"];
+
+                if($row["contrat_est"]=="Abierto"){
+                        $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
+                }else{
+                        $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+                }
+
                 $data[] = $sub_array;
             }
                 $results = array(

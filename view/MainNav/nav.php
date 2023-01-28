@@ -29,6 +29,12 @@
                         </a>
                     </li>
                     <li class="blue-dirty">
+                        <a href="..\Servicios\">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="lbl">Servicios</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
                         <a href="..\MntUsuario\">
                             <span class="glyphicon glyphicon-th"></span>
                             <span class="lbl">Usuarios</span>

@@ -1,14 +1,14 @@
 var tabla;
 
 function init(){
-    $("#usuario_form").on("submit",function(e){
+    $("#servicio_form").on("submit",function(e){
         guardaryeditar(e);	
     });
 }
 
 function guardaryeditar(e){
     e.preventDefault();
-	var formData = new FormData($("#usuario_form")[0]);
+	var formData = new FormData($("#servicio_form")[0]);
     $.ajax({
         url: "../../controller/servicios.php?op=guardaryeditar",
         type: "POST",
@@ -17,9 +17,9 @@ function guardaryeditar(e){
         processData: false,
         success: function(datos){    
             console.log(datos);
-            $('#usuario_form')[0].reset();
+            $('#servicio_form')[0].reset();
             $("#modalservicios").modal('hide');
-            $('#usuario_data').DataTable().ajax.reload();
+            $('#servicio_data').DataTable().ajax.reload();
 
             swal({
                 title: "Admin",
@@ -32,7 +32,7 @@ function guardaryeditar(e){
 }
 
 $(document).ready(function(){
-    tabla=$('#usuario_data').dataTable({
+    tabla=$('#servicio_data').dataTable({
         "aProcessing": true,
         "aServerSide": true,
         dom: 'Bfrtip',
@@ -86,16 +86,15 @@ $(document).ready(function(){
 });
 
 function editar(num_serv){
-    $('#mdltitulo').html('Editar Servicio');
+    $('#mdservicios').html('Editar Servicio');
 
-    $.post("../../controller/servicios.php?op=mostrar", {num_serv : num_serv}, function (data) {
+    $.post("../../controller/usuario.php?op=mostrar", {num_serv : num_serv}, function (data) {
         data = JSON.parse(data);
         $('#num_serv').val(data.num_serv);
-        $('#cod_serv').val(data.ctip_serv);
         $('#tip_serv').val(data.tip_serv);
         $('#cat_id').val(data.cat_id);
         $('#sub_cat').val(data.sub_cat);
-        $('#precio').val(data.precio).trigger('change');
+        $('#precio').val(data.precio);
     }); 
 
     $('#modalservicios').modal('show');
@@ -104,7 +103,7 @@ function editar(num_serv){
 function eliminar(num_serv){
     swal({
         title: "Admin",
-        text: "Procede a eliminar el servicio",
+        text: "Procede a eliminar servicio",
         type: "error",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -118,7 +117,7 @@ function eliminar(num_serv){
 
             }); 
 
-            $('#usuario_data').DataTable().ajax.reload();	
+            $('#servicio_data').DataTable().ajax.reload();	
 
             swal({
                 title: "Admin",
@@ -131,8 +130,8 @@ function eliminar(num_serv){
 }
 
 $(document).on("click","#btnnuevo", function(){
-    $('#mdltitulo').html('Nuevo Servicio');
-    $('#usuario_form')[0].reset();
+    $('#mdservicios').html('Nuevo Servicio');
+    $('#servicio_form')[0].reset();
     $('#modalservicios').modal('show');
 });
 

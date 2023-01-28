@@ -1,7 +1,7 @@
 <?php
     class Contrato extends Conectar{
 
-        public function insert_contrat($usu_id,$nom_emp,$descrip_contrat,$tip_serv,$cost_serv){
+        public function insert_contrat($usu_id,$nom_emp,$descrip_contrat,$tip_serv,$cost_serv,$contrat_est){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO contrato (contrat_id,usu_id,nom_emp,descrip_contrat,tip_serv,cost_serv,contrat_est,est) VALUES (NULL,?,?,?,?,?,'Abierto','1');";
