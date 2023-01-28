@@ -20,7 +20,7 @@
                 $sub_array[] = $row["cost_serv"];
                 $sub_array[] = $row["contrat_est"];
                 $data[] = $sub_array;
-
+            }
                 $results = array(
                     "sEcho"=>1,
                     "iTotalRecords"=>count($data),
@@ -28,6 +28,6 @@
                     "aaData"=>$data);
                 echo json_encode($results);
             break;
-            }
+            
     }
 ?>
