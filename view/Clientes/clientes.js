@@ -148,7 +148,7 @@ function eliminar(client_id){
 
 $(document).on("click", "#btnnuevo", function () {
   $("#mdclientes").html("Nuevo Cliente");
-  $("clientes_form")[0].reset();
+  document.getElementById("clientes_form").reset();
   $("#modalclientes").modal("show");
 });
 

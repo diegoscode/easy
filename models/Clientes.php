@@ -31,7 +31,7 @@ class Clientes extends Conectar
         $sql = "UPDATE clientes set
                 nom_emp = ?,
                 cedula = ?,
-                tip_per = ?,
+                tip_per = ?
                 WHERE
                 client_id = ? and est='1';";
         $sql = $conectar->prepare($sql);
