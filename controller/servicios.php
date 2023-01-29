@@ -8,7 +8,7 @@ switch ($_GET["op"]) {
         if (empty($_POST["num_serv"])) {
             $servicios->insert_servicio($_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"]);
         } else {
-            $servicios->update_servicio($_POST["num_serv"],$_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"]);
+            $servicios->update_servicio($_POST["num_serv"], $_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"]);
         }
         break;
 
@@ -23,10 +23,14 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["sub_cat"];
             $sub_array[] = $row["precio"];
 
-            if ($row["serv_est"]=="Disponible"){
-                $sub_array[] = '<a onClick="CambiarEstado('.$row["num_serv"].',"Disponible")"><span class="label label-pill label-success">Disponible</span></a>';
-            }else{
-                $sub_array[] = '<a onClick="CambiarEstado('.$row["num_serv"].',"Inhabilitado")"><span class="label label-pill label-danger">Inhabilitado</span></a>';
+            $serv_estado;
+
+            if ($row["serv_est"] == "Disponible") {
+                $serv_estado = "'" . 'Inhabilitado' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["num_serv"] . ',' . $serv_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
+            } else {
+                $serv_estado = "'" . 'Disponible' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["num_serv"] . ',' . $serv_estado . ')"><span class="label label-pill label-danger">Inhabilitado</span></a>';
             }
 
             $sub_array[] = '<button type="button" onClick="editar(' . $row["num_serv"] . ')"  id="' . $row["num_serv"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
@@ -62,7 +66,7 @@ switch ($_GET["op"]) {
         break;
 
     case "cambiarestado";
-    $servicios->cambiar_estado($_POST["num_serv"],$_POST["estado"]);
+        $servicios->cambiar_estado($_POST["num_serv"], $_POST["estado"]);
 
 }
 
