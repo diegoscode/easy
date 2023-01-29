@@ -35,6 +35,12 @@
                         </a>
                     </li>
                     <li class="blue-dirty">
+                        <a href="..\Clientes\">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="lbl">Clientes</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
                         <a href="..\MntUsuario\">
                             <span class="glyphicon glyphicon-th"></span>
                             <span class="lbl">Usuarios</span>
