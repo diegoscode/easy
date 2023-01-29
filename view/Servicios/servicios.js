@@ -31,14 +31,15 @@ function guardaryeditar(e) {
       $("#modalservicios").modal("hide");
       $("#servicio_data").DataTable().ajax.reload();
 
-      swal({
-        title: "Admin",
-        text: "Completado.",
-        type: "success",
-        confirmButtonClass: "btn-success",
-      });
-    },
-  });
+
+            swal({
+                title: "Admin",
+                text: "Completado",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    }); 
 }
 
 $(document).ready(function () {
@@ -113,17 +114,17 @@ function editar(num_serv) {
   $("#modalservicios").modal("show");
 }
 
-function eliminar(num_serv) {
-  swal(
-    {
-      title: "Admin",
-      text: "Procede a eliminar servicio",
-      type: "error",
-      showCancelButton: true,
-      confirmButtonClass: "btn-danger",
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      closeOnConfirm: false,
+
+function eliminar(num_serv){
+    swal({
+        title: "Admin",
+        text: "Procedes a eliminar el servicio",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        closeOnConfirm: false
     },
     function (isConfirm) {
       if (isConfirm) {
@@ -135,15 +136,15 @@ function eliminar(num_serv) {
 
         $("#servicio_data").DataTable().ajax.reload();
 
-        swal({
-          title: "Admin",
-          text: "Servicio Eliminado.",
-          type: "success",
-          confirmButtonClass: "btn-success",
-        });
-      }
-    }
-  );
+
+            swal({
+                title: "Admin",
+                text: "Servicio Eliminado",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
 }
 
 $(document).on("click", "#btnnuevo", function () {
