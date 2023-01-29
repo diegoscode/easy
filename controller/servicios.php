@@ -5,10 +5,10 @@ $servicios = new Servicios();
 
 switch ($_GET["op"]) {
     case "guardaryeditar":
-        if (empty($_POST["usu_id"])) {
-            $servicios->insert_servicio($_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"], $_POST["serv_est"]);
+        if (empty($_POST["num_serv"])) {
+            $servicios->insert_servicio($_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"]);
         } else {
-            $servicios->update_servicio($_POST["cod_serv"], $_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"], $_POST["serv_est"]);
+            $servicios->update_servicio($_POST["num_serv"],$_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"]);
         }
         break;
 
@@ -51,6 +51,7 @@ switch ($_GET["op"]) {
         $datos = $servicios->get_servicio_x_usu($_POST["num_serv"]);
         if (is_array($datos) == true and count($datos) > 0) {
             foreach ($datos as $row) {
+                $output["num_serv"] = $row["num_serv"];
                 $output["tip_serv"] = $row["tip_serv"];
                 $output["cat_id"] = $row["cat_id"];
                 $output["sub_cat"] = $row["sub_cat"];

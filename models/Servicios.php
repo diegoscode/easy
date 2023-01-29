@@ -1,7 +1,7 @@
 <?php
 class Servicios extends Conectar
 {
-    public function insert_servicio($tip_serv, $cat_id, $sub_cat, $precio, $serv_est)
+    public function insert_servicio($tip_serv, $cat_id, $sub_cat, $precio)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -11,7 +11,6 @@ class Servicios extends Conectar
         $sql->bindValue(2, $cat_id);
         $sql->bindValue(3, $sub_cat);
         $sql->bindValue(4, $precio);
-
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
@@ -26,7 +25,7 @@ class Servicios extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function update_servicio($num_serv, $cod_serv, $tip_serv, $cat_id, $sub_cat, $precio)
+    public function update_servicio($num_serv, $tip_serv, $cat_id, $sub_cat, $precio)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -36,12 +35,13 @@ class Servicios extends Conectar
                 sub_cat = ?,
                 precio = ?
                 WHERE
-                num_serv = ?";
+                num_serv = ? and est='1';";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $tip_serv);
         $sql->bindValue(2, $cat_id);
         $sql->bindValue(3, $sub_cat);
         $sql->bindValue(4, $precio);
+        $sql->bindValue(5, $num_serv);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
@@ -53,7 +53,7 @@ class Servicios extends Conectar
         $sql = "UPDATE servicios 
             SET 
                 est='0'
-            where num_serv=xnum_serv;";
+            where num_serv=?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $num_serv);
         $sql->execute();
@@ -64,7 +64,7 @@ class Servicios extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "SELECT * FROM servicios where est=1 and rol_id=2";
+        $sql = "SELECT * FROM servicios where est=1";
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();

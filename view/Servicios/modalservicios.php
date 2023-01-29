@@ -11,6 +11,8 @@
             <form method="post" id="servicio_form">
                 <div class="modal-body">
 
+                    <input type="hidden" class="form-control" id="num_serv" name="num_serv">
+                    
                     <div class="form-group">
                         <label class="form-label semibold" for="tip_serv">Servicio</label>
                         <input type="text" class="form-control" id="tip_serv" name="tip_serv" placeholder="Servicio"
