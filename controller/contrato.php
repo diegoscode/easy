@@ -19,10 +19,14 @@
                 $sub_array[] = $row["tip_serv"];
                 $sub_array[] = $row["cost_serv"];
 
-                if($row["contrat_est"]=="Abierto"){
-                        $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
-                }else{
-                        $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+                $contrat_estado;
+
+            if ($row["contrat_est"] == "Abierto") {
+                $contrat_estado = "'" . 'Cerrado' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrat_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
+            } else {
+                $contrat_estado = "'" . 'Abierto' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrat_estado . ')"><span class="label label-pill label-danger">Inhabilitado</span></a>';
                 }
 
                 $data[] = $sub_array;
@@ -33,6 +37,10 @@
                     "iTotalDisplayRecords"=>count($data),
                     "aaData"=>$data);
                 echo json_encode($results);
+            break;
+
+            case "cambiarestado";
+            $contrato->cambiar_estado($_POST["contrat_id"], $_POST["estado"]);
             break;
             
     }

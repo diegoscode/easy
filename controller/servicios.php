@@ -65,9 +65,9 @@ switch ($_GET["op"]) {
         }
         break;
 
-    case "cambiarestado";
+        case "cambiarestado";
         $servicios->cambiar_estado($_POST["num_serv"], $_POST["estado"]);
-
+        break;
 }
 
 

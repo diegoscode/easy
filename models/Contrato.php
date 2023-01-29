@@ -44,6 +44,34 @@ class Contrato extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
+    public function cambiar_estado($contrat_id, $contrat_est)
+    {
+        $this->console_log($contrat_id);
+        $this->console_log($contrat_est);
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "UPDATE contrato 
+        SET 
+            contrat_est=?
+        where contrat_id=?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $contrat_est);
+        $sql->bindValue(2, $contrat_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+
+    }
+
+    function console_log($output, $with_script_tags = true)
+    {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+            ');';
+        if ($with_script_tags) {
+            $js_code = '<script>' . $js_code . '</script>';
+        }
+        echo $js_code;
+    }
+
 
 }
 ?>

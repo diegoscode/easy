@@ -8,6 +8,16 @@ function init(){
     });
 }
 
+function CambiarEstado(contrat_id, estado) {
+    $.post(
+      "../../controller/contrato.php?op=cambiarestado",
+      { contrat_id, estado },
+      function (data) {
+        $("#contrato_data").DataTable().ajax.reload();
+      }
+    );
+  }
+
 $(document).ready(function(){
 
     tabla=$('#contrato_data').dataTable({
