@@ -29,7 +29,7 @@ function guardaryeditar(e){
 
             swal({
                 title: "Admin",
-                text: "Completado.",
+                text: "Completado",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
@@ -109,7 +109,7 @@ function editar(num_serv){
 function eliminar(num_serv){
     swal({
         title: "Admin",
-        text: "Procede a eliminar servicio",
+        text: "Procedes a eliminar el servicio",
         type: "error",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -127,7 +127,7 @@ function eliminar(num_serv){
 
             swal({
                 title: "Admin",
-                text: "Servicio Eliminado.",
+                text: "Servicio Eliminado",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
