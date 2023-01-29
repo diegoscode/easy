@@ -23,11 +23,14 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["sub_cat"];
             $sub_array[] = $row["precio"];
 
-            if ($row["serv_est"] == "Abierto") {
+            if ($row["serv_est"]=="Disponible"){
                 $sub_array[] = '<span class="label label-pill label-success">Disponible</span>';
-            } else {
-                $sub_array[] = '<span class="label label-pill label-danger">Inhabilitado</span>';
+            }else{
+                $sub_array[] = '<a onClick="CambiarEstado('.$row["num_serv"].')"><span class="label label-pill label-danger">Inhabilitado</span></a>';
             }
+
+            $sub_array[] = '<button type="button" onClick="editar(' . $row["num_serv"] . ')"  id="' . $row["num_serv"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
+            $sub_array[] = '<button type="button" onClick="eliminar(' . $row["num_serv"] . ')"  id="' . $row["num_serv"] . '" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
 
             $data[] = $sub_array;
         }
