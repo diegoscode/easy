@@ -70,7 +70,10 @@ class Servicios extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function cambiar_estado($serv_est,$num_serv) {
+    public function cambiar_estado($num_serv, $serv_est)
+    {
+        $this->console_log($num_serv);
+        $this->console_log($serv_est);
         $conectar = parent::conexion();
         parent::set_names();
         $sql = "UPDATE servicios 
@@ -83,6 +86,16 @@ class Servicios extends Conectar
         $sql->execute();
         return $resultado = $sql->fetchAll();
 
+    }
+
+    function console_log($output, $with_script_tags = true)
+    {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+            ');';
+        if ($with_script_tags) {
+            $js_code = '<script>' . $js_code . '</script>';
+        }
+        echo $js_code;
     }
 
 }
