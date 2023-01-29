@@ -26,7 +26,7 @@
                 $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrat_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
             } else {
                 $contrat_estado = "'" . 'Abierto' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrat_estado . ')"><span class="label label-pill label-danger">Inhabilitado</span></a>';
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrat_estado . ')"><span class="label label-pill label-danger">Cerrado</span></a>';
                 }
 
                 $data[] = $sub_array;
