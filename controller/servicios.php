@@ -24,9 +24,9 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["precio"];
 
             if ($row["serv_est"]=="Disponible"){
-                $sub_array[] = '<span class="label label-pill label-success">Disponible</span>';
+                $sub_array[] = '<a onClick="CambiarEstado('.$row["num_serv"].',"Disponible")"><span class="label label-pill label-success">Disponible</span></a>';
             }else{
-                $sub_array[] = '<a onClick="CambiarEstado('.$row["num_serv"].')"><span class="label label-pill label-danger">Inhabilitado</span></a>';
+                $sub_array[] = '<a onClick="CambiarEstado('.$row["num_serv"].',"Inhabilitado")"><span class="label label-pill label-danger">Inhabilitado</span></a>';
             }
 
             $sub_array[] = '<button type="button" onClick="editar(' . $row["num_serv"] . ')"  id="' . $row["num_serv"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
@@ -60,6 +60,9 @@ switch ($_GET["op"]) {
             echo json_encode($output);
         }
         break;
+
+    case "cambiarestado";
+    $servicios->cambiar_estado($_POST["num_serv"],$_POST["estado"]);
 
 }
 

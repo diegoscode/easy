@@ -70,6 +70,21 @@ class Servicios extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
+    public function cambiar_estado($serv_est,$num_serv) {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "UPDATE servicios 
+        SET 
+            serv_est=?
+        where num_serv=?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $serv_est);
+        $sql->bindValue(2, $num_serv);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+
+    }
+
 }
 
 ?>

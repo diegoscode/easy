@@ -6,6 +6,12 @@ function init(){
     });
 }
 
+function cambiarestado(num_serv,estado){
+    $.post("../../controller/servicios.php?op=cambiarestado", {num_serv , estado}, function (data) {
+        console.log(data);
+    }); 
+}
+
 function guardaryeditar(e){
     e.preventDefault();
 	var formData = new FormData($("#servicio_form")[0]);
