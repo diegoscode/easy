@@ -75,6 +75,7 @@ function guardaryeditar(e){
             contentType: false,
             processData: false,
             success: function(data){
+                $("#contrato_data").DataTable().ajax.reload();
 
                 $('#nom_emp').val('');
                 $('#descrip_contrat').val('');
