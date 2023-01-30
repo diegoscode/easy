@@ -17,7 +17,7 @@
     <?php require_once("../MainNav/nav.php");?>
 
 	<!-- Contenido -->
-	Inicio
+	ACA VA EL CONTENIDO
 	<!-- Contenido -->
 
 	<?php require_once("../MainJs/js.php");?>

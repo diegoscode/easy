@@ -35,6 +35,12 @@
                         </a>
                     </li>
                     <li class="blue-dirty">
+                        <a href="..\Cobros\">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="lbl">Cobros</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
                         <a href="..\Clientes\">
                             <span class="glyphicon glyphicon-th"></span>
                             <span class="lbl">Clientes</span>
