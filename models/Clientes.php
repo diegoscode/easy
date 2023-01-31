@@ -67,6 +67,17 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
+    public function get_cliente_x_id($client_id)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $sql = "SELECT * FROM clientes where est=1 AND client_id=?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $client_id);
+        $sql->execute();
+        return $sql->fetch();
+    }
+
     public function cambiar_estado($client_id, $client_est)
     {
         $this->console_log($client_id);
@@ -84,6 +95,8 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
 
     }
+
+
 
     function console_log($output, $with_script_tags = true)
     {

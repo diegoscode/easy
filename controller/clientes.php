@@ -37,11 +37,12 @@ switch ($_GET["op"]) {
 
             $data[] = $sub_array;
         }
+
         $results = array(
             "sEcho" => 1,
             "iTotalRecords" => count($data),
             "iTotalDisplayRecords" => count($data),
-            "aaData" => $data
+            "aaData" => $data,
         );
         echo json_encode($results);
         break;
@@ -63,7 +64,13 @@ switch ($_GET["op"]) {
         }
         break;
 
-        case "cambiarestado";
+    case "buscar";
+        $datos = $clientes->get_cliente_x_id($_POST['client_id']);
+
+        echo json_encode($datos);
+        break;
+
+    case "cambiarestado";
         $clientes->cambiar_estado($_POST["client_id"], $_POST["estado"]);
         break;
 }
