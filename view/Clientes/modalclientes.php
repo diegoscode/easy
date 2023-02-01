@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="tip_per">Tipo de cliente</label>
+                        <label class="form-label semibold" for="tip_per">Tipo de empresa</label>
                         <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo de cliente"
                             required>
                     </div>

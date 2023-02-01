@@ -1,99 +1,53 @@
-var tabla;
-var usu_id =  $('#user_idx').val();
-var rol_id =  $('#rol_idx').val();
+var clientes;
+var servicios;
 
-function init(){
-    $("#contratos_form").on("submit",function(e){
-        guardaryeditar(e);	
-    });
+function init() {
+  $("#contratos_form").on("submit", function (e) {
+    guardaryeditar(e);
+  });
 }
 
-function CambiarEstado(contrat_id, estado) {
+$(document).ready(function () {
+  var select = $("#contratos_select");
+
+  $.post("../../controller/clientes.php?op=listar", function (data) {
+    var response = JSON.parse(data);
+    const keys = [
+      "client_id",
+      "nom_emp",
+      "doc_nac",
+      "tip_per",
+      "boton_editar",
+      "boton_eliminar",
+    ];
+    var dataArr = response.aaData;
+    const objects = dataArr.map((array) =>
+      array.reduce((a, v, i) => {
+        return {
+          ...a,
+          [keys[i]]: v,
+        };
+      }, {})
+    );
+
+    objects.map((cl) => {
+      select.append(`<option value=${cl.client_id} >${cl.nom_emp}</option>`);
+    });
+  });
+
+  select.select2();
+  select.on("change", (e) => {
     $.post(
-      "../../controller/contratos.php?op=cambiarestado",
-      { contrat_id, estado },
+      "../../controller/clientes.php?op=buscar",
+      { client_id: e.target.value },
       function (data) {
-        $("#contratos_data").DataTable().ajax.reload();
+        var cliente = JSON.parse(data);
+        $("#nom_emp").val(cliente.nom_emp);
+        $("#tip_per").val(cliente.tip_per);
+        $("#doc_nac").val(cliente.doc_nac);
       }
     );
-  }
-
-$(document).ready(function(){
-
-    tabla=$('#contratos_data').dataTable({
-        "aProcessing": true,
-        "aServerSide": true,
-        dom: 'Bfrtip',
-        "searching": true,
-        lengthChange: false,
-        colReorder: true,
-        buttons: [		          
-                'copyHtml5',
-                'excelHtml5',
-                'csvHtml5',
-                'pdfHtml5'
-                ],
-        "ajax":{
-            url: '../../controller/contratos.php?op=listar_x_client',
-            type : "post",
-            dataType : "json",	
-            data:{ client_id : client_id },						
-            error: function(e){
-                console.log(e.responseText);	
-            }
-        },
-        "ordering": false,
-        "bDestroy": true,
-        "responsive": true,
-        "bInfo":true,
-        "iDisplayLength": 10,
-        "autoWidth": false,
-        "language": {
-            "sProcessing":     "Procesando...",
-            "sLengthMenu":     "Mostrar _MENU_ registros",
-            "sZeroRecords":    "No se encontraron resultados",
-            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-            "sInfo":           "Mostrando un total de _TOTAL_ registros",
-            "sInfoEmpty":      "Mostrando un total de 0 registros",
-            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix":    "",
-            "sSearch":         "Buscar:",
-            "sUrl":            "",
-            "sInfoThousands":  ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst":    "Primero",
-                "sLast":     "Último",
-                "sNext":     "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
-        }     
-        }).DataTable(); 
-    });
-
-function guardaryeditar(e){
-    e.preventDefault();
-    var formData = new FormData($("#contratos_form")[0]);
-        $.ajax({
-            url: "../../controller/contratos.php?op=insert",
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(data){
-                $("#contratos_data").DataTable().ajax.reload();
-
-                $('#nom_emp').val('');
-                $('#descrip_contrat').val('');
-                $('#tip_serv').val('');
-                $('#cost_serv').val('');
-                swal("Correcto!", "Generado Correctamente", "success");
-            }
-        });
-    }
+  });
+});
 
 init();

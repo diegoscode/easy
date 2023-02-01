@@ -24,7 +24,7 @@
                         $_SESSION["usu_nom"]=$resultado["usu_nom"];
                         $_SESSION["usu_ape"]=$resultado["usu_ape"];
                         $_SESSION["rol_id"]=$resultado["rol_id"];
-                        header("Location:".Conectar::ruta()."view/Home/");
+                        header("Location:".Conectar::ruta()."view/Contratos/");
                         exit(); 
                     }else{
                         header("Location:".Conectar::ruta()."index.php?m=1");
