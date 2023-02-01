@@ -52,7 +52,7 @@ switch ($_GET["op"]) {
         break;
 
     case "mostrar";
-        $datos = $servicios->get_servicios_x_usu($_POST["num_serv"]);
+        $datos = $servicios->get_servicios_x_id($_POST["num_serv"]);
         if (is_array($datos) == true and count($datos) > 0) {
             foreach ($datos as $row) {
                 $output["num_serv"] = $row["num_serv"];

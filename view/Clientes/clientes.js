@@ -103,7 +103,6 @@ function editar(client_id) {
     { client_id: client_id },
     function (data) {
       data = JSON.parse(data);
-      console.log(data);
       $("#client_id").val(data.client_id);
       $("#nom_emp").val(data.nom_emp);
       $("#doc_nac").val(data.doc_nac);

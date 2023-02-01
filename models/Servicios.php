@@ -60,12 +60,13 @@ class Servicios extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function get_servicios_x_usu()
+    public function get_servicios_x_id($num_serv)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "SELECT * FROM servicios where est=1";
+        $sql = "SELECT * FROM servicios where est=1 and num_serv=?";
         $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $num_serv);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }

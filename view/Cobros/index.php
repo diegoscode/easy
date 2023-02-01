@@ -78,16 +78,16 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="tip_per">Tipo de persona</label>
+									<label class="form-label semibold" for="tip_per">Tipo de empresa</label>
 									<input type="text" class="form-control" id="tip_per" name="tip_per"
-										placeholder="Tipo de persona" readonly>
+										placeholder="Tipo de empresa" readonly>
 								</fieldset>
 							</div>
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="cedula">Documento Nacional</label>
-									<input type="text" class="form-control" id="cedula" name="cedula" placeholder="Cedula"
+									<label class="form-label semibold" for="doc_nac">Documento Nacional</label>
+									<input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="Documento Nacional"
 										readonly>
 								</fieldset>
 							</div>

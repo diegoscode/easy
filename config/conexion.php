@@ -21,7 +21,7 @@
 
         public static function ruta(){
             //Local
-			return "http://localhost:80/enterprise/";
+			return "http://localhost:80/easy/";
             //Produccion
             //return "http://proyectodiegobravo.000webhostapp.com/";
 		}

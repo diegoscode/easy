@@ -14,7 +14,7 @@ $(document).ready(function () {
     const keys = [
       "client_id",
       "nom_emp",
-      "cedula",
+      "doc_nac",
       "tip_per",
       "client_est",
       "boton_editar",
@@ -44,7 +44,7 @@ $(document).ready(function () {
         var cliente = JSON.parse(data);
         $("#nom_emp").val(cliente.nom_emp);
         $("#tip_per").val(cliente.tip_per);
-        $("#cedula").val(cliente.cedula);
+        $("#doc_nac").val(cliente.doc_nac);
       }
     );
   });
