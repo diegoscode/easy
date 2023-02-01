@@ -1,9 +1,9 @@
 <?php
     require_once("config/conexion.php");
     if(isset($_POST["enviar"]) and $_POST["enviar"]=="si"){
-        require_once("models/Usuarios.php");
-        $usuarios = new Usuarios();
-        $usuarios->login();
+        require_once("models/Usuario.php");
+        $usuario = new Usuario();
+        $usuario->login();
     }
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Proyecto Diego Bravo</title>
+	<title>Login</title>
 
 	<link href="img/favicon.144x144.png" rel="apple-touch-icon" type="image/png" sizes="144x144">
 	<link href="img/favicon.114x114.png" rel="apple-touch-icon" type="image/png" sizes="114x114">
@@ -38,7 +38,7 @@
                     <div class="sign-avatar">
                         <img src="public/1.jpg" alt="" id="imgtipo">
                     </div>
-                    <header class="sign-title" id="lbltitulo">Acceso usuarios</header>
+                    <header class="sign-title" id="lbltitulo">Acceso Usuario</header>
 
                     <?php
                         if (isset($_GET["m"])){
@@ -50,7 +50,7 @@
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                             <i class="font-icon font-icon-warning"></i>
-                                            El usuario y/o contraseña son incorrectos.
+                                            El Usuario y/o Contraseña son incorrectos.
                                         </div>
                                     <?php
                                 break;
@@ -71,10 +71,10 @@
                     ?>
 
                     <div class="form-group">
-                        <input type="text" id="usu_correo" name="usu_correo" class="form-control" placeholder="Correo"/>
+                        <input type="text" id="usu_correo" name="usu_correo" class="form-control" placeholder="E-Mail"/>
                     </div>
                     <div class="form-group">
-                        <input type="password" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña"/>
+                        <input type="password" id="usu_pass" name="usu_pass" class="form-control" placeholder="Password"/>
                     </div>
                     <div class="form-group">
                         <div class="float-right reset">

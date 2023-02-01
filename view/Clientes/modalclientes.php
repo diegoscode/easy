@@ -20,14 +20,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="cedula">Cedula</label>
-                        <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Documento nacional"
+                        <label class="form-label semibold" for="doc_nac">Documento Nacional</label>
+                        <input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="Documento nacional"
                             required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="tip_per">Persona</label>
-                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo de persona"
+                        <label class="form-label semibold" for="tip_per">Tipo de cliente</label>
+                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo de cliente"
                             required>
                     </div>
 

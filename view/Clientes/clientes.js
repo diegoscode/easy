@@ -103,9 +103,10 @@ function editar(client_id) {
     { client_id: client_id },
     function (data) {
       data = JSON.parse(data);
+      console.log(data);
       $("#client_id").val(data.client_id);
       $("#nom_emp").val(data.nom_emp);
-      $("#cedula").val(data.cedula);
+      $("#doc_nac").val(data.doc_nac);
       $("#tip_per").val(data.tip_per);
     }
   );
@@ -148,7 +149,7 @@ function eliminar(client_id){
 
 $(document).on("click", "#btnnuevo", function () {
   $("#mdclientes").html("Nuevo Cliente");
-  document.getElementById("clientes_form").reset();
+  $('#clientes_form')[0].reset();
   $("#modalclientes").modal("show");
 });
 

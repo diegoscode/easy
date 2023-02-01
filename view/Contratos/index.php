@@ -40,7 +40,7 @@
 				<div class="row">
 					<form method="post" id="contratos_form">
 
-						<input type="hidden" id="usu_id" name="usu_id" value="<?php echo $_SESSION["usu_id"] ?>">
+					<input type="hidden" id="contrat_id" name="contrat_id">
 
 						<div class="col-lg-2">
 							<fieldset class="form-group">

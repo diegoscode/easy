@@ -1,14 +1,14 @@
 <?php
 class Clientes extends Conectar
 {
-    public function insert_clientes($nom_emp, $cedula, $tip_per)
+    public function insert_clientes($nom_emp, $doc_nac, $tip_per)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO clientes (client_id, nom_emp, cedula, tip_per, client_est, est) VALUES (NULL, ?, ?, ?, 'Activo', '1');";
+        $sql = "INSERT INTO clientes (client_id, usu_id, nom_emp, doc_nac, tip_per, client_est, est) VALUES (NULL, NULL, ?, ?, ?, 'Activo', '1');";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $nom_emp);
-        $sql->bindValue(2, $cedula);
+        $sql->bindValue(2, $doc_nac);
         $sql->bindValue(3, $tip_per);
         $sql->execute();
         return $resultado = $sql->fetchAll();
@@ -24,19 +24,19 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function update_clientes($client_id, $nom_emp, $cedula, $tip_per)
+    public function update_clientes($client_id, $nom_emp, $doc_nac, $tip_per)
     {
         $conectar = parent::conexion();
         parent::set_names();
         $sql = "UPDATE clientes set
                 nom_emp = ?,
-                cedula = ?,
+                doc_nac = ?,
                 tip_per = ?
                 WHERE
                 client_id = ? and est='1';";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $nom_emp);
-        $sql->bindValue(2, $cedula);
+        $sql->bindValue(2, $doc_nac);
         $sql->bindValue(3, $tip_per);
         $sql->bindValue(4, $client_id);
         $sql->execute();

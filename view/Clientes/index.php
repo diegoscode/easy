@@ -40,7 +40,7 @@ if (isset($_SESSION["usu_id"])) {
 							<tr>
 								<th style="width: 10%;">Codigo</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Cliente</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Cedula</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento Nacional</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Persona</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
 								<th class="text-center" style="width: 5%;"></th>

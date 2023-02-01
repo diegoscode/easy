@@ -6,9 +6,9 @@ $clientes = new Clientes();
 switch ($_GET["op"]) {
     case "guardaryeditar":
         if (empty($_POST["client_id"])) {
-            $clientes->insert_clientes($_POST["nom_emp"], $_POST["cedula"], $_POST["tip_per"]);
+            $clientes->insert_clientes($_POST["nom_emp"], $_POST["doc_nac"], $_POST["tip_per"]);
         } else {
-            $clientes->update_clientes($_POST["client_id"], $_POST["nom_emp"], $_POST["cedula"], $_POST["tip_per"]);
+            $clientes->update_clientes($_POST["client_id"], $_POST["nom_emp"], $_POST["doc_nac"], $_POST["tip_per"]);
         }
         break;
 
@@ -19,7 +19,7 @@ switch ($_GET["op"]) {
             $sub_array = array();
             $sub_array[] = $row["client_id"];
             $sub_array[] = $row["nom_emp"];
-            $sub_array[] = $row["cedula"];
+            $sub_array[] = $row["doc_nac"];
             $sub_array[] = $row["tip_per"];
 
             $client_estado;
@@ -57,7 +57,7 @@ switch ($_GET["op"]) {
             foreach ($datos as $row) {
                 $output["client_id"] = $row["client_id"];
                 $output["nom_emp"] = $row["nom_emp"];
-                $output["cedula"] = $row["cedula"];
+                $output["doc_nac"] = $row["doc_nac"];
                 $output["tip_per"] = $row["tip_per"];
             }
             echo json_encode($output);

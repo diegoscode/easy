@@ -1,29 +1,29 @@
 var tabla;
 
 function init(){
-    $("#usuarios_form").on("submit",function(e){
+    $("#usuario_form").on("submit",function(e){
         guardaryeditar(e);	
     });
 }
 
 function guardaryeditar(e){
     e.preventDefault();
-	var formData = new FormData($("#usuarios_form")[0]);
+	var formData = new FormData($("#usuario_form")[0]);
     $.ajax({
-        url: "../../controller/usuarios.php?op=guardaryeditar",
+        url: "../../controller/usuario.php?op=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
         processData: false,
         success: function(datos){    
             console.log(datos);
-            $('#usuarios_form')[0].reset();
+            $('#usuario_form')[0].reset();
             $("#modalmantenimiento").modal('hide');
-            $('#usuarios_data').DataTable().ajax.reload();
+            $('#usuario_data').DataTable().ajax.reload();
 
             swal({
-                title: "Admin",
-                text: "Completado",
+                title: "HelpDesk!",
+                text: "Completado.",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
@@ -32,7 +32,7 @@ function guardaryeditar(e){
 }
 
 $(document).ready(function(){
-    tabla=$('#usuarios_data').dataTable({
+    tabla=$('#usuario_data').dataTable({
         "aProcessing": true,
         "aServerSide": true,
         dom: 'Bfrtip',
@@ -46,7 +46,7 @@ $(document).ready(function(){
                 'pdfHtml5'
                 ],
         "ajax":{
-            url: '../../controller/usuarios.php?op=listar',
+            url: '../../controller/usuario.php?op=listar',
             type : "post",
             dataType : "json",						
             error: function(e){
@@ -88,7 +88,7 @@ $(document).ready(function(){
 function editar(usu_id){
     $('#mdltitulo').html('Editar Registro');
 
-    $.post("../../controller/usuarios.php?op=mostrar", {usu_id : usu_id}, function (data) {
+    $.post("../../controller/usuario.php?op=mostrar", {usu_id : usu_id}, function (data) {
         data = JSON.parse(data);
         $('#usu_id').val(data.usu_id);
         $('#usu_nom').val(data.usu_nom);
@@ -103,8 +103,8 @@ function editar(usu_id){
 
 function eliminar(usu_id){
     swal({
-        title: "Admin",
-        text: "Procedes a eliminar el registro",
+        title: "HelpDesk",
+        text: "Esta seguro de Eliminar el registro?",
         type: "error",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -114,15 +114,15 @@ function eliminar(usu_id){
     },
     function(isConfirm) {
         if (isConfirm) {
-            $.post("../../controller/usuarios.php?op=eliminar", {usu_id : usu_id}, function (data) {
+            $.post("../../controller/usuario.php?op=eliminar", {usu_id : usu_id}, function (data) {
 
             }); 
 
-            $('#usuarios_data').DataTable().ajax.reload();	
+            $('#usuario_data').DataTable().ajax.reload();	
 
             swal({
-                title: "Admin",
-                text: "Registro Eliminado",
+                title: "HelpDesk!",
+                text: "Registro Eliminado.",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
@@ -132,7 +132,7 @@ function eliminar(usu_id){
 
 $(document).on("click","#btnnuevo", function(){
     $('#mdltitulo').html('Nuevo Registro');
-    $('#usuarios_form')[0].reset();
+    $('#usuario_form')[0].reset();
     $('#modalmantenimiento').modal('show');
 });
 
