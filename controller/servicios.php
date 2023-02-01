@@ -6,31 +6,31 @@ $servicios = new Servicios();
 switch ($_GET["op"]) {
     case "guardaryeditar":
         if (empty($_POST["num_serv"])) {
-            $servicios->insert_servicio($_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"]);
+            $servicios->insert_servicios($_POST["tip_serv"], $_POST["cat_serv"], $_POST["sub_cat"], $_POST["cost_serv"]);
         } else {
-            $servicios->update_servicio($_POST["num_serv"], $_POST["tip_serv"], $_POST["cat_id"], $_POST["sub_cat"], $_POST["precio"]);
+            $servicios->update_servicios($_POST["num_serv"], $_POST["tip_serv"], $_POST["cat_serv"], $_POST["sub_cat"], $_POST["cost_serv"]);
         }
         break;
 
     case "listar":
-        $datos = $servicios->get_servicio();
+        $datos = $servicios->get_servicios();
         $data = array();
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["num_serv"];
             $sub_array[] = $row["tip_serv"];
-            $sub_array[] = $row["cat_id"];
+            $sub_array[] = $row["cat_serv"];
             $sub_array[] = $row["sub_cat"];
-            $sub_array[] = $row["precio"];
+            $sub_array[] = $row["cost_serv"];
 
-            $serv_estado;
+            $servicio_estado;
 
             if ($row["serv_est"] == "Disponible") {
-                $serv_estado = "'" . 'Inhabilitado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["num_serv"] . ',' . $serv_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
+                $servicio_estado = "'" . 'Inhabilitado' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["num_serv"] . ',' . $servicio_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
             } else {
-                $serv_estado = "'" . 'Disponible' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["num_serv"] . ',' . $serv_estado . ')"><span class="label label-pill label-danger">Inhabilitado</span></a>';
+                $servicio_estado = "'" . 'Disponible' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["num_serv"] . ',' . $servicio_estado . ')"><span class="label label-pill label-danger">Inhabilitado</span></a>';
             }
 
             $sub_array[] = '<button type="button" onClick="editar(' . $row["num_serv"] . ')"  id="' . $row["num_serv"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
@@ -48,18 +48,18 @@ switch ($_GET["op"]) {
         break;
 
     case "eliminar":
-        $servicios->delete_servicio($_POST["num_serv"]);
+        $servicios->delete_servicios($_POST["num_serv"]);
         break;
 
     case "mostrar";
-        $datos = $servicios->get_servicio_x_usu($_POST["num_serv"]);
+        $datos = $servicios->get_servicios_x_usu($_POST["num_serv"]);
         if (is_array($datos) == true and count($datos) > 0) {
             foreach ($datos as $row) {
                 $output["num_serv"] = $row["num_serv"];
                 $output["tip_serv"] = $row["tip_serv"];
-                $output["cat_id"] = $row["cat_id"];
+                $output["cat_serv"] = $row["cat_serv"];
                 $output["sub_cat"] = $row["sub_cat"];
-                $output["precio"] = $row["precio"];
+                $output["cost_serv"] = $row["cost_serv"];
             }
             echo json_encode($output);
         }

@@ -1,15 +1,15 @@
 <?php
     require_once("../config/conexion.php");
-    require_once("../models/Contrato.php");
-    $contrato = new Contrato();
+    require_once("../models/Contratos.php");
+    $contratos = new Contratos();
 
     switch($_GET["op"]){
         case "insert":
-            $contrato->insert_contrat($_POST["usu_id"],$_POST["nom_emp"],$_POST["descrip_contrat"],$_POST["tip_serv"],$_POST["cost_serv"],$_POST["contrat_est"]);
+            $contratos->insert_contratos($_POST["usu_id"],$_POST["nom_emp"],$_POST["descrip_contrat"],$_POST["tip_serv"],$_POST["cost_serv"],$_POST["contrat_est"]);
         break;
 
         case "listar_x_client":
-            $datos=$contrato->listar_contrat_x_client($_POST["usu_id"]);
+            $datos=$contratos->listar_contratos_x_clientes($_POST["usu_id"]);
             $data= Array();
             foreach($datos as $row){
                 $sub_array = array();
@@ -19,14 +19,14 @@
                 $sub_array[] = $row["tip_serv"];
                 $sub_array[] = $row["cost_serv"];
 
-                $contrat_estado;
+                $contrato_estado;
 
             if ($row["contrat_est"] == "Abierto") {
-                $contrat_estado = "'" . 'Cerrado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrat_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
+                $contrato_estado = "'" . 'Cerrado' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
             } else {
-                $contrat_estado = "'" . 'Abierto' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrat_estado . ')"><span class="label label-pill label-danger">Cerrado</span></a>';
+                $contrato_estado = "'" . 'Abierto' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">Cerrado</span></a>';
                 }
 
                 $data[] = $sub_array;
@@ -40,7 +40,7 @@
             break;
 
             case "cambiarestado";
-            $contrato->cambiar_estado($_POST["contrat_id"], $_POST["estado"]);
+            $contratos->cambiar_estado($_POST["contrat_id"], $_POST["estado"]);
             break;
             
     }

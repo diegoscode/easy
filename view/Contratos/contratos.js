@@ -3,24 +3,24 @@ var usu_id =  $('#user_idx').val();
 var rol_id =  $('#rol_idx').val();
 
 function init(){
-    $("#contrato_form").on("submit",function(e){
+    $("#contratos_form").on("submit",function(e){
         guardaryeditar(e);	
     });
 }
 
 function CambiarEstado(contrat_id, estado) {
     $.post(
-      "../../controller/contrato.php?op=cambiarestado",
+      "../../controller/contratos.php?op=cambiarestado",
       { contrat_id, estado },
       function (data) {
-        $("#contrato_data").DataTable().ajax.reload();
+        $("#contratos_data").DataTable().ajax.reload();
       }
     );
   }
 
 $(document).ready(function(){
 
-    tabla=$('#contrato_data').dataTable({
+    tabla=$('#contratos_data').dataTable({
         "aProcessing": true,
         "aServerSide": true,
         dom: 'Bfrtip',
@@ -34,10 +34,10 @@ $(document).ready(function(){
                 'pdfHtml5'
                 ],
         "ajax":{
-            url: '../../controller/contrato.php?op=listar_x_client',
+            url: '../../controller/contratos.php?op=listar_x_client',
             type : "post",
             dataType : "json",	
-            data:{ usu_id : usu_id },						
+            data:{ client_id : client_id },						
             error: function(e){
                 console.log(e.responseText);	
             }
@@ -77,15 +77,15 @@ $(document).ready(function(){
 
 function guardaryeditar(e){
     e.preventDefault();
-    var formData = new FormData($("#contrato_form")[0]);
+    var formData = new FormData($("#contratos_form")[0]);
         $.ajax({
-            url: "../../controller/contrato.php?op=insert",
+            url: "../../controller/contratos.php?op=insert",
             type: "POST",
             data: formData,
             contentType: false,
             processData: false,
             success: function(data){
-                $("#contrato_data").DataTable().ajax.reload();
+                $("#contratos_data").DataTable().ajax.reload();
 
                 $('#nom_emp').val('');
                 $('#descrip_contrat').val('');

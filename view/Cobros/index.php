@@ -39,12 +39,12 @@ if (isset($_SESSION["usu_id"])) {
 					<h5 class="m-t-lg with-border">Nuevo Cobro</h5>
 
 					<div class="row">
-						<form method="post" id="cobro_form">
+						<form method="post" id="cobros_form">
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Servicio Contratado</label>
-									<select id="cat_id" name="cat_id" class="form-control">
+									<select id="cat_serv" name="cat_serv" class="form-control">
 
 									</select>
 								</fieldset>
@@ -53,7 +53,7 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Mes a pagar</label>
-									<select id="cat_id" name="cat_id" class="form-control">
+									<select id="mes_pago" name="mes_pago" class="form-control">
 
 									</select>
 								</fieldset>
@@ -62,14 +62,11 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Cliente a Cobrar</label>
-									<select name="cobro_select" id="cobro_select">
+									<select name="cobros_select" id="cobros_select" class="form-control">
 										<option>Seleccione un cliente</option>
 									</select>
 								</fieldset>
-
 							</div>
-
-
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
@@ -105,7 +102,7 @@ if (isset($_SESSION["usu_id"])) {
 				</div>
 
 				<div class="box-typical box-typical-padding">
-					<table id="contrato_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+					<table id="cobros_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
 								<th style="width: 5%;">Codigo de Cliente</th>

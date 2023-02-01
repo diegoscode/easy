@@ -1,9 +1,9 @@
 <?php
     require_once("config/conexion.php");
     if(isset($_POST["enviar"]) and $_POST["enviar"]=="si"){
-        require_once("models/Usuario.php");
-        $usuario = new Usuario();
-        $usuario->login();
+        require_once("models/Usuarios.php");
+        $usuarios = new Usuarios();
+        $usuarios->login();
     }
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
                     <div class="sign-avatar">
                         <img src="public/1.jpg" alt="" id="imgtipo">
                     </div>
-                    <header class="sign-title" id="lbltitulo">Acceso Usuario</header>
+                    <header class="sign-title" id="lbltitulo">Acceso usuarios</header>
 
                     <?php
                         if (isset($_GET["m"])){
@@ -50,7 +50,7 @@
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                             <i class="font-icon font-icon-warning"></i>
-                                            El Usuario y/o Contraseña son incorrectos.
+                                            El usuario y/o contraseña son incorrectos.
                                         </div>
                                     <?php
                                 break;

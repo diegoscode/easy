@@ -1,7 +1,7 @@
 <?php
 require_once("../config/conexion.php");
-require_once("../models/Usuario.php");
-$usuario = new Usuario();
+require_once("../models/Usuarios.php");
+$usuarios = new Usuarios();
 
 function console_log($output, $with_script_tags = true)
 {
@@ -16,14 +16,14 @@ function console_log($output, $with_script_tags = true)
 switch ($_GET["op"]) {
     case "guardaryeditar":
         if (empty($_POST["usu_id"])) {
-            $usuario->insert_usuario($_POST["usu_nom"], $_POST["usu_ape"], $_POST["usu_correo"], $_POST["usu_pass"], $_POST["rol_id"]);
+            $usuarios->insert_usuarios($_POST["usu_nom"], $_POST["usu_ape"], $_POST["usu_correo"], $_POST["usu_pass"], $_POST["rol_id"]);
         } else {
-            $usuario->update_usuario($_POST["usu_id"], $_POST["usu_nom"], $_POST["usu_ape"], $_POST["usu_correo"], $_POST["usu_pass"], $_POST["rol_id"]);
+            $usuarios->update_usuarios($_POST["usu_id"], $_POST["usu_nom"], $_POST["usu_ape"], $_POST["usu_correo"], $_POST["usu_pass"], $_POST["rol_id"]);
         }
         break;
 
     case "listar":
-        $datos = $usuario->get_usuario();
+        $datos = $usuarios->get_usuarios();
         $data = array();
         foreach ($datos as $row) {
             $sub_array = array();
@@ -31,7 +31,6 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["usu_ape"];
             $sub_array[] = $row["usu_correo"];
             $sub_array[] = $row["usu_pass"];
-
 
             if ($row["rol_id"] == "1") {
                 $sub_array[] = '<span class="label label-pill label-success">Usuario</span>';
@@ -56,11 +55,11 @@ switch ($_GET["op"]) {
         break;
 
     case "eliminar":
-        $usuario->delete_usuario($_POST["usu_id"]);
+        $usuarios->delete_usuarios($_POST["usu_id"]);
         break;
 
     case "mostrar";
-        $datos = $usuario->get_usuario_x_id($_POST["usu_id"]);
+        $datos = $usuarios->get_usuarios_x_id($_POST["usu_id"]);
         if (is_array($datos) == true and count($datos) > 0) {
             foreach ($datos as $row) {
                 $output["usu_id"] = $row["usu_id"];
@@ -75,7 +74,7 @@ switch ($_GET["op"]) {
         break;
 
     case "combo";
-        $datos = $usuario->get_usuario_x_rol();
+        $datos = $usuarios->get_usuarios_x_rol();
         if (is_array($datos) == true and count($datos) > 0) {
             $html .= "<option label='Seleccionar'></option>";
             foreach ($datos as $row) {
@@ -86,7 +85,7 @@ switch ($_GET["op"]) {
         break;
     /* Controller para actualizar contraseña */
     case "password":
-        $usuario->update_usuario_pass($_POST["usu_id"], $_POST["usu_pass"]);
+        $usuarios->update_usuarios_pass($_POST["usu_id"], $_POST["usu_pass"]);
         break;
 
 }

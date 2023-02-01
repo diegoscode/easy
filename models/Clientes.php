@@ -1,7 +1,7 @@
 <?php
 class Clientes extends Conectar
 {
-    public function insert_cliente($nom_emp, $cedula, $tip_per)
+    public function insert_clientes($nom_emp, $cedula, $tip_per)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -14,7 +14,7 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function get_cliente()
+    public function get_clientes()
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -24,7 +24,7 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function update_cliente($client_id, $nom_emp, $cedula, $tip_per)
+    public function update_clientes($client_id, $nom_emp, $cedula, $tip_per)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -43,7 +43,7 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function delete_cliente($client_id)
+    public function delete_clientes($client_id)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -57,7 +57,7 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function get_cliente_x_usu()
+    public function get_clientes_x_usu()
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -67,7 +67,7 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function get_cliente_x_id($client_id)
+    public function get_clientes_x_id($client_id)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -95,8 +95,6 @@ class Clientes extends Conectar
         return $resultado = $sql->fetchAll();
 
     }
-
-
 
     function console_log($output, $with_script_tags = true)
     {

@@ -1,25 +1,25 @@
 var tabla;
 
 function init(){
-    $("#usuario_form").on("submit",function(e){
+    $("#usuarios_form").on("submit",function(e){
         guardaryeditar(e);	
     });
 }
 
 function guardaryeditar(e){
     e.preventDefault();
-	var formData = new FormData($("#usuario_form")[0]);
+	var formData = new FormData($("#usuarios_form")[0]);
     $.ajax({
-        url: "../../controller/usuario.php?op=guardaryeditar",
+        url: "../../controller/usuarios.php?op=guardaryeditar",
         type: "POST",
         data: formData,
         contentType: false,
         processData: false,
         success: function(datos){    
             console.log(datos);
-            $('#usuario_form')[0].reset();
+            $('#usuarios_form')[0].reset();
             $("#modalmantenimiento").modal('hide');
-            $('#usuario_data').DataTable().ajax.reload();
+            $('#usuarios_data').DataTable().ajax.reload();
 
             swal({
                 title: "Admin",
@@ -32,7 +32,7 @@ function guardaryeditar(e){
 }
 
 $(document).ready(function(){
-    tabla=$('#usuario_data').dataTable({
+    tabla=$('#usuarios_data').dataTable({
         "aProcessing": true,
         "aServerSide": true,
         dom: 'Bfrtip',
@@ -46,7 +46,7 @@ $(document).ready(function(){
                 'pdfHtml5'
                 ],
         "ajax":{
-            url: '../../controller/usuario.php?op=listar',
+            url: '../../controller/usuarios.php?op=listar',
             type : "post",
             dataType : "json",						
             error: function(e){
@@ -88,7 +88,7 @@ $(document).ready(function(){
 function editar(usu_id){
     $('#mdltitulo').html('Editar Registro');
 
-    $.post("../../controller/usuario.php?op=mostrar", {usu_id : usu_id}, function (data) {
+    $.post("../../controller/usuarios.php?op=mostrar", {usu_id : usu_id}, function (data) {
         data = JSON.parse(data);
         $('#usu_id').val(data.usu_id);
         $('#usu_nom').val(data.usu_nom);
@@ -114,11 +114,11 @@ function eliminar(usu_id){
     },
     function(isConfirm) {
         if (isConfirm) {
-            $.post("../../controller/usuario.php?op=eliminar", {usu_id : usu_id}, function (data) {
+            $.post("../../controller/usuarios.php?op=eliminar", {usu_id : usu_id}, function (data) {
 
             }); 
 
-            $('#usuario_data').DataTable().ajax.reload();	
+            $('#usuarios_data').DataTable().ajax.reload();	
 
             swal({
                 title: "Admin",
@@ -132,7 +132,7 @@ function eliminar(usu_id){
 
 $(document).on("click","#btnnuevo", function(){
     $('#mdltitulo').html('Nuevo Registro');
-    $('#usuario_form')[0].reset();
+    $('#usuarios_form')[0].reset();
     $('#modalmantenimiento').modal('show');
 });
 

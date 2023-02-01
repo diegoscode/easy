@@ -1,5 +1,5 @@
 <?php
-    class Usuario extends Conectar{
+    class Usuarios extends Conectar{
 
         public function login(){
             $conectar=parent::conexion();
@@ -34,7 +34,7 @@
             }
         }
 
-        public function insert_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
+        public function insert_usuarios($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO usuarios (usu_id, usu_nom, usu_ape, usu_correo, usu_pass, rol_id, fech_crea, fech_modi, fech_elim, est) VALUES (NULL,?,?,?,?,?,now(), NULL, NULL, '1');";
@@ -48,7 +48,7 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
+        public function update_usuarios($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE usuarios set
@@ -70,26 +70,30 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function delete_usuario($usu_id){
+        public function delete_usuarios($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_d_usuario_01(?)";
+            $sql="UPDATE usuarios 
+            SET 
+                est='0',
+                fech_elim = now() 
+            where usu_id=xusu_id;";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
-        public function get_usuario(){
+        public function get_usuarios(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_l_usuario_01()";
+            $sql="SELECT * FROM usuarios where est='1';";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
-        public function get_usuario_x_rol(){
+        public function get_usuarios_x_rol(){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="SELECT * FROM usuarios where est=1 and rol_id=2";
@@ -98,17 +102,17 @@
             return $resultado=$sql->fetchAll();
         }
 
-        public function get_usuario_x_id($usu_id){
+        public function get_usuarios_x_id($usu_id){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="call sp_l_usuario_02(?)";
+            $sql="SELECT * FROM usuarios where usu_id=xusu_id;";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
 
-        public function update_usuario_pass($usu_id,$usu_pass){
+        public function update_usuarios_pass($usu_id,$usu_pass){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE usuarios

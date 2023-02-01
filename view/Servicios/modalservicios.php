@@ -8,7 +8,7 @@
                 </button>
                 <h4 class="modal-title" id="mdservicios"></h4>
             </div>
-            <form method="post" id="servicio_form">
+            <form method="post" id="servicios_form">
                 <div class="modal-body">
 
                     <input type="hidden" class="form-control" id="num_serv" name="num_serv">
@@ -20,8 +20,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="cat_id">Categoria</label>
-                        <input type="text" class="form-control" id="cat_id" name="cat_id" placeholder="Categoria"
+                        <label class="form-label semibold" for="cat_serv">Categoria</label>
+                        <input type="text" class="form-control" id="cat_serv" name="cat_serv" placeholder="Categoria"
                             required>
                     </div>
 
@@ -32,8 +32,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="precio">Precio</label>
-                        <input type="number" class="form-control" id="precio" name="precio" placeholder="Precio"
+                        <label class="form-label semibold" for="cost_serv">Costo de Servicio</label>
+                        <input type="number" class="form-control" id="cost_serv" name="cost_serv" placeholder="Costo"
                             required>
                     </div>
 

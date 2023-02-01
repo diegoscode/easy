@@ -7,7 +7,7 @@
                 </button>
                 <h4 class="modal-title" id="mdltitulo"></h4>
             </div>
-            <form method="post" id="usuario_form">
+            <form method="post" id="usuarios_form">
                 <div class="modal-body">
                     <input type="hidden" id="usu_id" name="usu_id">
 

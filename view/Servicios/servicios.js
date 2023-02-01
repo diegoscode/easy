@@ -1,7 +1,7 @@
 var tabla;
 
 function init() {
-  $("#servicio_form").on("submit", function (e) {
+  $("#servicios_form").on("submit", function (e) {
     guardaryeditar(e);
   });
 }
@@ -11,14 +11,14 @@ function CambiarEstado(num_serv, estado) {
     "../../controller/servicios.php?op=cambiarestado",
     { num_serv, estado },
     function (data) {
-      $("#servicio_data").DataTable().ajax.reload();
+      $("#servicios_data").DataTable().ajax.reload();
     }
   );
 }
 
 function guardaryeditar(e) {
   e.preventDefault();
-  var formData = new FormData($("#servicio_form")[0]);
+  var formData = new FormData($("#servicios_form")[0]);
   $.ajax({
     url: "../../controller/servicios.php?op=guardaryeditar",
     type: "POST",
@@ -27,9 +27,9 @@ function guardaryeditar(e) {
     processData: false,
     success: function (datos) {
       console.log(datos);
-      $("#servicio_form")[0].reset();
+      $("#servicios_form")[0].reset();
       $("#modalservicios").modal("hide");
-      $("#servicio_data").DataTable().ajax.reload();
+      $("#servicios_data").DataTable().ajax.reload();
 
 
             swal({
@@ -43,7 +43,7 @@ function guardaryeditar(e) {
 }
 
 $(document).ready(function () {
-  tabla = $("#servicio_data")
+  tabla = $("#servicios_data")
     .dataTable({
       aProcessing: true,
       aServerSide: true,
@@ -96,7 +96,7 @@ $(document).ready(function () {
 });
 
 function editar(num_serv) {
-  $("#mdservicios").html("Editar Servicio");
+  $("#mdservicios").html("Editar servicios");
 
   $.post(
     "../../controller/servicios.php?op=mostrar",
@@ -105,9 +105,9 @@ function editar(num_serv) {
       data = JSON.parse(data);
       $("#num_serv").val(data.num_serv);
       $("#tip_serv").val(data.tip_serv);
-      $("#cat_id").val(data.cat_id);
+      $("#cat_serv").val(data.cat_serv);
       $("#sub_cat").val(data.sub_cat);
-      $("#precio").val(data.precio);
+      $("#cost_serv").val(data.cost_serv);
     }
   );
 
@@ -118,7 +118,7 @@ function editar(num_serv) {
 function eliminar(num_serv){
     swal({
         title: "Admin",
-        text: "Procedes a eliminar el servicio",
+        text: "Procedes a eliminar el servicios",
         type: "error",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",
@@ -134,7 +134,7 @@ function eliminar(num_serv){
           function (data) {}
         );
 
-        $("#servicio_data").DataTable().ajax.reload();
+        $("#servicios_data").DataTable().ajax.reload();
 
 
             swal({
@@ -148,8 +148,8 @@ function eliminar(num_serv){
 }
 
 $(document).on("click", "#btnnuevo", function () {
-  $("#mdservicios").html("Nuevo Servicio");
-  $("#servicio_form")[0].reset();
+  $("#mdservicios").html("Nuevo servicio");
+  $("#servicios_form")[0].reset();
   $("#modalservicios").modal("show");
 });
 

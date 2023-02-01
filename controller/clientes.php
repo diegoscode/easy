@@ -6,14 +6,14 @@ $clientes = new Clientes();
 switch ($_GET["op"]) {
     case "guardaryeditar":
         if (empty($_POST["client_id"])) {
-            $clientes->insert_cliente($_POST["nom_emp"], $_POST["cedula"], $_POST["tip_per"]);
+            $clientes->insert_clientes($_POST["nom_emp"], $_POST["cedula"], $_POST["tip_per"]);
         } else {
-            $clientes->update_cliente($_POST["client_id"], $_POST["nom_emp"], $_POST["cedula"], $_POST["tip_per"]);
+            $clientes->update_clientes($_POST["client_id"], $_POST["nom_emp"], $_POST["cedula"], $_POST["tip_per"]);
         }
         break;
 
     case "listar":
-        $datos = $clientes->get_cliente();
+        $datos = $clientes->get_clientes();
         $data = array();
         foreach ($datos as $row) {
             $sub_array = array();
@@ -48,11 +48,11 @@ switch ($_GET["op"]) {
         break;
 
     case "eliminar":
-        $clientes->delete_cliente($_POST["client_id"]);
+        $clientes->delete_clientes($_POST["client_id"]);
         break;
 
     case "mostrar";
-        $datos = $clientes->get_cliente_x_usu($_POST["client_id"]);
+        $datos = $clientes->get_clientes_x_usu($_POST["client_id"]);
         if (is_array($datos) == true and count($datos) > 0) {
             foreach ($datos as $row) {
                 $output["client_id"] = $row["client_id"];
@@ -65,7 +65,7 @@ switch ($_GET["op"]) {
         break;
 
     case "buscar";
-        $datos = $clientes->get_cliente_x_id($_POST['client_id']);
+        $datos = $clientes->get_clientes_x_id($_POST['client_id']);
 
         echo json_encode($datos);
         break;

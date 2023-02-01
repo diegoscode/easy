@@ -26,7 +26,7 @@
 							<h3>Contratos</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 								<li><a href="#">Home</a></li>
-								<li class="active">Nuevo Contrato</li>
+								<li class="active">Nuevo Contratos</li>
 							</ol>
 						</div>
 					</div>
@@ -35,10 +35,10 @@
 
 			<div class="box-typical box-typical-padding">
 
-				<h5 class="m-t-lg with-border">Nuevo Contrato</h5>
+				<h5 class="m-t-lg with-border">Nuevos Contratos</h5>
 
 				<div class="row">
-					<form method="post" id="contrato_form">
+					<form method="post" id="contratos_form">
 
 						<input type="hidden" id="usu_id" name="usu_id" value="<?php echo $_SESSION["usu_id"] ?>">
 
@@ -52,7 +52,7 @@
 						<div class="col-lg-2">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="descrip_contrat">Descripcion</label>
-								<input type="text" class="form-control" id="descrip_contrat" name="descrip_contrat" placeholder="Contrato">
+								<input type="text" class="form-control" id="descrip_contrat" name="descrip_contrat" placeholder="contratos">
 							</fieldset>
 						</div>
 
@@ -79,10 +79,10 @@
 			</div>
 
 			<div class="box-typical box-typical-padding">
-				<table id="contrato_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+				<table id="contratos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
-							<th style="width: 5%;">Numero de Contrato</th>
+							<th style="width: 5%;">Numero de contratos</th>
 							<th style="width: 5%;">Empresa</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Descripcion</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo</th>

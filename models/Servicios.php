@@ -1,21 +1,21 @@
 <?php
 class Servicios extends Conectar
 {
-    public function insert_servicio($tip_serv, $cat_id, $sub_cat, $precio)
+    public function insert_servicios($tip_serv, $cat_serv, $sub_cat, $cost_serv)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO servicios (num_serv, tip_serv, cat_id, sub_cat, precio, serv_est, est) VALUES (NULL, ?, ?, ?, ?, 'Disponible', '1');";
+        $sql = "INSERT INTO servicios (num_serv, tip_serv, cat_serv, sub_cat, cost_serv, serv_est, est) VALUES (NULL, ?, ?, ?, ?, 'Disponible', '1');";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $tip_serv);
-        $sql->bindValue(2, $cat_id);
+        $sql->bindValue(2, $cat_serv);
         $sql->bindValue(3, $sub_cat);
-        $sql->bindValue(4, $precio);
+        $sql->bindValue(4, $cost_serv);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
 
-    public function get_servicio()
+    public function get_servicios()
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -25,28 +25,28 @@ class Servicios extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function update_servicio($num_serv, $tip_serv, $cat_id, $sub_cat, $precio)
+    public function update_servicios($num_serv, $tip_serv, $cat_serv, $sub_cat, $cost_serv)
     {
         $conectar = parent::conexion();
         parent::set_names();
         $sql = "UPDATE servicios set
                 tip_serv = ?,
-                cat_id = ?,
+                cat_serv = ?,
                 sub_cat = ?,
-                precio = ?
+                cost_serv = ?
                 WHERE
                 num_serv = ? and est='1';";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $tip_serv);
-        $sql->bindValue(2, $cat_id);
+        $sql->bindValue(2, $cat_serv);
         $sql->bindValue(3, $sub_cat);
-        $sql->bindValue(4, $precio);
+        $sql->bindValue(4, $cost_serv);
         $sql->bindValue(5, $num_serv);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
 
-    public function delete_servicio($num_serv)
+    public function delete_servicios($num_serv)
     {
         $conectar = parent::conexion();
         parent::set_names();
@@ -60,7 +60,7 @@ class Servicios extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function get_servicio_x_usu()
+    public function get_servicios_x_usu()
     {
         $conectar = parent::conexion();
         parent::set_names();
