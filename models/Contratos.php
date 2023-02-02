@@ -2,17 +2,15 @@
 class Contratos extends Conectar
 {
 
-    public function insert_contratos($usu_id, $nom_emp, $descrip_contrat, $tip_serv, $cost_serv, $contrat_est)
+    public function insert_contratos($client_id, $num_serv)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO contratos (contrat_id,usu_id,nom_emp,descrip_contrat,tip_serv,cost_serv,contrat_est,est) VALUES (NULL,?,?,?,?,?,'Abierto','1');";
+        $sql = "INSERT INTO contratos (contrat_id,client_id, contrat_est, fech_contrat, est, num_serv) VALUES (NULL, ?, 'Asociado', NOW(), 1, ?);";
         $sql = $conectar->prepare($sql);
-        $sql->bindValue(1, $usu_id);
-        $sql->bindValue(2, $nom_emp);
-        $sql->bindValue(3, $descrip_contrat);
-        $sql->bindValue(4, $tip_serv);
-        $sql->bindValue(5, $cost_serv);
+        $sql->bindValue(1, $client_id);
+        $sql->bindValue(2, $num_serv);
+
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
@@ -45,8 +43,6 @@ class Contratos extends Conectar
 
     public function cambiar_estado($contrat_id, $contrat_est)
     {
-        $this->console_log($contrat_id);
-        $this->console_log($contrat_est);
         $conectar = parent::conexion();
         parent::set_names();
         $sql = "UPDATE contratos 
@@ -56,6 +52,32 @@ class Contratos extends Conectar
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $contrat_est);
         $sql->bindValue(2, $contrat_id);
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+
+    }
+
+    public function listar_contratos()
+    {
+        $conectar = parent::Conexion();
+        parent::set_names();
+        $sql = "SELECT 
+        C.contrat_id AS contrat_id, 
+        CL.nom_emp AS nom_emp,
+        CL.doc_nac AS cedula,
+        CL.tip_per AS tip_per,
+        S.tip_serv AS tip_serv,
+        S.cost_serv AS cost_serv,
+        C.fech_contrat AS fech_contrat,
+        C.contrat_est AS contrat_est
+        FROM contratos AS C
+        INNER JOIN clientes AS CL
+        ON C.client_id = CL.client_id
+        INNER JOIN servicios AS S
+        ON C.num_serv = S.num_serv
+        WHERE C.est = 1";
+
+        $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();
 
