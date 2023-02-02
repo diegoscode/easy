@@ -111,6 +111,8 @@
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Monto a pagar</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha del contrato</th>
 							<th class="d-none d-sm-table-cell" style="width: 1%;">Estado</th>
+							<th class="text-center" style="width: 5%;"></th>
+							<th class="text-center" style="width: 5%;"></th>
 						</tr>
 					</thead>
 					<tbody>

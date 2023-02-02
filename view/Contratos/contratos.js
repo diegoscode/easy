@@ -11,6 +11,7 @@ $(document).ready(function () {
   var select = $("#contratos_select");
 
   $.post("../../controller/clientes.php?op=listar", function (data) {
+    console.log(data);
     var response = JSON.parse(data);
     const keys = [
       "client_id",
@@ -42,6 +43,7 @@ $(document).ready(function () {
       { client_id: e.target.value },
       function (data) {
         var cliente = JSON.parse(data);
+        console.log(data);
         $("#nom_emp").val(cliente.nom_emp);
         $("#tip_per").val(cliente.tip_per);
         $("#doc_nac").val(cliente.doc_nac);

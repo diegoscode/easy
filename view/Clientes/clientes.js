@@ -99,7 +99,7 @@ function editar(client_id) {
   $("#mdclientes").html("Editar Cliente");
 
   $.post(
-    "../../controller/clientes.php?op=mostrar",
+    "../../controller/clientes.php?op=encontrar",
     { client_id: client_id },
     function (data) {
       data = JSON.parse(data);
