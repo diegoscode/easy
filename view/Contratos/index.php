@@ -61,6 +61,7 @@ if (isset($_SESSION["usu_id"])) {
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Servicio a contratar</label>
 									<select id="cat_serv" name="cat_serv" class="form-control">
+
 									</select>
 								</fieldset>
 							</div>
