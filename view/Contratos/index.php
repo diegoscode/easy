@@ -1,39 +1,40 @@
 <?php
-  require_once("../../config/conexion.php"); 
-  if(isset($_SESSION["usu_id"])){ 
-?>
-<!DOCTYPE html>
-<html>
-    <?php require_once("../MainHead/head.php");?>
+require_once("../../config/conexion.php");
+if (isset($_SESSION["usu_id"])) {
+	?>
+	<!DOCTYPE html>
+	<html>
+	<?php require_once("../MainHead/head.php"); ?>
 	<title>Contratos</title>
-</head>
-<body class="with-side-menu">
+	</head>
 
-    <?php require_once("../MainHeader/header.php");?>
+	<body class="with-side-menu">
 
-    <div class="mobile-menu-left-overlay"></div>
+		<?php require_once("../MainHeader/header.php"); ?>
 
-    <?php require_once("../MainNav/nav.php");?>
+		<div class="mobile-menu-left-overlay"></div>
 
-	<!-- Contenido -->
-	<div class="page-content">
-		<div class="container-fluid">
+		<?php require_once("../MainNav/nav.php"); ?>
 
-			<header class="section-header">
-				<div class="tbl">
-					<div class="tbl-row">
-						<div class="tbl-cell">
-							<h3>Contratos</h3>
-							<ol class="breadcrumb breadcrumb-simple">
-								<li><a href="#">Home</a></li>
-								<li class="active">Nuevo Contrato</li>
-							</ol>
+		<!-- Contenido -->
+		<div class="page-content">
+			<div class="container-fluid">
+
+				<header class="section-header">
+					<div class="tbl">
+						<div class="tbl-row">
+							<div class="tbl-cell">
+								<h3>Contratos</h3>
+								<ol class="breadcrumb breadcrumb-simple">
+									<li><a href="#">Home</a></li>
+									<li class="active">Nuevo Contrato</li>
+								</ol>
+							</div>
 						</div>
 					</div>
-				</div>
-			</header>
+				</header>
 
-			<div class="box-typical box-typical-padding">
+				<div class="box-typical box-typical-padding">
 
 					<h5 class="m-t-lg with-border">Nuevo Contrato</h5>
 
@@ -44,7 +45,6 @@
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Asociar cliente</label>
 									<select name="contratos_select" id="contratos_select" class="form-control">
-										<option>Seleccione un cliente</option>
 									</select>
 								</fieldset>
 							</div>
@@ -61,7 +61,6 @@
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Servicio a contratar</label>
 									<select id="cat_serv" name="cat_serv" class="form-control">
-										<option>Seleccione un servicio</option>
 									</select>
 								</fieldset>
 							</div>
@@ -77,16 +76,16 @@
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="doc_nac">Documento Nacional</label>
-									<input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="Documento Nacional"
-										readonly>
+									<input type="text" class="form-control" id="doc_nac" name="doc_nac"
+										placeholder="Documento Nacional" readonly>
 								</fieldset>
 							</div>
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="cost_serv">Monto</label>
-									<input type="text" class="form-control" id="cost_serv" name="cost_serv" placeholder="Monto a pagar"
-										readonly>
+									<input type="text" class="form-control" id="cost_serv" name="cost_serv"
+										placeholder="Monto a pagar" readonly>
 								</fieldset>
 							</div>
 
@@ -99,43 +98,44 @@
 
 				</div>
 
-			<div class="box-typical box-typical-padding">
-				<table id="contratos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
-					<thead>
-						<tr>
-							<th style="width: 5%;">Numero de Contrato</th>
-							<th style="width: 1%;">Empresa</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Documento Nacional</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Servicio contratado</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Monto a pagar</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha del contrato</th>
-							<th class="d-none d-sm-table-cell" style="width: 1%;">Estado</th>
-							<th class="text-center" style="width: 5%;"></th>
-							<th class="text-center" style="width: 5%;"></th>
-						</tr>
-					</thead>
-					<tbody>
+				<div class="box-typical box-typical-padding">
+					<table id="contratos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+						<thead>
+							<tr>
+								<th style="width: 5%;">Numero de Contrato</th>
+								<th style="width: 1%;">Empresa</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento Nacional</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Servicio contratado</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Monto a pagar</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha del contrato</th>
+								<th class="d-none d-sm-table-cell" style="width: 1%;">Estado</th>
+								<th class="text-center" style="width: 5%;"></th>
+								<th class="text-center" style="width: 5%;"></th>
+							</tr>
+						</thead>
+						<tbody>
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
+
 			</div>
+		</div>
 
 		</div>
-	</div>
-
 		</div>
-	</div>
-	<!-- Contenido -->
+		<!-- Contenido -->
 
-	<?php require_once("../MainJs/js.php");?>
+		<?php require_once("../MainJs/js.php"); ?>
 
-	<script type="text/javascript" src="contratos.js"></script>
+		<script type="text/javascript" src="contratos.js"></script>
 
-</body>
-</html>
-<?php
-  } else {
-    header("Location:".Conectar::ruta()."index.php");
-  }
+	</body>
+
+	</html>
+	<?php
+} else {
+	header("Location:" . Conectar::ruta() . "index.php");
+}
 ?>
