@@ -60,7 +60,7 @@
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Servicio a contratar</label>
-									<select id="cat_serv" name="cat_serv" class="form-control">
+									<select id="servicios_select" name="servicios_select" class="form-control">
 										<option>Seleccione un servicio</option>
 									</select>
 								</fieldset>

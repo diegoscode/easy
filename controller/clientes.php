@@ -58,7 +58,6 @@ switch ($_GET["op"]) {
 
         break;
 
-
     case "cambiarestado";
         $clientes->cambiar_estado($_POST["client_id"], $_POST["estado"]);
         break;

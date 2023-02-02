@@ -47,22 +47,15 @@ switch ($_GET["op"]) {
         echo json_encode($results);
         break;
 
-    case "eliminar":
+        case "eliminar":
         $servicios->delete_servicios($_POST["num_serv"]);
         break;
 
-    case "mostrar";
+        case "encontrar";
         $datos = $servicios->get_servicios_x_id($_POST["num_serv"]);
-        if (is_array($datos) == true and count($datos) > 0) {
-            foreach ($datos as $row) {
-                $output["num_serv"] = $row["num_serv"];
-                $output["tip_serv"] = $row["tip_serv"];
-                $output["cat_serv"] = $row["cat_serv"];
-                $output["sub_cat"] = $row["sub_cat"];
-                $output["cost_serv"] = $row["cost_serv"];
-            }
-            echo json_encode($output);
-        }
+
+        echo json_encode($datos);
+
         break;
 
         case "cambiarestado";

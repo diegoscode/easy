@@ -64,11 +64,11 @@ class Servicios extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "SELECT * FROM servicios where est=1 and num_serv=?";
+        $sql = "SELECT * FROM servicios where est=1 AND num_serv=?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $num_serv);
         $sql->execute();
-        return $resultado = $sql->fetchAll();
+        return $resultado=$sql->fetch();
     }
 
     public function cambiar_estado($num_serv, $serv_est)
