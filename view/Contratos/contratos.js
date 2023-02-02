@@ -39,7 +39,7 @@ $(document).ready(function () {
   select.select2();
   select.on("change", (e) => {
     $.post(
-      "../../controller/clientes.php?op=buscar",
+      "../../controller/clientes.php?op=encontrar",
       { client_id: e.target.value },
       function (data) {
         var cliente = JSON.parse(data);

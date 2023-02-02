@@ -51,24 +51,13 @@ switch ($_GET["op"]) {
         $clientes->delete_clientes($_POST["client_id"]);
         break;
 
-    case "mostrar";
+    case "encontrar";
         $datos = $clientes->get_clientes_x_id($_POST["client_id"]);
-        if (is_array($datos) == true and count($datos) > 0) {
-            foreach ($datos as $row) {
-                $output["client_id"] = $row["client_id"];
-                $output["nom_emp"] = $row["nom_emp"];
-                $output["doc_nac"] = $row["doc_nac"];
-                $output["tip_per"] = $row["tip_per"];
-            }
-            echo json_encode($output);
-        }
-        break;
-
-    case "buscar";
-        $datos = $clientes->get_clientes_x_id($_POST['client_id']);
 
         echo json_encode($datos);
+
         break;
+
 
     case "cambiarestado";
         $clientes->cambiar_estado($_POST["client_id"], $_POST["estado"]);
