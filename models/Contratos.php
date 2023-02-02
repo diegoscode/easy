@@ -79,7 +79,34 @@ class Contratos extends Conectar
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();
+    
+    }
 
+    public function buscar_contrato($contrat_id)
+    {
+        $conectar = parent::Conexion();
+        parent::set_names();
+        $sql = "SELECT
+        C.contrat_id AS contrat_id,
+        CL.nom_emp AS nom_emp,
+        CL.doc_nac AS cedula,
+        CL_tip_per AS tip per,
+        S.tip_serv AS tip_serv,
+        S.cost_serv AS cost_serv,
+        C.fech_contrat AS fech_contrat,
+        C.contrat_est AS contrat_est
+        FROM contratos AS C
+        INNER JOIN clientes AS CL
+        ON C.client_id = CL.client_id
+        INNER JOIN servicios AS S
+        ON C.num_serv = S.num_serv
+        WHERE C.est = 1
+        AND C.contrat_id = ?";
+
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $contrat_id);
+        $sql->execute();
+        return $resultado = $sql->fetch();
     }
 
     function console_log($output, $with_script_tags = true)

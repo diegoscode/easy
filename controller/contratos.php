@@ -82,5 +82,11 @@ switch ($_GET["op"]) {
         $contratos->cambiar_estado($_POST["contrat_id"], $_POST["estado"]);
         break;
 
+    case "buscar";
+        $datos = $contratos->buscar_contrato($_POST['contrat_id']);
+
+        echo json_encode($datos);
+        break;
+
 }
 ?>

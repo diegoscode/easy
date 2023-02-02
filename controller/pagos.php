@@ -25,7 +25,7 @@ switch ($_GET["op"]) {
 
             $contrato_estado;
 
-            if ($row["contrat_est"] == "Asociado") {
+            if ($row["pag_est"] == "Asociado") {
                 $contrato_estado = "'" . 'Asociado' . "'";
                 $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
             } else {
@@ -60,7 +60,7 @@ switch ($_GET["op"]) {
 
             $contrato_estado;
 
-            if ($row["contrat_est"] == "Abierto") {
+            if ($row["pag_est"] == "Abierto") {
                 $contrato_estado = "'" . 'Cerrado' . "'";
                 $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
             } else {
