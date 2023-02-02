@@ -1,21 +1,21 @@
 <?php
 require_once("../config/conexion.php");
-require_once("../models/Contratos.php");
-$contratos = new Contratos();
+require_once("../models/Pagos.php");
+$pagos = new Pagos();
 
 switch ($_GET["op"]) {
     case "insert":
-        $contratos->insert_contratos($_POST["contratos_select"], $_POST["cat_serv"]);
+        $pagos->insert_pagos($_POST["pagos_select"], $_POST["cat_serv"]);
         break;
 
     case "listar":
 
-        $datos = $contratos->listar_contratos();
+        $datos = $pagos->listar_pagos();
         $data = array();
 
         foreach ($datos as $row) {
             $sub_array = array();
-            $sub_array[] = $row["contrat_id"];
+            $sub_array[] = $row["pag_id"];
             $sub_array[] = $row["nom_emp"];
             $sub_array[] = $row["cedula"];
             $sub_array[] = $row["tip_per"];
@@ -27,10 +27,10 @@ switch ($_GET["op"]) {
 
             if ($row["contrat_est"] == "Asociado") {
                 $contrato_estado = "'" . 'Asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
             } else {
                 $contrato_estado = "'" . 'No asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No asociado</span></a>';
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No asociado</span></a>';
             }
 
             $data[] = $sub_array;
@@ -48,23 +48,24 @@ switch ($_GET["op"]) {
         break;
 
     case "listar_x_client":
-        $datos = $contratos->listar_contratos_x_clientes($_POST["usu_id"]);
+        $datos = $pagos->listar_pagos_x_clientes($_POST["usu_id"]);
         $data = array();
         foreach ($datos as $row) {
             $sub_array = array();
-            $sub_array[] = $row["contrat_id"];
+            $sub_array[] = $row["pag_id"];
             $sub_array[] = $row["nom_emp"];
             $sub_array[] = $row["tip_serv"];
+            $sub_array[] = $row["doc_nac"];
             $sub_array[] = $row["cost_serv"];
 
             $contrato_estado;
 
             if ($row["contrat_est"] == "Abierto") {
                 $contrato_estado = "'" . 'Cerrado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Disponible</span></a>';
             } else {
                 $contrato_estado = "'" . 'Abierto' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">Cerrado</span></a>';
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">Cerrado</span></a>';
             }
 
             $data[] = $sub_array;
@@ -79,7 +80,7 @@ switch ($_GET["op"]) {
         break;
 
     case "cambiarestado";
-        $contratos->cambiar_estado($_POST["contrat_id"], $_POST["estado"]);
+        $pagos->cambiar_estado($_POST["pag_id"], $_POST["estado"]);
         break;
 
 }

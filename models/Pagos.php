@@ -6,7 +6,7 @@ class Pagos extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO pagos (contrat_id,client_id, contrat_est, fech_pag, est, num_serv) VALUES (NULL, ?, 'Asociado', NOW(), 1, ?);";
+        $sql = "INSERT INTO pagos (pag_id,client_id, pag_est, fech_pag, est, num_serv) VALUES (NULL, ?, 'Cancelado', NOW(), 1, ?);";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $client_id);
         $sql->bindValue(2, $num_serv);
@@ -20,13 +20,12 @@ class Pagos extends Conectar
         $conectar = parent::conexion();
         parent::set_names();
         $sql = "SELECT 
-                pagos.contrat_id,
+                pagos.pag_id,
                 pagos.usu_id,
                 pagos.nom_emp,
-                pagos.descrip_contrat,
                 pagos.tip_serv,
                 pagos.cost_serv,
-                pagos.contrat_est,
+                pagos.pag_est,
                 usuarios.usu_nom,
                 usuarios.usu_ape
                 FROM 
@@ -41,17 +40,17 @@ class Pagos extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function cambiar_estado($contrat_id, $contrat_est)
+    public function cambiar_estado($pag_id, $pag_est)
     {
         $conectar = parent::conexion();
         parent::set_names();
         $sql = "UPDATE pagos 
         SET 
-            contrat_est=?
-        where contrat_id=?";
+            pag_est=?
+        where pag_id=?";
         $sql = $conectar->prepare($sql);
-        $sql->bindValue(1, $contrat_est);
-        $sql->bindValue(2, $contrat_id);
+        $sql->bindValue(1, $pag_est);
+        $sql->bindValue(2, $pag_id);
         $sql->execute();
         return $resultado = $sql->fetchAll();
 
@@ -62,19 +61,23 @@ class Pagos extends Conectar
         $conectar = parent::Conexion();
         parent::set_names();
         $sql = "SELECT 
-        C.contrat_id AS contrat_id, 
+        C.pag_id AS pag_id, 
         CL.nom_emp AS nom_emp,
         CL.doc_nac AS cedula,
         CL.tip_per AS tip_per,
         S.tip_serv AS tip_serv,
         S.cost_serv AS cost_serv,
-        C.fech_contrat AS fech_contrat,
-        C.contrat_est AS contrat_est
+        C.fech_pag AS fech_pag,
+        C.pag_est AS pag_est
         FROM pagos AS C
+        INNER JOIN pago_contrato AS PC
+        ON CO.pag_id = PC.pag_id
+        INNER JOIN contratos as CO
+        ON PC.contrat_id = CO.contrat_id
         INNER JOIN clientes AS CL
-        ON C.client_id = CL.client_id
+        ON CO.client_id = CL.client_id
         INNER JOIN servicios AS S
-        ON C.num_serv = S.num_serv
+        ON CO.num_serv = S.num_serv
         WHERE C.est = 1";
 
         $sql = $conectar->prepare($sql);
