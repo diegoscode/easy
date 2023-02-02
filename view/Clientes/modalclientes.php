@@ -15,19 +15,19 @@
                     
                     <div class="form-group">
                         <label class="form-label semibold" for="nom_emp">Cliente</label>
-                        <input type="text" class="form-control" id="nom_emp" name="nom_emp" placeholder="Nombre de la empresa"
+                        <input type="text" class="form-control" id="nom_emp" name="nom_emp" placeholder="Nombre"
                             required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="doc_nac">Documento Nacional</label>
-                        <input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="Documento nacional"
+                        <label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
+                        <input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="Documento de identidad"
                             required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="tip_per">Tipo de empresa</label>
-                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo de cliente"
+                        <label class="form-label semibold" for="tip_per">Tipo de empresa o particular</label>
+                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo"
                             required>
                     </div>
 

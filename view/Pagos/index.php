@@ -63,7 +63,7 @@
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Metodos de pagos</label>
-									<select name="pagos_select" id="pagos_select" class="form-control">
+									<select name="cat_pag" id="cat_pag" class="form-control">
 										<option>Seleccione el metodo</option>
 									</select>
 								</fieldset>
@@ -81,7 +81,7 @@
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="tip_per">Servicio contratado</label>
 									<input type="text" class="form-control" id="tip_per" name="tip_per"
-										placeholder="Pagos" readonly>
+										placeholder="Servicio" readonly>
 								</fieldset>
 							</div>
 
@@ -109,7 +109,7 @@
 							<th style="width: 5%;">Numero de contrato</th>
 							<th style="width: 5%;">Nombre de cliente o empresa</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Metodos de pagos</th>
+							<th class="d-none d-sm-table-cell" style="width: 5%;">Metodo de pago</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Costo del servicio</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha de pago</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>

@@ -1,12 +1,12 @@
 <?php
-class Contratos extends Conectar
+class Pagos extends Conectar
 {
 
-    public function insert_contratos($client_id, $num_serv)
+    public function insert_pagos($client_id, $num_serv)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO contratos (contrat_id,client_id, contrat_est, fech_contrat, est, num_serv) VALUES (NULL, ?, 'Asociado', NOW(), 1, ?);";
+        $sql = "INSERT INTO pagos (contrat_id,client_id, contrat_est, fech_pag, est, num_serv) VALUES (NULL, ?, 'Asociado', NOW(), 1, ?);";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $client_id);
         $sql->bindValue(2, $num_serv);
@@ -15,24 +15,25 @@ class Contratos extends Conectar
         return $resultado = $sql->fetchAll();
     }
 
-    public function listar_contratos_x_clientes($usu_id)
+    public function listar_pagos_x_clientes($usu_id)
     {
         $conectar = parent::conexion();
         parent::set_names();
         $sql = "SELECT 
-                contratos.contrat_id,
-                contratos.usu_id,
-                contratos.nom_emp,
-                contratos.tip_serv,
-                contratos.cost_serv,
-                contratos.contrat_est,
+                pagos.contrat_id,
+                pagos.usu_id,
+                pagos.nom_emp,
+                pagos.descrip_contrat,
+                pagos.tip_serv,
+                pagos.cost_serv,
+                pagos.contrat_est,
                 usuarios.usu_nom,
                 usuarios.usu_ape
                 FROM 
-                contratos
-                INNER join usuarios on contratos.usu_id = usuarios.usu_id
+                pagos
+                INNER join usuarios on pagos.usu_id = usuarios.usu_id
                 WHERE
-                contratos.est = 1
+                pagos.est = 1
                 AND usuarios.usu_id=?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $usu_id);
@@ -44,7 +45,7 @@ class Contratos extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "UPDATE contratos 
+        $sql = "UPDATE pagos 
         SET 
             contrat_est=?
         where contrat_id=?";
@@ -56,7 +57,7 @@ class Contratos extends Conectar
 
     }
 
-    public function listar_contratos()
+    public function listar_pagos()
     {
         $conectar = parent::Conexion();
         parent::set_names();
@@ -69,7 +70,7 @@ class Contratos extends Conectar
         S.cost_serv AS cost_serv,
         C.fech_contrat AS fech_contrat,
         C.contrat_est AS contrat_est
-        FROM contratos AS C
+        FROM pagos AS C
         INNER JOIN clientes AS CL
         ON C.client_id = CL.client_id
         INNER JOIN servicios AS S

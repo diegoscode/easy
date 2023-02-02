@@ -2,6 +2,10 @@ var clientes;
 var servicios;
 var tabla;
 
+$.post("../../controller/categoria.php?op=combo",function(data, status){
+  $('#cat_pag').html(data);
+});
+
 function guardaryeditar(e) {
   e.preventDefault();
   var formData = new FormData($("#pagos_form")[0]);
