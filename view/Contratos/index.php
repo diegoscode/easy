@@ -27,7 +27,7 @@ if (isset($_SESSION["usu_id"])) {
 								<h3>Contratos</h3>
 								<ol class="breadcrumb breadcrumb-simple">
 									<li><a href="#">Home</a></li>
-									<li class="active">Nuevo Contrato</li>
+									<li class="active">Registro de Contrato</li>
 								</ol>
 							</div>
 						</div>
@@ -36,7 +36,7 @@ if (isset($_SESSION["usu_id"])) {
 
 				<div class="box-typical box-typical-padding">
 
-					<h5 class="m-t-lg with-border">Nuevo Contrato</h5>
+					<h5 class="m-t-lg with-border">Registro de Contrato</h5>
 
 					<div class="row">
 						<form method="post" id="contratos_form">
@@ -61,7 +61,7 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="exampleInput">Servicio a contratar</label>
+									<label class="form-label semibold" for="exampleInput">Servicio a pagar</label>
 									<select id="cat_serv" name="cat_serv" class="form-control">
 										<option>Seleccione un servicio</option>
 									</select>
@@ -78,15 +78,15 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="doc_nac">Documento Nacional</label>
+									<label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
 									<input type="text" class="form-control" id="doc_nac" name="doc_nac"
-										placeholder="Documento Nacional" readonly>
+										placeholder="RIF" readonly>
 								</fieldset>
 							</div>
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="cost_serv">Monto</label>
+									<label class="form-label semibold" for="cost_serv">Costo del servicio</label>
 									<input type="text" class="form-control" id="cost_serv" name="cost_serv"
 										placeholder="Monto a pagar" readonly>
 								</fieldset>

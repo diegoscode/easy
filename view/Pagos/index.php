@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Cobros</title>
+	<title>Pagos</title>
 </head>
 <body class="with-side-menu">
 
@@ -23,10 +23,10 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h3>Cobros</h3>
+							<h3>Pagos</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 								<li><a href="#">Home</a></li>
-								<li class="active">Nuevo Cobro</li>
+								<li class="active">Nuevo Pago</li>
 							</ol>
 						</div>
 					</div>
@@ -35,18 +35,18 @@
 
 			<div class="box-typical box-typical-padding">
 
-					<h5 class="m-t-lg with-border">Informacion de servicio</h5>
+					<h5 class="m-t-lg with-border">Pago del servicio</h5>
 
 					<div class="row">
-						<form method="post" id="cobros_form">
+						<form method="post" id="pagos_form">
 
 							
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="exampleInput">Buscar cliente</label>
-									<select name="contratos_select" id="contratos_select" class="form-control">
-										<option>Seleccione un cliente</option>
+									<label class="form-label semibold" for="exampleInput">Numero de contrato</label>
+									<select name="pagos_select" id="pagos_select" class="form-control">
+										<option>Seleccione un contrato</option>
 
 									</select>
 								</fieldset>
@@ -54,7 +54,7 @@
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="nom_emp">Nombre de la empresa</label>
+									<label class="form-label semibold" for="nom_emp">Nombre de cliente o empresa</label>
 									<input type="text" class="form-control" id="nom_emp" name="nom_emp" placeholder="Nombre"
 										readonly>
 								</fieldset>
@@ -62,16 +62,16 @@
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="exampleInput">Servicio Contratado</label>
-									<select name="cobros_select" id="cobros_select" class="form-control">
-										<option>Seleccione el servicio</option>
+									<label class="form-label semibold" for="exampleInput">Metodos de pagos</label>
+									<select name="pagos_select" id="pagos_select" class="form-control">
+										<option>Seleccione el metodo</option>
 									</select>
 								</fieldset>
   							</div>
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="doc_nac">Documento Nacional</label>
+									<label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
 									<input type="text" class="form-control" id="doc_nac" name="doc_nac"
 										placeholder="Documento Nacional" readonly>
 								</fieldset>
@@ -79,15 +79,15 @@
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="tip_per">Tipo de empresa</label>
+									<label class="form-label semibold" for="tip_per">Servicio contratado</label>
 									<input type="text" class="form-control" id="tip_per" name="tip_per"
-										placeholder="Tipo de empresa" readonly>
+										placeholder="Pagos" readonly>
 								</fieldset>
 							</div>
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="cost_serv">Monto pagado</label>
+									<label class="form-label semibold" for="cost_serv">Costo del servicio</label>
 									<input type="text" class="form-control" id="cost_serv" name="cost_serv"
 										placeholder="Importe" readonly>
 								</fieldset>
@@ -103,15 +103,15 @@
 				</div>
 
 			<div class="box-typical box-typical-padding">
-				<table id="cobros_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+				<table id="pagos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 					<thead>
 						<tr>
-							<th style="width: 5%;">Numero de referencia</th>
-							<th style="width: 5%;">Cliente</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Documento Nacional</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Servicio Contratado</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Total</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha efectuada</th>
+							<th style="width: 5%;">Numero de contrato</th>
+							<th style="width: 5%;">Nombre de cliente o empresa</th>
+							<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
+							<th class="d-none d-sm-table-cell" style="width: 5%;">Metodos de pagos</th>
+							<th class="d-none d-sm-table-cell" style="width: 5%;">Costo del servicio</th>
+							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha de pago</th>
 							<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
 						</tr>
 					</thead>
@@ -130,7 +130,7 @@
 
 	<?php require_once("../MainJs/js.php");?>
 
-	<script type="text/javascript" src="cobros.js"></script>
+	<script type="text/javascript" src="pagos.js"></script>
 
 </body>
 </html>

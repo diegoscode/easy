@@ -31,7 +31,7 @@
                     <li class="blue-dirty">
                         <a href="..\Cobros\">
                             <span class="fa fa-money"></span>
-                            <span class="lbl">Cobros</span>
+                            <span class="lbl">Pagos</span>
                         </a>
                     </li>
                     <li class="blue-dirty">

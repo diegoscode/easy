@@ -4,20 +4,20 @@ var tabla;
 
 function guardaryeditar(e) {
   e.preventDefault();
-  var formData = new FormData($("#contratos_form")[0]);
+  var formData = new FormData($("#pagos_form")[0]);
 
   $.ajax({
-    url: "../../controller/contratos.php?op=insert",
+    url: "../../controller/pagos.php?op=insert",
     type: "POST",
     data: formData,
     contentType: false,
     processData: false,
     success: function (datos) {
       console.log(datos);
-      $("#contratos_form")[0].reset();
-      $("#contratos_data").DataTable().ajax.reload();
+      $("#pagos_form")[0].reset();
+      $("#pagos_data").DataTable().ajax.reload();
       $("#cat_serv").select2("val", "");
-      $("#contratos_select").select2("val", "");
+      $("#pagos_select").select2("val", "");
       swal({
         title: "Admin",
         text: "Completado",
@@ -29,11 +29,11 @@ function guardaryeditar(e) {
 }
 
 function init() {
-  $("#contratos_form").on("submit", function (e) {
+  $("#pagos_form").on("submit", function (e) {
     guardaryeditar(e);
   });
 
-  tabla = $("#contratos_data")
+  tabla = $("#pagos_data")
     .dataTable({
       aProcessing: true,
       aServerSide: true,
@@ -43,7 +43,7 @@ function init() {
       colReorder: true,
       buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
       ajax: {
-        url: "../../controller/contratos.php?op=listar",
+        url: "../../controller/pagos.php?op=listar",
         type: "post",
         dataType: "json",
         error: function (e) {
@@ -86,7 +86,7 @@ function init() {
 }
 
 function initClientesSelect() {
-  var select = $("#contratos_select");
+  var select = $("#pagos_select");
 
   select.select2({
     placeholder: "Seleccione un Cliente",
