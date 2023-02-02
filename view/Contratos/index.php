@@ -45,6 +45,8 @@ if (isset($_SESSION["usu_id"])) {
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Asociar cliente</label>
 									<select name="contratos_select" id="contratos_select" class="form-control">
+										<option>Seleccione un cliente</option>
+
 									</select>
 								</fieldset>
 							</div>
@@ -61,7 +63,7 @@ if (isset($_SESSION["usu_id"])) {
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Servicio a contratar</label>
 									<select id="cat_serv" name="cat_serv" class="form-control">
-
+										<option>Seleccione un servicio</option>
 									</select>
 								</fieldset>
 							</div>

@@ -31,15 +31,14 @@ function guardaryeditar(e) {
       $("#modalservicios").modal("hide");
       $("#servicios_data").DataTable().ajax.reload();
 
-
-            swal({
-                title: "Admin",
-                text: "Completado",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
-        }
-    }); 
+      swal({
+        title: "Admin",
+        text: "Completado",
+        type: "success",
+        confirmButtonClass: "btn-success",
+      });
+    },
+  });
 }
 
 $(document).ready(function () {
@@ -99,8 +98,8 @@ function editar(num_serv) {
   $("#mdservicios").html("Editar servicios");
 
   $.post(
-    "../../controller/servicios.php?op=mostrar",
-    { num_serv: num_serv },
+    "../../controller/servicios.php?op=encontrar",
+    { num_serv },
     function (data) {
       data = JSON.parse(data);
       $("#num_serv").val(data.num_serv);
@@ -114,17 +113,17 @@ function editar(num_serv) {
   $("#modalservicios").modal("show");
 }
 
-
-function eliminar(num_serv){
-    swal({
-        title: "Admin",
-        text: "Procedes a eliminar el servicios",
-        type: "error",
-        showCancelButton: true,
-        confirmButtonClass: "btn-danger",
-        confirmButtonText: "Si",
-        cancelButtonText: "No",
-        closeOnConfirm: false
+function eliminar(num_serv) {
+  swal(
+    {
+      title: "Admin",
+      text: "Procedes a eliminar el servicios",
+      type: "error",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      closeOnConfirm: false,
     },
     function (isConfirm) {
       if (isConfirm) {
@@ -136,15 +135,15 @@ function eliminar(num_serv){
 
         $("#servicios_data").DataTable().ajax.reload();
 
-
-            swal({
-                title: "Admin",
-                text: "Servicio Eliminado",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
-        }
-    });
+        swal({
+          title: "Admin",
+          text: "Servicio Eliminado",
+          type: "success",
+          confirmButtonClass: "btn-success",
+        });
+      }
+    }
+  );
 }
 
 $(document).on("click", "#btnnuevo", function () {

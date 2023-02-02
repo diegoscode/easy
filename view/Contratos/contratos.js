@@ -115,7 +115,7 @@ function initServiciosSelect() {
   });
   select.on("change", (e) => {
     $.post(
-      "../../controller/servicios.php?op=mostrar",
+      "../../controller/servicios.php?op=encontrar",
       { num_serv: e.target.value },
       function (data) {
         var serv = JSON.parse(data);
@@ -179,50 +179,5 @@ $(document).ready(function () {
     });
   });
 });
-
-  function init() {
-    $("#servicios_form").on("submit", function (e) {
-      guardaryeditar(e);
-    });
-  }
-
-  $(document).ready(function () {
-  var select = $("#servicios_select");
-
-  $.post("../../controller/servicios.php?op=listar", function (data) {
-    console.log(data);
-    var response = JSON.parse(data);
-    const keys = [
-      "num_serv",
-      "cost_serv",
-    ];
-    var dataArr = response.aaData;
-    const objects = dataArr.map((array) =>
-      array.reduce((a, v, i) => {
-        return {
-          ...a,
-          [keys[i]]: v,
-        };
-      }, {})
-    );
-
-    objects.map((cl) => {
-      select.append(`<option value=${cl.num_serv} >${cl.cost_serv}</option>`);
-    });
-  });
-
-  select.select2();
-  select.on("change", (e) => {
-    $.post(
-      "../../controller/servicios.php?op=encontrar",
-      { num_serv: e.target.value },
-      function (data) {
-        var servicio = JSON.parse(data);
-        console.log(data);
-        $("#cost_serv").val(servicio.cost_serv);
-      }
-    );
-  });
-  });
 
 init();
