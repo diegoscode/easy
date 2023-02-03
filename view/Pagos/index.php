@@ -107,7 +107,7 @@ if (isset($_SESSION["usu_id"])) {
 					<table id="pagos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
-								<th style="width: 5%;">Numero de contrato</th>
+								<th style="width: 1%;">Numero de contrato</th>
 								<th style="width: 5%;">Nombre de cliente o empresa</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Metodo de pago</th>

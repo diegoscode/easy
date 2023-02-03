@@ -38,7 +38,7 @@ if (isset($_SESSION["usu_id"])) {
 					<table id="clientes_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
-								<th style="width: 10%;">Codigo</th>
+								<th style="width: 1%;">Codigo</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Cliente</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa o particular</th>

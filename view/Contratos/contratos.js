@@ -2,6 +2,19 @@ var clientes;
 var servicios;
 var tabla;
 
+$(document).ready(function() {
+  $("#cat_serv").select2();
+});
+
+$("#cat_serv").on('change', function (e) { 
+  var totAmt = 0;
+  $.each($(this).find(":selected"), function (i, item) { 
+    console.log(i, item);
+      totAmt += $(item).data("price");
+      });
+  $("#PackTotAmt").text(totAmt);
+}); 
+
 function CambiarEstado(contrat_id, estado) {
   $.post(
     "../../controller/contratos.php?op=cambiarestado",

@@ -62,7 +62,7 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Servicio a pagar</label>
-									<select id="cat_serv" name="cat_serv" class="form-control">
+									<select id="cat_serv" name="cat_serv[]" multiple="multiple" class="form-control">
 										<option>Seleccione un servicio</option>
 									</select>
 								</fieldset>
@@ -105,7 +105,7 @@ if (isset($_SESSION["usu_id"])) {
 					<table id="contratos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
-								<th style="width: 5%;">Numero de Contrato</th>
+								<th style="width: 1%;">Numero de Contrato</th>
 								<th style="width: 1%;">Empresa</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento Nacional</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa</th>
