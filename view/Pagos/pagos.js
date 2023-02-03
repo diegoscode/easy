@@ -2,8 +2,8 @@ var clientes;
 var servicios;
 var tabla;
 
-$.post("../../controller/categoria.php?op=combo",function(data, status){
-  $('#cat_pag').html(data);
+$.post("../../controller/categoria.php?op=combo", function (data, status) {
+  $("#cat_pag").html(data);
 });
 
 function guardaryeditar(e) {
@@ -17,11 +17,10 @@ function guardaryeditar(e) {
     contentType: false,
     processData: false,
     success: function (datos) {
-      console.log(datos);
       $("#pagos_form")[0].reset();
       $("#pagos_data").DataTable().ajax.reload();
-      $("#cat_serv").select2("val", "");
       $("#pagos_select").select2("val", "");
+
       swal({
         title: "Admin",
         text: "Completado",
@@ -37,6 +36,10 @@ function init() {
     guardaryeditar(e);
   });
 
+  $.post("../../controller/pagos.php?op=listar", function (data) {
+    console.log(data);
+  });
+
   tabla = $("#pagos_data")
     .dataTable({
       aProcessing: true,
@@ -50,9 +53,7 @@ function init() {
         url: "../../controller/pagos.php?op=listar",
         type: "post",
         dataType: "json",
-        error: function (e) {
-          console.log(e.responseText);
-        },
+        error: function (e) {},
       },
       bDestroy: true,
       responsive: true,
@@ -89,22 +90,23 @@ function init() {
     .DataTable();
 }
 
-function initClientesSelect() {
+function initPagosSelect() {
   var select = $("#pagos_select");
 
   select.select2({
-    placeholder: "Seleccione un Cliente",
+    placeholder: "Seleccione un contrato",
   });
   select.on("change", (e) => {
     $.post(
-      "../../controller/clientes.php?op=encontrar",
-      { client_id: e.target.value },
+      "../../controller/contratos.php?op=buscar",
+      { contrat_id: e.target.value },
       function (data) {
-        var cliente = JSON.parse(data);
-        console.log(data);
-        $("#nom_emp").val(cliente.nom_emp);
-        $("#tip_per").val(cliente.tip_per);
-        $("#doc_nac").val(cliente.doc_nac);
+        var contrato = JSON.parse(data);
+
+        $("#nom_emp").val(contrato.nom_emp);
+        $("#doc_nac").val(contrato.cedula);
+        $("#tip_serv").val(contrato.tip_serv);
+        $("#cost_serv").val(contrato.cost_serv);
       }
     );
   });
@@ -112,23 +114,8 @@ function initClientesSelect() {
   return select;
 }
 
-function initServiciosSelect() {
-  var select = $("#cat_serv");
-  select.select2({
-    placeholder: "Seleccione un Servicio",
-  });
-  select.on("change", (e) => {
-    $.post(
-      "../../controller/servicios.php?op=encontrar",
-      { num_serv: e.target.value },
-      function (data) {
-        var serv = JSON.parse(data);
-        $("#cost_serv").val(serv.cost_serv);
-      }
-    );
-  });
-
-  return select;
+function rellenarPagosOpciones() {
+  $.get("../../controller/pagos.php?op=listar");
 }
 
 function fromArrayToObjects(keys, array) {
@@ -147,38 +134,24 @@ function fromArrayToObjects(keys, array) {
 }
 
 $(document).ready(function () {
-  var selectClientes = initClientesSelect();
-  var selectServicios = initServiciosSelect();
+  var selectClientes = initPagosSelect();
 
-  $.post("../../controller/clientes.php?op=listar", function (data) {
+  $.post("../../controller/contratos.php?op=listar", function (data) {
     var response = JSON.parse(data);
     const keys = [
-      "client_id",
+      "contrat_id",
       "nom_emp",
       "doc_nac",
       "tip_per",
-      "boton_editar",
-      "boton_eliminar",
+      "serv_cat",
+      "cost_serv",
     ];
     var dataArr = response.aaData;
     const objects = fromArrayToObjects(keys, dataArr);
 
-    objects.map((cl) => {
+    objects.map((c) => {
       selectClientes.append(
-        `<option value=${cl.client_id} >${cl.nom_emp}</option>`
-      );
-    });
-  });
-
-  $.post("../../controller/servicios.php?op=listar", function (data) {
-    var response = JSON.parse(data);
-    const keys = ["num_serv", "tip_serv"];
-    var dataArr = response.aaData;
-    const objects = fromArrayToObjects(keys, dataArr);
-
-    objects.map((serv) => {
-      selectServicios.append(
-        `<option value=${serv.num_serv} >${serv.tip_serv}</option>`
+        `<option value=${c.contrat_id} > ${c.contrat_id} - ${c.nom_emp} (${c.serv_cat})</option>`
       );
     });
   });

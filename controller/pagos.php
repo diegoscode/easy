@@ -5,7 +5,7 @@ $pagos = new Pagos();
 
 switch ($_GET["op"]) {
     case "insert":
-        $pagos->insert_pagos($_POST["pagos_select"], $_POST["cat_serv"]);
+        $pagos->insert_pagos($_POST["pagos_select"], $_POST["cat_pag"]);
         break;
 
     case "listar":
@@ -18,19 +18,18 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["pag_id"];
             $sub_array[] = $row["nom_emp"];
             $sub_array[] = $row["cedula"];
-            $sub_array[] = $row["tip_per"];
-            $sub_array[] = $row["tip_serv"];
+            $sub_array[] = $row["cat_pag"];
             $sub_array[] = $row["cost_serv"];
-            $sub_array[] = $row["fech_contrat"];
+            $sub_array[] = $row["fech_pag"];
 
-            $contrato_estado;
+            $pago_estado;
 
-            if ($row["pag_est"] == "Asociado") {
-                $contrato_estado = "'" . 'Asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
+            if ($row["pag_est"] == "Cancelado") {
+                $pago_estado = "'" . 'Pendiente' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $pago_estado . ')"><span class="label label-pill label-success">Cancelado</span></a>';
             } else {
-                $contrato_estado = "'" . 'No asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No asociado</span></a>';
+                $pago_estado = "'" . 'Cancelado' . "'";
+                $sub_array[] = '<a onClick="CambiarEstado(' . $row["pag_id"] . ',' . $pago_estado . ')"><span class="label label-pill label-danger">Pendiente</span></a>';
             }
 
             $data[] = $sub_array;

@@ -2,16 +2,23 @@
 class Pagos extends Conectar
 {
 
-    public function insert_pagos($client_id, $num_serv)
+    public function insert_pagos($contrat_id, $cat_pag)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO pagos (pag_id,client_id, pag_est, fech_pag, est, num_serv) VALUES (NULL, ?, 'Cancelado', NOW(), 1, ?);";
+        $sql = "INSERT INTO pagos (pag_id, contrat_id, cat_pag, fech_pag, pag_est, est) VALUES (NULL, ?, ?, NOW(), 'CANCELADO', 1 );";
         $sql = $conectar->prepare($sql);
-        $sql->bindValue(1, $client_id);
-        $sql->bindValue(2, $num_serv);
+
+        $sqlPago_contrato = "INSERT INTO pago_contrato (pag_id, contrat_id) VALUES (LAST_INSERT_ID() , ?)";
+        $sqlPago_contrato = $conectar->prepare($sqlPago_contrato);
+
+        $sql->bindValue(1, $contrat_id);
+        $sql->bindValue(2, $cat_pag);
+
+        $sqlPago_contrato->bindValue(1, $contrat_id);
 
         $sql->execute();
+        $sqlPago_contrato->execute();
         return $resultado = $sql->fetchAll();
     }
 
@@ -61,24 +68,27 @@ class Pagos extends Conectar
         $conectar = parent::Conexion();
         parent::set_names();
         $sql = "SELECT 
-        C.pag_id AS pag_id, 
+        P.pag_id AS pag_id, 
         CL.nom_emp AS nom_emp,
         CL.doc_nac AS cedula,
-        CL.tip_per AS tip_per,
         S.tip_serv AS tip_serv,
         S.cost_serv AS cost_serv,
-        C.fech_pag AS fech_pag,
-        C.pag_est AS pag_est
-        FROM pagos AS C
+        P.fech_pag AS fech_pag,
+        P.pag_est AS pag_est,
+        CP.cat_nom AS cat_pag
+        FROM pagos AS P 
         INNER JOIN pago_contrato AS PC
-        ON CO.pag_id = PC.pag_id
+        ON P.pag_id = PC.pag_id
+        INNER JOIN categoria_pagos AS CP
+        ON P.cat_pag = CP.cat_pag
         INNER JOIN contratos as CO
         ON PC.contrat_id = CO.contrat_id
         INNER JOIN clientes AS CL
         ON CO.client_id = CL.client_id
         INNER JOIN servicios AS S
         ON CO.num_serv = S.num_serv
-        WHERE C.est = 1";
+
+        WHERE P.est = 1";
 
         $sql = $conectar->prepare($sql);
         $sql->execute();

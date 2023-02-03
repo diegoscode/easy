@@ -1,46 +1,47 @@
 <?php
-  require_once("../../config/conexion.php"); 
-  if(isset($_SESSION["usu_id"])){ 
-?>
-<!DOCTYPE html>
-<html>
-    <?php require_once("../MainHead/head.php");?>
+require_once("../../config/conexion.php");
+if (isset($_SESSION["usu_id"])) {
+	?>
+	<!DOCTYPE html>
+	<html>
+	<?php require_once("../MainHead/head.php"); ?>
 	<title>Pagos</title>
-</head>
-<body class="with-side-menu">
+	</head>
 
-    <?php require_once("../MainHeader/header.php");?>
+	<body class="with-side-menu">
 
-    <div class="mobile-menu-left-overlay"></div>
+		<?php require_once("../MainHeader/header.php"); ?>
 
-    <?php require_once("../MainNav/nav.php");?>
+		<div class="mobile-menu-left-overlay"></div>
 
-	<!-- Contenido -->
-	<div class="page-content">
-		<div class="container-fluid">
+		<?php require_once("../MainNav/nav.php"); ?>
 
-			<header class="section-header">
-				<div class="tbl">
-					<div class="tbl-row">
-						<div class="tbl-cell">
-							<h3>Pagos</h3>
-							<ol class="breadcrumb breadcrumb-simple">
-								<li><a href="#">Home</a></li>
-								<li class="active">Nuevo Pago</li>
-							</ol>
+		<!-- Contenido -->
+		<div class="page-content">
+			<div class="container-fluid">
+
+				<header class="section-header">
+					<div class="tbl">
+						<div class="tbl-row">
+							<div class="tbl-cell">
+								<h3>Pagos</h3>
+								<ol class="breadcrumb breadcrumb-simple">
+									<li><a href="#">Home</a></li>
+									<li class="active">Nuevo Pago</li>
+								</ol>
+							</div>
 						</div>
 					</div>
-				</div>
-			</header>
+				</header>
 
-			<div class="box-typical box-typical-padding">
+				<div class="box-typical box-typical-padding">
 
 					<h5 class="m-t-lg with-border">Pago del servicio</h5>
 
 					<div class="row">
 						<form method="post" id="pagos_form">
 
-							
+
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
@@ -67,7 +68,7 @@
 										<option>Seleccione el metodo</option>
 									</select>
 								</fieldset>
-  							</div>
+							</div>
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
@@ -79,8 +80,8 @@
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="tip_per">Servicio contratado</label>
-									<input type="text" class="form-control" id="tip_per" name="tip_per"
+									<label class="form-label semibold" for="tip_serv">Servicio contratado</label>
+									<input type="text" class="form-control" id="tip_serv" name="tip_serv"
 										placeholder="Servicio" readonly>
 								</fieldset>
 							</div>
@@ -102,40 +103,41 @@
 
 				</div>
 
-			<div class="box-typical box-typical-padding">
-				<table id="pagos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
-					<thead>
-						<tr>
-							<th style="width: 5%;">Numero de contrato</th>
-							<th style="width: 5%;">Nombre de cliente o empresa</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Metodo de pago</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Costo del servicio</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha de pago</th>
-							<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
-						</tr>
-					</thead>
-					<tbody>
+				<div class="box-typical box-typical-padding">
+					<table id="pagos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+						<thead>
+							<tr>
+								<th style="width: 5%;">Numero de contrato</th>
+								<th style="width: 5%;">Nombre de cliente o empresa</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Metodo de pago</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Costo del servicio</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha de pago</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
+							</tr>
+						</thead>
+						<tbody>
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
+
 			</div>
+		</div>
 
 		</div>
-	</div>
-
 		</div>
-	</div>
-	<!-- Contenido -->
+		<!-- Contenido -->
 
-	<?php require_once("../MainJs/js.php");?>
+		<?php require_once("../MainJs/js.php"); ?>
 
-	<script type="text/javascript" src="pagos.js"></script>
+		<script type="text/javascript" src="pagos.js"></script>
 
-</body>
-</html>
-<?php
-  } else {
-    header("Location:".Conectar::ruta()."index.php");
-  }
+	</body>
+
+	</html>
+	<?php
+} else {
+	header("Location:" . Conectar::ruta() . "index.php");
+}
 ?>

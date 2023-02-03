@@ -8,11 +8,14 @@ class Contratos extends Conectar
         parent::set_names();
         $sql = "INSERT INTO contratos (contrat_id,client_id, contrat_est, fech_contrat, est, num_serv) VALUES (NULL, ?, 'Asociado', NOW(), 1, ?);";
         $sql = $conectar->prepare($sql);
+
         $sql->bindValue(1, $client_id);
         $sql->bindValue(2, $num_serv);
 
         $sql->execute();
-        return $resultado = $sql->fetchAll();
+
+        return $sql->fetch();
+
     }
 
     public function listar_contratos_x_clientes($usu_id)
@@ -79,7 +82,7 @@ class Contratos extends Conectar
         $sql = $conectar->prepare($sql);
         $sql->execute();
         return $resultado = $sql->fetchAll();
-    
+
     }
 
     public function buscar_contrato($contrat_id)
@@ -90,7 +93,7 @@ class Contratos extends Conectar
         C.contrat_id AS contrat_id,
         CL.nom_emp AS nom_emp,
         CL.doc_nac AS cedula,
-        CL_tip_per AS tip per,
+        CL.tip_per AS tip_per,
         S.tip_serv AS tip_serv,
         S.cost_serv AS cost_serv,
         C.fech_contrat AS fech_contrat,
