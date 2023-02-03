@@ -2,6 +2,16 @@ var clientes;
 var servicios;
 var tabla;
 
+function CambiarEstado(contrat_id, estado) {
+  $.post(
+    "../../controller/contratos.php?op=cambiarestado",
+    { contrat_id, estado },
+    function (data) {
+      $("#contratos_data").DataTable().ajax.reload();
+    }
+  );
+}
+
 function guardaryeditar(e) {
   e.preventDefault();
   var formData = new FormData($("#contratos_form")[0]);

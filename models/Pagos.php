@@ -6,7 +6,7 @@ class Pagos extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO pagos (pag_id, contrat_id, cat_pag, fech_pag, pag_est, est) VALUES (NULL, ?, ?, NOW(), 'CANCELADO', 1 );";
+        $sql = "INSERT INTO pagos (pag_id, contrat_id, cat_pag, fech_pag, pag_est, est) VALUES (NULL, ?, ?, NOW(), 'Cancelado', 1 );";
         $sql = $conectar->prepare($sql);
 
         $sqlPago_contrato = "INSERT INTO pago_contrato (pag_id, contrat_id) VALUES (LAST_INSERT_ID() , ?)";

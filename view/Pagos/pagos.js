@@ -6,6 +6,16 @@ $.post("../../controller/categoria.php?op=combo", function (data, status) {
   $("#cat_pag").html(data);
 });
 
+function CambiarEstado(pag_id, estado) {
+  $.post(
+    "../../controller/pagos.php?op=cambiarestado",
+    { pag_id, estado },
+    function (data) {
+      $("#pagos_data").DataTable().ajax.reload();
+    }
+  );
+}
+
 function guardaryeditar(e) {
   e.preventDefault();
   var formData = new FormData($("#pagos_form")[0]);
