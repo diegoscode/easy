@@ -18,6 +18,13 @@ switch ($_GET["op"]) {
         $contratos->insert_contratos($_POST["contratos_select"], $_POST["cat_serv"], $_POST['contrato_plan']);
         break;
 
+    case "editar":
+        if (count($_POST['servicios']) === 0) {
+            return 'se necesita al menos un servicio';
+        }
+        $contratos->update_contratos($_POST['contrat_id'], $_POST['client_id'], $_POST['servicios'], $_POST['contrato_plan']);
+        break;
+
     case "listar":
 
         $datos = $contratos->listar_contratos();
@@ -62,17 +69,17 @@ switch ($_GET["op"]) {
             $contrato_estado;
 
             if ($row["contrat_est"] == "Asociado") {
-                $contrato_estado = "'" . 'Asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
+                $contrato_estado = "'" . 'No Asociado' . "'";
+                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
             } else {
-                $contrato_estado = "'" . 'No asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No asociado</span></a>';
+                $contrato_estado = "'" . 'Asociado' . "'";
+                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No Asociado</span></a>';
             }
 
 
             $sub_array[] = '<div class="btn-group" role="group">'
-                . '<button type="button" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>'
-                . '<button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>'
+                . '<button type="button" class="btn btn-sm btn-primary" onClick="editar(' . $row["contrat_id_raw"] . ')"><i class="fa fa-edit"></i></button>'
+                . '<button type="button" class="btn btn-sm btn-danger" onClick="eliminar(' . $row["contrat_id_raw"] . ')" ><i class="fa fa-trash"></i></button>'
                 . '</div>';
 
             $data[] = $sub_array;
@@ -97,6 +104,11 @@ switch ($_GET["op"]) {
 
         break;
 
+    case "borrar_contrato":
+        $contratos->borrar_contrato($_POST['contrat_id']);
+
+        break;
+
     case "listar_x_client":
         $datos = $contratos->listar_contratos_x_clientes($_POST["usu_id"]);
         $data = array();
@@ -111,10 +123,10 @@ switch ($_GET["op"]) {
 
             if ($row["contrat_est"] == "Asociado") {
                 $contrato_estado = "'" . 'No asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
+                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
             } else {
                 $contrato_estado = "'" . 'Asociado' . "'";
-                $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No asociado</span></a>';
+                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No Asociado</span></a>';
             }
 
             $data[] = $sub_array;

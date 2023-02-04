@@ -2,10 +2,6 @@ var clientes;
 var servicios;
 var tabla;
 
-$(document).ready(function () {
-  $("#cat_serv").select2();
-});
-
 function CambiarEstado(contrat_id, estado) {
   $.post(
     "../../controller/contratos.php?op=cambiarestado",
@@ -16,7 +12,7 @@ function CambiarEstado(contrat_id, estado) {
   );
 }
 
-function guardaryeditar(e) {
+function guardar(e) {
   e.preventDefault();
   var formData = new FormData($("#contratos_form")[0]);
 
@@ -41,9 +37,49 @@ function guardaryeditar(e) {
   });
 }
 
+function editarSubmit(e) {
+  e.preventDefault();
+  var formData = new FormData($("#contratos_form_modal")[0]);
+
+  var servicios = formData.getAll("servicios[]");
+
+  if (servicios.length === 0) {
+    $(".mensaje").removeClass("d-none");
+    return;
+  }
+
+  $.ajax({
+    url: "../../controller/contratos.php?op=editar",
+    type: "POST",
+    data: formData,
+    contentType: false,
+    processData: false,
+    success: function (datos) {
+      $("#modalcontratos").modal("hide");
+      $("#contratos_form_modal")[0].reset();
+      $("#modalcontratos #client_id").select2("");
+      $("#modalcontratos #servicios").select2("");
+      $(".mensaje").addClass("d-none");
+
+      $("#contratos_data").DataTable().ajax.reload();
+
+      swal({
+        title: "Admin",
+        text: "Completado",
+        type: "success",
+        confirmButtonClass: "btn-success",
+      });
+    },
+  });
+}
+
 function init() {
   $("#contratos_form").on("submit", function (e) {
-    guardaryeditar(e);
+    guardar(e);
+  });
+
+  $("#contratos_form_modal").on("submit", function (e) {
+    editarSubmit(e);
   });
 
   tabla = $("#contratos_data")
@@ -100,10 +136,16 @@ function init() {
 
 function initClientesSelect() {
   var select = $("#contratos_select");
+  var selectModal = $("#contratos_form_modal #client_id");
 
   select.select2({
     placeholder: "Seleccione un Cliente",
   });
+
+  selectModal.select2({
+    placeholder: "Seleccione un cliente",
+  });
+
   select.on("change", (e) => {
     $.post(
       "../../controller/clientes.php?op=encontrar",
@@ -117,14 +159,44 @@ function initClientesSelect() {
     );
   });
 
-  return select;
+  return { select, selectModal };
 }
 
 function initServiciosSelect() {
   var select = $("#cat_serv");
+  var selectModal = $("#contratos_form_modal #servicios");
+
   select.select2({
     placeholder: "Seleccione un Servicio",
   });
+
+  selectModal.select2();
+
+  selectModal.on("change", function (e) {
+    var servicios = $(this).val();
+    var costoTotal = 0;
+
+    if (!servicios) {
+      $("#cost_serv").val("");
+      return;
+    }
+
+    $.post(
+      "../../controller/servicios.php?op=encontrar_varios",
+      {
+        servicios,
+      },
+      function (data) {
+        var datos = JSON.parse(data);
+
+        var costos = datos.map((servicio) => parseInt(servicio.cost_serv));
+        const totalCosto = costos.reduce((prev, sum) => prev + sum, 0);
+
+        $("#contratos_form_modal #cost_serv").val(totalCosto);
+      }
+    );
+  });
+
   select.on("change", function (e) {
     var servicios = $(this).val();
     var costoTotal = 0;
@@ -149,7 +221,7 @@ function initServiciosSelect() {
     );
   });
 
-  return select;
+  return { select, selectModal };
 }
 
 function fromArrayToObjects(keys, array) {
@@ -165,6 +237,82 @@ function fromArrayToObjects(keys, array) {
   );
 
   return objects;
+}
+
+function eliminar(contrat_id) {
+  swal(
+    {
+      title: "Admin",
+      text: "Procedes a eliminar el contrato",
+      type: "error",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Si",
+      cancelButtonText: "No",
+      closeOnConfirm: false,
+    },
+    function (isConfirm) {
+      if (isConfirm) {
+        $.post(
+          "../../controller/contratos.php?op=borrar_contrato",
+          { contrat_id },
+          function (data) {}
+        );
+
+        $("#contratos_data").DataTable().ajax.reload();
+
+        swal({
+          title: "Admin",
+          text: "Contrato Eliminado",
+          type: "success",
+          confirmButtonClass: "btn-success",
+        });
+      }
+    }
+  );
+}
+
+function editar(contrat_id) {
+  var servicios;
+  var plan;
+  var num_servs = [];
+  var costos;
+  var totalCosto = 0;
+  $.post(
+    "../../controller/contratos.php?op=buscar",
+    { contrat_id },
+    function (data) {
+      data = JSON.parse(data);
+      servicios = JSON.parse(data.servicios);
+      plan = JSON.parse(data.contrato_plan);
+      num_servs = servicios.map((servicio) => servicio.num_serv);
+
+      costos = servicios.map((servicio) => parseInt(servicio.cost_serv));
+      totalCosto = costos.reduce((prev, sum) => prev + sum, 0);
+
+      $("#modalcontratos #contrat_id").val(data.contrat_id);
+      $("#modalcontratos #tip_per").val(data.tip_per);
+      $("#modalcontratos #nom_emp").val(data.nom_emp);
+      $("#modalcontratos #doc_nac").val(data.cedula);
+      $("#modalcontratos #contrato_plan").val(plan.id);
+      $("#modalcontratos #cost_serv").val(totalCosto);
+
+      $("#modalcontratos #client_id").select2("val", data.client_id);
+      $("#modalcontratos #servicios").val(num_servs).trigger("change");
+    }
+  );
+
+  $("#modalcontratos").modal("show");
+}
+
+function cambiarEstado(contrat_id, estado) {
+  $.post(
+    "../../controller/contratos.php?op=cambiarestado",
+    { contrat_id, estado },
+    function (data) {
+      $("#contratos_data").DataTable().ajax.reload();
+    }
+  );
 }
 
 $(document).ready(function () {
@@ -185,7 +333,10 @@ $(document).ready(function () {
     const objects = fromArrayToObjects(keys, dataArr);
 
     objects.map((cl) => {
-      selectClientes.append(
+      selectClientes.selectModal.append(
+        `<option value=${cl.client_id} >${cl.nom_emp}</option>`
+      );
+      selectClientes.select.append(
         `<option value=${cl.client_id} >${cl.nom_emp}</option>`
       );
     });
@@ -198,7 +349,10 @@ $(document).ready(function () {
     const objects = fromArrayToObjects(keys, dataArr);
 
     objects.map((serv) => {
-      selectServicios.append(
+      selectServicios.select.append(
+        `<option value=${serv.num_serv} >${serv.tip_serv}</option>`
+      );
+      selectServicios.selectModal.append(
         `<option value=${serv.num_serv} >${serv.tip_serv}</option>`
       );
     });
@@ -207,9 +361,13 @@ $(document).ready(function () {
   $.post("../../controller/contratos.php?op=get_contratos", function (data) {
     var response = JSON.parse(data);
     var tipoSelect = $("#contrato_plan");
+    var tipoSelectModal = $("#contratos_form_modal #contrato_plan");
 
     response.forEach((tipo) => {
       tipoSelect.append(`<option value="${tipo.id}" >${tipo.tipo}</option>`);
+      tipoSelectModal.append(
+        `<option value="${tipo.id}" >${tipo.tipo}</option>`
+      );
     });
   });
 });

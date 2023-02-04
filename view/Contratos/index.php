@@ -139,6 +139,7 @@ if (isset($_SESSION["usu_id"])) {
 		</div>
 		</div>
 		<!-- Contenido -->
+		<?php require_once("modalcontratos.php"); ?>
 
 		<?php require_once("../MainJs/js.php"); ?>
 

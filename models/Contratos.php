@@ -31,6 +31,33 @@ class Contratos extends Conectar
 
     }
 
+    public function update_contratos($contrat_id, $client_id, $servicios, $contrato_plan)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+
+        $sqlUpdate = "UPDATE contratos SET client_id = ?, contrato_plan = ? WHERE contrat_id = ?";
+        $sqlUpdate = $conectar->prepare($sqlUpdate);
+        $sqlUpdate->bindValue(1, $client_id);
+        $sqlUpdate->bindValue(2, $contrato_plan);
+        $sqlUpdate->bindValue(3, $contrat_id);
+        $sqlUpdate->execute();
+
+        $sql = "DELETE FROM contrato_servicio WHERE contrat_id = ?";
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $contrat_id);
+        $sql->execute();
+
+        foreach ($servicios as $servicio) {
+            $serv_sql = "INSERT INTO contrato_servicio (contrat_id, num_serv) VALUES(?, ?)";
+            $serv_sql = $conectar->prepare($serv_sql);
+            $serv_sql->bindValue(1, $contrat_id);
+            $serv_sql->bindValue(2, $servicio);
+            $serv_sql->execute();
+        }
+
+    }
+
     public function listar_contratos_x_clientes($usu_id)
     {
         $conectar = parent::conexion();
@@ -102,7 +129,8 @@ class Contratos extends Conectar
         ) AS servicios,
         SUM(S.cost_serv) AS monto,
         C.fech_contrat AS fech_contrat,
-        C.contrat_est AS contrat_est
+        C.contrat_est AS contrat_est,
+        C.contrat_id AS contrat_id_raw
         FROM contratos AS C
         INNER JOIN contrato_servicio AS CS
         ON C.contrat_id = CS.contrat_id
@@ -112,6 +140,7 @@ class Contratos extends Conectar
         ON S.num_serv = CS.num_serv
         INNER JOIN clientes AS CL
         ON CL.client_id = C.client_id
+        WHERE C.est = 1
         GROUP BY C.contrat_id";
 
         $sql = $conectar->prepare($sql);
@@ -128,7 +157,12 @@ class Contratos extends Conectar
         LPAD(C.contrat_id, 4, 0) AS contrat_id,
         CL.nom_emp AS nom_emp,
         CP.tipo AS tipo,
-        CP.horario AS horario,
+        C.client_id AS client_id,
+        JSON_OBJECT(
+                'id', CP.id,
+                'plan', CP.tipo,
+                'horario', CP.horario
+        ) AS contrato_plan,
         CL.doc_nac AS cedula,
         CL.tip_per AS tip_per,
         JSON_ARRAYAGG(
@@ -156,6 +190,20 @@ class Contratos extends Conectar
         $sql->bindValue(1, $contrat_id);
         $sql->execute();
         return $resultado = $sql->fetch();
+    }
+
+    public function borrar_contrato($contrat_id)
+    {
+        $conectar = parent::Conexion();
+        parent::set_names();
+        $sql = "UPDATE contratos 
+            SET 
+                est='0'
+            where contrat_id=?";
+
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $contrat_id);
+        $sql->execute();
     }
 
     function console_log($output, $with_script_tags = true)

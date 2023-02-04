@@ -19,6 +19,7 @@ function CambiarEstado(num_serv, estado) {
 function guardaryeditar(e) {
   e.preventDefault();
   var formData = new FormData($("#servicios_form")[0]);
+
   $.ajax({
     url: "../../controller/servicios.php?op=guardaryeditar",
     type: "POST",
