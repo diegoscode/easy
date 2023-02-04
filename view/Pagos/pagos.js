@@ -46,10 +46,6 @@ function init() {
     guardaryeditar(e);
   });
 
-  $.post("../../controller/pagos.php?op=listar", function (data) {
-    console.log(data);
-  });
-
   tabla = $("#pagos_data")
     .dataTable({
       aProcessing: true,
@@ -112,11 +108,14 @@ function initPagosSelect() {
       { contrat_id: e.target.value },
       function (data) {
         var contrato = JSON.parse(data);
+        var servicios = JSON.parse(contrato.servicios);
+        var num_servs = servicios.map((servicio) => servicio.num_serv);
 
         $("#nom_emp").val(contrato.nom_emp);
         $("#doc_nac").val(contrato.cedula);
         $("#tip_serv").val(contrato.tip_serv);
         $("#cost_serv").val(contrato.cost_serv);
+        $("#servicios_select").val(num_servs).trigger("change");
       }
     );
   });
@@ -124,8 +123,12 @@ function initPagosSelect() {
   return select;
 }
 
-function rellenarPagosOpciones() {
-  $.get("../../controller/pagos.php?op=listar");
+function initServiciosSelect() {
+  var select = $("#servicios_select");
+
+  select.select2();
+
+  return select;
 }
 
 function fromArrayToObjects(keys, array) {
@@ -145,6 +148,7 @@ function fromArrayToObjects(keys, array) {
 
 $(document).ready(function () {
   var selectClientes = initPagosSelect();
+  var selectServicios = initServiciosSelect();
 
   $.post("../../controller/contratos.php?op=listar", function (data) {
     var response = JSON.parse(data);
@@ -162,6 +166,19 @@ $(document).ready(function () {
     objects.map((c) => {
       selectClientes.append(
         `<option value=${c.contrat_id} > ${c.contrat_id} - ${c.nom_emp} (${c.serv_cat})</option>`
+      );
+    });
+  });
+
+  $.post("../../controller/servicios.php?op=listar", function (data) {
+    var response = JSON.parse(data);
+    const keys = ["num_serv", "tip_serv"];
+    var dataArr = response.aaData;
+    const objects = fromArrayToObjects(keys, dataArr);
+
+    objects.map((c) => {
+      selectServicios.append(
+        `<option value="${c.num_serv}" > ${c.tip_serv})</option>`
       );
     });
   });

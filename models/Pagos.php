@@ -68,14 +68,14 @@ class Pagos extends Conectar
         $conectar = parent::Conexion();
         parent::set_names();
         $sql = "SELECT 
-        P.pag_id AS pag_id, 
+        LPAD(P.pag_id, 4, 0)  AS pag_id,
+        LPAD(P.contrat_id, 4, 0) AS contrat_id, 
         CL.nom_emp AS nom_emp,
         CL.doc_nac AS cedula,
-        S.tip_serv AS tip_serv,
-        S.cost_serv AS cost_serv,
+        CP.cat_nom AS cat_pag,
+        SUM(S.cost_serv) AS monto,
         P.fech_pag AS fech_pag,
-        P.pag_est AS pag_est,
-        CP.cat_nom AS cat_pag
+        P.pag_est AS pag_est
         FROM pagos AS P 
         INNER JOIN pago_contrato AS PC
         ON P.pag_id = PC.pag_id
@@ -85,10 +85,12 @@ class Pagos extends Conectar
         ON PC.contrat_id = CO.contrat_id
         INNER JOIN clientes AS CL
         ON CO.client_id = CL.client_id
+        INNER JOIN contrato_servicio AS CS
+        ON CS.contrat_id = CO.contrat_id
         INNER JOIN servicios AS S
-        ON CO.num_serv = S.num_serv
-
-        WHERE P.est = 1";
+        ON S.num_serv = CS.num_serv
+        WHERE P.est = 1
+        GROUP BY CO.contrat_id, P.pag_id";
 
         $sql = $conectar->prepare($sql);
         $sql->execute();

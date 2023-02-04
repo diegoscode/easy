@@ -16,10 +16,11 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["pag_id"];
+            $sub_array[] = $row["contrat_id"];
             $sub_array[] = $row["nom_emp"];
             $sub_array[] = $row["cedula"];
             $sub_array[] = $row["cat_pag"];
-            $sub_array[] = $row["cost_serv"];
+            $sub_array[] = $row["monto"];
             $sub_array[] = $row["fech_pag"];
 
             $pago_estado;
