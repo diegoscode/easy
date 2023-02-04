@@ -3,9 +3,19 @@ require_once("../config/conexion.php");
 require_once("../models/Contratos.php");
 $contratos = new Contratos();
 
+function console_log($output, $with_script_tags = true)
+{
+    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+        ');';
+    if ($with_script_tags) {
+        $js_code = '<script>' . $js_code . '</script>';
+    }
+    echo $js_code;
+}
+
 switch ($_GET["op"]) {
     case "insert":
-        $contratos->insert_contratos($_POST["contratos_select"], $_POST["cat_serv"]);
+        $contratos->insert_contratos($_POST["contratos_select"], $_POST["cat_serv"], $_POST['contrato_plan']);
         break;
 
     case "listar":
@@ -16,12 +26,38 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["contrat_id"];
-            $sub_array[] = $row["nom_emp"];
+            $sub_array[] = $row["empresa"];
+            $sub_array[] = $row["tipo"];
+            $sub_array[] = $row["horario"];
             $sub_array[] = $row["cedula"];
             $sub_array[] = $row["tip_per"];
-            $sub_array[] = $row["tip_serv"];
-            $sub_array[] = $row["cost_serv"];
+
+            $serviciosJSON = json_decode($row["servicios"]);
+            $servicios = '';
+
+
+            if (count($serviciosJSON) > 1) {
+                foreach ($serviciosJSON as $key => $value) {
+                    $servicios .= '<li class="dropdown-item" >' . $value->tip_serv . '</li>';
+                }
+
+                $sub_array[] = '<div class="dropdown w-100">'
+                    . '<button class="dropdown-toggle w-100 servicios-button border border-1 text-start" id="servicios-drop" data-toggle="dropdown" aria-hashpopup="true" aria-expanded="false">' . $serviciosJSON[0]->tip_serv . '</button>'
+                    . '<div class="dropdown-menu" aria-labelledby="servicios-drop">'
+                    . $servicios
+                    . '</div>'
+                    . '</div>';
+            } else {
+                $sub_array[] = $serviciosJSON[0]->tip_serv;
+            }
+
+
+
+            $sub_array[] = $row["monto"];
             $sub_array[] = $row["fech_contrat"];
+
+            $serviciosJSON = json_decode($row['servicios']);
+            $serviciosList = array();
 
             $contrato_estado;
 
@@ -32,6 +68,12 @@ switch ($_GET["op"]) {
                 $contrato_estado = "'" . 'No asociado' . "'";
                 $sub_array[] = '<a onClick="CambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No asociado</span></a>';
             }
+
+
+            $sub_array[] = '<div class="btn-group" role="group">'
+                . '<button type="button" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></button>'
+                . '<button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>'
+                . '</div>';
 
             $data[] = $sub_array;
         }
@@ -44,6 +86,14 @@ switch ($_GET["op"]) {
         );
 
         echo json_encode($results);
+
+        break;
+
+    case "get_contratos":
+        $datos = $contratos->get_contratos_tipos();
+
+
+        echo json_encode($datos);
 
         break;
 

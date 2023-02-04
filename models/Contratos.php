@@ -2,17 +2,30 @@
 class Contratos extends Conectar
 {
 
-    public function insert_contratos($client_id, $num_serv)
+    public function insert_contratos($client_id, $cat_serv, $contrato_plan)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO contratos (contrat_id,client_id, contrat_est, fech_contrat, est, num_serv) VALUES (NULL, ?, 'Asociado', NOW(), 1, ?);";
+        $sql = "INSERT INTO contratos (contrat_id,client_id, contrat_est, fech_contrat, est, contrato_plan) VALUES (NULL, ?, 'Asociado', NOW(), 1, ?);";
         $sql = $conectar->prepare($sql);
 
         $sql->bindValue(1, $client_id);
-        $sql->bindValue(2, $num_serv);
-
+        $sql->bindValue(2, $contrato_plan);
         $sql->execute();
+
+        $lastInsertedIdContratoSql = "SELECT contrat_id FROM contratos ORDER BY contrat_id DESC LIMIT 1";
+        $lastInsertedIdContratoSql = $conectar->prepare($lastInsertedIdContratoSql);
+        $lastInsertedIdContratoSql->execute();
+        $lastInsertedIdContratoSql = $lastInsertedIdContratoSql->fetch();
+        $lastInsertedIdContratoSql = $lastInsertedIdContratoSql['contrat_id'];
+
+        foreach ($cat_serv as $servicio) {
+            $serv_sql = "INSERT INTO contrato_servicio (contrat_id, num_serv) VALUES(?, ?)";
+            $serv_sql = $conectar->prepare($serv_sql);
+            $serv_sql->bindValue(1, $lastInsertedIdContratoSql);
+            $serv_sql->bindValue(2, $servicio);
+            $serv_sql->execute();
+        }
 
         return $sql->fetch();
 
@@ -59,25 +72,47 @@ class Contratos extends Conectar
 
     }
 
+    public function get_contratos_tipos()
+    {
+        $conectar = parent::Conexion();
+        parent::set_names();
+        $sql = 'SELECT * FROM contrato_plan';
+        $sql = $conectar->prepare($sql);
+
+        $sql->execute();
+        return $resultado = $sql->fetchAll();
+    }
+
     public function listar_contratos()
     {
         $conectar = parent::Conexion();
         parent::set_names();
         $sql = "SELECT 
-        C.contrat_id AS contrat_id, 
-        CL.nom_emp AS nom_emp,
+        LPAD(C.contrat_id, 4, 0) AS contrat_id,
+        CL.nom_emp AS empresa,
+        CP.tipo AS tipo,
+        CP.horario AS horario,
         CL.doc_nac AS cedula,
         CL.tip_per AS tip_per,
-        S.tip_serv AS tip_serv,
-        S.cost_serv AS cost_serv,
+        JSON_ARRAYAGG(
+                JSON_OBJECT(
+                'num_serv', S.num_serv,
+                'tip_serv', S.tip_serv
+            )
+        ) AS servicios,
+        SUM(S.cost_serv) AS monto,
         C.fech_contrat AS fech_contrat,
         C.contrat_est AS contrat_est
         FROM contratos AS C
-        INNER JOIN clientes AS CL
-        ON C.client_id = CL.client_id
+        INNER JOIN contrato_servicio AS CS
+        ON C.contrat_id = CS.contrat_id
+        INNER JOIN contrato_plan AS CP
+        ON C.contrato_plan = CP.id
         INNER JOIN servicios AS S
-        ON C.num_serv = S.num_serv
-        WHERE C.est = 1";
+        ON S.num_serv = CS.num_serv
+        INNER JOIN clientes AS CL
+        ON CL.client_id = C.client_id
+        GROUP BY C.contrat_id";
 
         $sql = $conectar->prepare($sql);
         $sql->execute();
@@ -89,20 +124,31 @@ class Contratos extends Conectar
     {
         $conectar = parent::Conexion();
         parent::set_names();
-        $sql = "SELECT
-        C.contrat_id AS contrat_id,
+        $sql = "SELECT 
+        LPAD(C.contrat_id, 4, 0) AS contrat_id,
         CL.nom_emp AS nom_emp,
+        CP.tipo AS tipo,
+        CP.horario AS horario,
         CL.doc_nac AS cedula,
         CL.tip_per AS tip_per,
-        S.tip_serv AS tip_serv,
-        S.cost_serv AS cost_serv,
+        JSON_ARRAYAGG(
+                JSON_OBJECT(
+                'num_serv', S.num_serv,
+                'tip_serv', S.tip_serv
+            )
+        ) AS servicios,
+        SUM(S.cost_serv) AS cost_serv,
         C.fech_contrat AS fech_contrat,
         C.contrat_est AS contrat_est
         FROM contratos AS C
-        INNER JOIN clientes AS CL
-        ON C.client_id = CL.client_id
+        INNER JOIN contrato_servicio AS CS
+        ON C.contrat_id = CS.contrat_id
+        INNER JOIN contrato_plan AS CP
+        ON C.contrato_plan = CP.id
         INNER JOIN servicios AS S
-        ON C.num_serv = S.num_serv
+        ON S.num_serv = CS.num_serv
+        INNER JOIN clientes AS CL
+        ON CL.client_id = C.client_id
         WHERE C.est = 1
         AND C.contrat_id = ?";
 

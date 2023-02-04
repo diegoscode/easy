@@ -63,12 +63,11 @@ if (isset($_SESSION["usu_id"])) {
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="exampleInput">Servicio a pagar</label>
 									<select id="cat_serv" name="cat_serv[]" multiple="multiple" class="form-control">
-										<option>Seleccione un servicio</option>
 									</select>
 								</fieldset>
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-lg-3">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="nom_emp">Nombre de la empresa</label>
 									<input type="text" class="form-control" id="nom_emp" name="nom_emp" placeholder="Nombre"
@@ -76,19 +75,29 @@ if (isset($_SESSION["usu_id"])) {
 								</fieldset>
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-lg-3">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
-									<input type="text" class="form-control" id="doc_nac" name="doc_nac"
-										placeholder="RIF" readonly>
+									<input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="RIF"
+										readonly>
 								</fieldset>
 							</div>
 
-							<div class="col-lg-4">
+							<div class="col-lg-3">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="cost_serv">Costo del servicio</label>
-									<input type="text" class="form-control" id="cost_serv" name="cost_serv"
+									<input type="number" class="form-control" id="cost_serv" name="cost_serv"
 										placeholder="Monto a pagar" readonly>
+								</fieldset>
+							</div>
+
+							<div class="col-lg-3">
+								<fieldset class="form-group">
+									<label class="form-label semibold" for="contrato_plan">Tipo de contrato</label>
+									<select class="form-control" name="contrato_plan" id="contrato_plan">
+										<option value="">Seleccione un contrato
+										</option>
+									</select>
 								</fieldset>
 							</div>
 
@@ -107,12 +116,15 @@ if (isset($_SESSION["usu_id"])) {
 							<tr>
 								<th style="width: 1%;">Numero de Contrato</th>
 								<th style="width: 1%;">Empresa</th>
+								<th style="width: 1%;">Tipo de Contrato</th>
+								<th style="width: 1%;">Horario</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento Nacional</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Servicio contratado</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Monto a pagar</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha del contrato</th>
 								<th class="d-none d-sm-table-cell" style="width: 1%;">Estado</th>
+								<th class="d-none d-sm-table-cell" style="width: 1%;">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>

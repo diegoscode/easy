@@ -2,18 +2,9 @@ var clientes;
 var servicios;
 var tabla;
 
-$(document).ready(function() {
+$(document).ready(function () {
   $("#cat_serv").select2();
 });
-
-$("#cat_serv").on('change', function (e) { 
-  var totAmt = 0;
-  $.each($(this).find(":selected"), function (i, item) { 
-    console.log(i, item);
-      totAmt += $(item).data("price");
-      });
-  $("#PackTotAmt").text(totAmt);
-}); 
 
 function CambiarEstado(contrat_id, estado) {
   $.post(
@@ -36,11 +27,10 @@ function guardaryeditar(e) {
     contentType: false,
     processData: false,
     success: function (datos) {
-      console.log(datos);
       $("#contratos_form")[0].reset();
       $("#contratos_data").DataTable().ajax.reload();
-      $("#cat_serv").select2("val", "");
-      $("#contratos_select").select2("val", "");
+      $("#cat_serv").select2("");
+      $("#contratos_select").select2("");
       swal({
         title: "Admin",
         text: "Completado",
@@ -120,7 +110,6 @@ function initClientesSelect() {
       { client_id: e.target.value },
       function (data) {
         var cliente = JSON.parse(data);
-        console.log(data);
         $("#nom_emp").val(cliente.nom_emp);
         $("#tip_per").val(cliente.tip_per);
         $("#doc_nac").val(cliente.doc_nac);
@@ -136,13 +125,26 @@ function initServiciosSelect() {
   select.select2({
     placeholder: "Seleccione un Servicio",
   });
-  select.on("change", (e) => {
+  select.on("change", function (e) {
+    var servicios = $(this).val();
+    var costoTotal = 0;
+    if (!servicios) {
+      $("#cost_serv").val("");
+      return;
+    }
+
     $.post(
-      "../../controller/servicios.php?op=encontrar",
-      { num_serv: e.target.value },
+      "../../controller/servicios.php?op=encontrar_varios",
+      {
+        servicios,
+      },
       function (data) {
-        var serv = JSON.parse(data);
-        $("#cost_serv").val(serv.cost_serv);
+        var datos = JSON.parse(data);
+
+        var costos = datos.map((servicio) => parseInt(servicio.cost_serv));
+        const totalCosto = costos.reduce((prev, sum) => prev + sum, 0);
+
+        $("#cost_serv").val(totalCosto);
       }
     );
   });
@@ -199,6 +201,15 @@ $(document).ready(function () {
       selectServicios.append(
         `<option value=${serv.num_serv} >${serv.tip_serv}</option>`
       );
+    });
+  });
+
+  $.post("../../controller/contratos.php?op=get_contratos", function (data) {
+    var response = JSON.parse(data);
+    var tipoSelect = $("#contrato_plan");
+
+    response.forEach((tipo) => {
+      tipoSelect.append(`<option value="${tipo.id}" >${tipo.tipo}</option>`);
     });
   });
 });
