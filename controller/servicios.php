@@ -47,18 +47,24 @@ switch ($_GET["op"]) {
         echo json_encode($results);
         break;
 
-        case "eliminar":
+    case "eliminar":
         $servicios->delete_servicios($_POST["num_serv"]);
         break;
 
-        case "encontrar";
+    case "encontrar";
         $datos = $servicios->get_servicios_x_id($_POST["num_serv"]);
 
         echo json_encode($datos);
 
         break;
 
-        case "cambiarestado";
+    case "encontrar_varios";
+        $datos = $servicios->get_varios_servicios($_POST["servicios"]);
+
+        echo json_encode($datos);
+        break;
+
+    case "cambiarestado";
         $servicios->cambiar_estado($_POST["num_serv"], $_POST["estado"]);
         break;
 }

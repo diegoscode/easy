@@ -68,7 +68,29 @@ class Servicios extends Conectar
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $num_serv);
         $sql->execute();
-        return $resultado=$sql->fetch();
+        return $resultado = $sql->fetch();
+    }
+
+    public function get_varios_servicios($servicios)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+        $serviciosArr = array();
+
+
+        foreach ($servicios as $servicio) {
+            $sql = "SELECT * FROM servicios where num_serv=?";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $servicio);
+            $sql->execute();
+            $resultado = $sql->fetch();
+            $serviciosArr[] = $resultado;
+        }
+
+
+        return $serviciosArr;
+
+
     }
 
     public function cambiar_estado($num_serv, $serv_est)
