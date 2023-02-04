@@ -80,9 +80,11 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="tip_serv">Servicio contratado</label>
-									<input type="text" class="form-control" id="tip_serv" name="tip_serv"
-										placeholder="Servicio" readonly>
+									<label class="form-label semibold">Servicio contrato</label>
+									<select name="servicios_select" id="servicios_select" class="form-control" multiple
+										disabled>
+
+									</select>
 								</fieldset>
 							</div>
 
@@ -107,6 +109,7 @@ if (isset($_SESSION["usu_id"])) {
 					<table id="pagos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
+								<th style="width: 1%;">Numero de pago</th>
 								<th style="width: 1%;">Numero de contrato</th>
 								<th style="width: 5%;">Nombre de cliente o empresa</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
