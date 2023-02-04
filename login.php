@@ -38,7 +38,7 @@
                     <div class="sign-avatar">
                         <img src="public/1.jpg" alt="" id="imgtipo">
                     </div>
-                    <header class="sign-title" id="lbltitulo">Acceso Usuario</header>
+                    <header class="sign-title" id="lbltitulo">Acceso Cliente</header>
 
                     <?php
                         if (isset($_GET["m"])){
@@ -71,17 +71,17 @@
                     ?>
 
                     <div class="form-group">
-                        <input type="text" id="usu_correo" name="usu_correo" class="form-control" placeholder="E-Mail"/>
+                        <input type="text" id="usu_correo" name="usu_correo" class="form-control" placeholder="Correo"/>
                     </div>
                     <div class="form-group">
-                        <input type="password" id="usu_pass" name="usu_pass" class="form-control" placeholder="Password"/>
+                        <input type="password" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña"/>
                     </div>
                     <div class="form-group">
                         <div class="float-right reset">
-                            <a href="reset-password.html">Cambiar Contraseña</a>
+                            <a href="register.php">Registrate</a>
                         </div>
                         <div class="float-left reset">
-                            <a href="#" id="btnsoporte">Acceso Soporte</a>
+                            <a href="#" id="btnsoporte">Acceso Administrador</a>
                         </div>
                     </div>
                     <input type="hidden" name="enviar" class="form-control" value="si">
