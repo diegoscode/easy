@@ -42,6 +42,7 @@ if (isset($_SESSION["usu_id"])) {
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Cliente</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa o particular</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Direccion</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
 								<th class="text-center" style="width: 5%;"></th>
 								<th class="text-center" style="width: 5%;"></th>

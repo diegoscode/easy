@@ -12,7 +12,7 @@
                 <div class="modal-body">
 
                     <input type="hidden" class="form-control" id="client_id" name="client_id">
-                    
+
                     <div class="form-group">
                         <label class="form-label semibold" for="nom_emp">Cliente</label>
                         <input type="text" class="form-control" id="nom_emp" name="nom_emp" placeholder="Nombre"
@@ -21,13 +21,18 @@
 
                     <div class="form-group">
                         <label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
-                        <input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="Documento de identidad"
-                            required>
+                        <input type="text" class="form-control" id="doc_nac" name="doc_nac"
+                            placeholder="Documento de identidad" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label semibold" for="tip_per">Tipo de empresa o particular</label>
-                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo"
+                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label semibold" for="direccion">Direccion</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion"
                             required>
                     </div>
 

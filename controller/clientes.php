@@ -6,7 +6,7 @@ $clientes = new Clientes();
 switch ($_GET["op"]) {
     case "guardaryeditar":
         if (empty($_POST["client_id"])) {
-            $clientes->insert_clientes($_POST["nom_emp"], $_POST["doc_nac"], $_POST["tip_per"]);
+            $clientes->insert_clientes($_POST["nom_emp"], $_POST["doc_nac"], $_POST["tip_per"], $_POST['direccion']);
         } else {
             $clientes->update_clientes($_POST["client_id"], $_POST["nom_emp"], $_POST["doc_nac"], $_POST["tip_per"]);
         }
@@ -21,6 +21,7 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["nom_emp"];
             $sub_array[] = $row["doc_nac"];
             $sub_array[] = $row["tip_per"];
+            $sub_array[] = $row["direccion"];
 
             $client_estado;
 

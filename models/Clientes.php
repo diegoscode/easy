@@ -1,15 +1,16 @@
 <?php
 class Clientes extends Conectar
 {
-    public function insert_clientes($nom_emp, $doc_nac, $tip_per)
+    public function insert_clientes($nom_emp, $doc_nac, $tip_per, $direccion)
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "INSERT INTO clientes (client_id, usu_id, nom_emp, doc_nac, tip_per, client_est, est) VALUES (NULL, NULL, ?, ?, ?, 'Activo', '1');";
+        $sql = "INSERT INTO clientes (client_id, usu_id, nom_emp, doc_nac, direccion, tip_per, client_est, est) VALUES (NULL, NULL, ?, ?, ?, ?, 'Activo', '1');";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $nom_emp);
         $sql->bindValue(2, $doc_nac);
-        $sql->bindValue(3, $tip_per);
+        $sql->bindValue(3, $direccion);
+        $sql->bindValue(4, $tip_per);
         $sql->execute();
         return $resultado = $sql->fetchAll();
     }
@@ -65,7 +66,7 @@ class Clientes extends Conectar
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $client_id);
         $sql->execute();
-        return $resultado=$sql->fetch();
+        return $resultado = $sql->fetch();
     }
 
     public function cambiar_estado($client_id, $client_est)
