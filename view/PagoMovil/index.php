@@ -1,86 +1,103 @@
 <?php
-  require_once("../../config/conexion.php"); 
-  if(isset($_SESSION["usu_id"])){ 
-?>
-<!DOCTYPE html>
-<html>
-    <?php require_once("../MainHead/head.php");?>
+require_once("../../config/conexion.php");
+if (isset($_SESSION["usu_id"])) {
+	?>
+	<!DOCTYPE html>
+	<html>
+	<?php require_once("../MainHead/head.php"); ?>
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 	<title>Inicio</title>
-</head>
-<body class="with-side-menu">
+	</head>
 
-    <?php require_once("../MainHeader/header.php");?>
+	<body class="with-side-menu">
 
-    <div class="mobile-menu-left-overlay"></div>
-    
-    <?php require_once("../MainNav/nav.php");?>
+		<?php require_once("../MainHeader/header.php"); ?>
 
-	<!-- Contenido -->
-	<div class="page-content">
-		<div class="container-fluid">
-        <div class="box-typical box-typical-padding">
-				
-				<h5 class="m-t-lg with-border">Apartado de pagos</h5>
+		<div class="mobile-menu-left-overlay"></div>
 
-				<form>
+		<?php require_once("../MainNav/nav.php"); ?>
 
-				<div class="form-group row">
-						<label for="inputPassword" class="col-sm-2 form-control-label semibold">Banco Origen</label>
-						<div class="col-sm-5">
-							<select id="exampleSelect" class="form-control">
-								<option>Seleccione Banco</option>
-								<option>Venezuela</option>
-								<option>Banesco</option>
-							</select>
+		<!-- Contenido -->
+		<div class="page-content">
+			<div class="container-fluid">
+				<div class="box-typical box-typical-padding">
+
+					<h5 class="m-t-lg with-border">Apartado de pagos</h5>
+
+					<form id="reporte-form">
+
+						<div class="form-group row">
+							<label for="inputPassword" class="col-sm-2 form-control-label semibold">Banco Origen</label>
+							<div class="col-sm-5">
+								<select id="exampleSelect" id="origen" name="origen" class="form-control">
+									<option value="">Seleccione Banco</option>
+									<option>Venezuela</option>
+									<option>Banesco</option>
+								</select>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label class="col-sm-2 form-control-label semibold">Numero de telefono asociado</label>
-						<div class="col-sm-5">
-							<p class="form-control-static"><input type="number" class="form-control" id="inputPassword" placeholder="Numero celular"></p>
+						<div class="form-group row">
+							<label class="col-sm-2 form-control-label semibold">Numero de telefono asociado</label>
+							<div class="col-sm-5">
+								<p class="form-control-static"><input type="tel" class="form-control" id="telefono"
+										name="telefono" placeholder="Numero celular"></p>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label class="col-sm-2 form-control-label semibold">Fecha del pago movil</label>
-						<div class="col-sm-5">
-							<p class="form-control-static"><input type="date" class="form-control" id="inputPassword" placeholder="Ingresa fecha de pago movil"></p>
+						<div class="form-group row">
+							<label class="col-sm-2 form-control-label semibold">Fecha del pago movil</label>
+							<div class="col-sm-5">
+								<p class="form-control-static"><input type="date" class="form-control" id="fech_trans"
+										name="fech_trans" placeholder="Ingresa fecha de pago movil"></p>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label class="col-sm-2 form-control-label semibold">Numero de referencia</label>
-						<div class="col-sm-5">
-							<p class="form-control-static"><input type="number" class="form-control" id="inputPassword" placeholder="Referencia"></p>
+						<div class="form-group row">
+							<label class="col-sm-2 form-control-label semibold">Numero de referencia</label>
+							<div class="col-sm-5">
+								<p class="form-control-static"><input type="number" class="form-control"
+										id="numero_referencia" name="numero_referencia" placeholder="Referencia"></p>
+							</div>
 						</div>
-					</div>
 
-					<div class="form-group row">
-						<label class="col-sm-2 form-control-label semibold">Monto</label>
-						<div class="col-sm-5">
-							<p class="form-control-static"><input type="number" class="form-control" id="inputPassword" placeholder="0,00"></p>
+						<div class="form-group row">
+							<label class="col-sm-2 form-control-label semibold">Monto</label>
+							<div class="col-sm-5">
+								<p class="form-control-static"><input type="number" class="form-control" id="monto"
+										name="monto" placeholder="0,00" step="0.01"></p>
+							</div>
 						</div>
-					</div>
 
-					<button type="submit" class="btn btn-rounded btn-success sign-up">Reportar</button>
-	
-				</form>
-		</div>
-	</div>
-	<!-- Contenido -->
+						<div class="form-group row">
+							<label class="col-sm-2 form-control-label semibold">Comprobante de pago</label>
+							<div class="col-sm-5">
+								<p class="form-control-static"><input type="file" class="form-control" id="comprobante"
+										placeholder="Suba aqui el comprobante de la transferencia" name="comprobante"
+										required></p>
+							</div>
+						</div>
 
-	<?php require_once("../MainJs/js.php");?>
+						<input type="hidden" id="tip_pag" name="tip_pag" value="Pago Movil">
 
-	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-	<script type="text/javascript" src="subirpagos.js"></script>
+						<button type="submit" class="btn btn-rounded btn-success sign-up">Reportar</button>
 
-</body>
-</html>
-<?php
-  } else {
-    header("Location:".Conectar::ruta()."index.php");
-  }
+					</form>
+				</div>
+			</div>
+			<!-- Contenido -->
+
+			<?php require_once("../MainJs/js.php"); ?>
+
+			<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+			<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+			<script type="text/javascript" src="pagomovil.js"></script>
+
+	</body>
+
+	</html>
+	<?php
+} else {
+	header("Location:" . Conectar::ruta() . "index.php");
+}
 ?>
