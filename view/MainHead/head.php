@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="../../public/css/lib/summernote/summernote.css" />
     <link rel="stylesheet" href="../../public/css/separate/pages/editor.min.css">
+    <link rel="stylesheet" href="../../public/css/separate/pages/prices.min.css">
 
     <link rel="stylesheet" href="../../public/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="../../public/css/lib/bootstrap/bootstrap.min.css">

@@ -3,16 +3,26 @@
         ?>
             <nav class="side-menu">
                 <ul class="side-menu-list">
-                <li class="blue-dirty">
+                    <li class="blue-dirty">
                         <a href="..\Home\">
-                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="fa fa-globe"></span>
                             <span class="lbl">Inicio</span>
                         </a>
                     </li>
                     <li class="blue-dirty">
-                        <a href="..\ConsultarServicios\">
-                            <span class="glyphicon glyphicon-th"></span>
-                            <span class="lbl">Consultar</span>
+                        <a href="#">
+                            <span class="fa fa-money"></span>
+                            <span class="lbl">Pagos</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
+                        <a href="..\PagoTransferencia\">
+                            <span class="lbl">Reportar Transferencia</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
+                        <a href="..\PagoMovil\">
+                            <span class="lbl">Reportar Pago Movil</span>
                         </a>
                     </li>
                 </ul>
@@ -24,7 +34,7 @@
                 <ul class="side-menu-list">
                 <li class="blue-dirty">
                         <a href="..\Home\">
-                            <span class="fa fa-sticky-note-o"></span>
+                            <span class="fas fa-globe"></span>
                             <span class="lbl">Inicio</span>
                         </a>
                     </li>
