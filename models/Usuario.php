@@ -34,18 +34,43 @@
             }
         }
 
-        public function insert_usuario($usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
+        public function insert_usuario($nom_emp,$usu_ape,$usu_correo,$usu_pass,$rol_id, $doc_nac, $tip_per, $direccion)
+        {
             $conectar= parent::conexion();
             parent::set_names();
             $sql="INSERT INTO usuarios (usu_id, usu_nom, usu_ape, usu_correo, usu_pass, rol_id, fech_crea, fech_modi, fech_elim, est) VALUES (NULL,?,?,?,?,?,now(), NULL, NULL, '1');";
             $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_nom);
+            $sql->bindValue(1, $nom_emp);
             $sql->bindValue(2, $usu_ape);
             $sql->bindValue(3, $usu_correo);
             $sql->bindValue(4, $usu_pass);
             $sql->bindValue(5, $rol_id);
             $sql->execute();
+
+            $lastInsertedIdUsuarioSql = "SELECT usu_id FROM usuarios ORDER BY usu_id DESC LIMIT 1";
+            $lastInsertedIdUsuarioSql = $conectar->prepare($lastInsertedIdUsuarioSql);
+            $lastInsertedIdUsuarioSql->execute();
+            $lastInsertedIdUsuarioSql = $lastInsertedIdUsuarioSql->fetch();
+            $lastInsertedIdUsuarioSql = $lastInsertedIdUsuarioSql['usu_id'];
+
+            $this->insert_clientes($lastInsertedIdUsuarioSql,$nom_emp, $doc_nac, $tip_per, $direccion);
+
             return $resultado=$sql->fetchAll();
+        }
+
+        public function insert_clientes($usu_id,$nom_emp, $doc_nac, $tip_per, $direccion)
+        {
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "INSERT INTO clientes (client_id, usu_id, nom_emp, doc_nac, direccion, tip_per, client_est, est) VALUES (NULL, ?, ?, ?, ?, ?, 'Activo', '1');";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $usu_id);
+            $sql->bindValue(2, $nom_emp);
+            $sql->bindValue(3, $doc_nac);
+            $sql->bindValue(4, $direccion);
+            $sql->bindValue(5, $tip_per);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
         }
 
         public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){

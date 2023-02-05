@@ -46,31 +46,6 @@
 					</div>
 
 					<div class="form-group row">
-						<label class="col-sm-2 form-control-label semibold">Documento de identidad o RIF</label>
-						<div class="col-sm-5">
-							<p class="form-control-static"><input type="number" class="form-control" id="inputPassword" placeholder="Cedula o RIF del titular"></p>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label for="inputPassword" class="col-sm-2 form-control-label semibold"></label>
-						<div class="col-sm-5">
-							<select id="exampleSelect" class="form-control">
-								<option>Selecciona el tipo de persona</option>
-								<option>Natural</option>
-								<option>Juridica</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-sm-2 form-control-label semibold">Monto total de la transferencia</label>
-						<div class="col-sm-5">
-							<p class="form-control-static"><input type="number" class="form-control" id="inputPassword" placeholder="Indica el monto total de su transferencia"></p>
-						</div>
-					</div>
-
-					<div class="form-group row">
 						<label class="col-sm-2 form-control-label semibold">Comprobante de pago</label>
 						<div class="col-sm-5">
 							<p class="form-control-static"><input type="file" class="form-control" id="inputPassword" placeholder="Suba aqui el comprobante de la transferencia"></p>

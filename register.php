@@ -16,6 +16,8 @@
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
+    <link rel="stylesheet" href="public/css/lib/bootstrap-sweetalert/sweetalert.css">
+    <link rel="stylesheet" href="public/css/separate/vendor/sweet-alert-animations.min.css">
     <link rel="stylesheet" href="public/css/separate/pages/login.min.css">
     <link rel="stylesheet" href="public/css/lib/font-awesome/font-awesome.min.css">
     <link rel="stylesheet" href="public/css/lib/bootstrap/bootstrap.min.css">
@@ -40,18 +42,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label semibold" for="usu_ape">Nombre</label>
+                    <label class="form-label semibold" for="usu_ape">Apellido</label>
                     <input type="text" id="usu_ape" name="usu_ape" class="form-control" placeholder="Apellido"/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
                     <input type="text" id="doc_nac" name="doc_nac" class="form-control" placeholder="Documento de identidad o RIF"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label semibold" for="telefono">Telefono</label>
-                    <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Numero telefono"/>
                 </div>
 
                 <div class="form-group">
@@ -81,7 +78,8 @@
             </div>
         </div>
     </div><!--.page-center-->
-
+    
+<script src="public/js/lib/bootstrap-sweetalert/sweetalert.min.js"></script>
 <script src="public/js/lib/jquery/jquery.min.js"></script>
 <script src="public/js/lib/tether/tether.min.js"></script>
 <script src="public/js/lib/bootstrap/bootstrap.min.js"></script>
@@ -103,6 +101,10 @@
             });
         });
     </script>
+
 <script src="public/js/app.js"></script>
+
+<script type="text/javascript" src="new.js"></script>
+
 </body>
 </html>

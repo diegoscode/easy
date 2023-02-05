@@ -34,7 +34,7 @@
                 <ul class="side-menu-list">
                 <li class="blue-dirty">
                         <a href="..\Home\">
-                            <span class="fas fa-globe"></span>
+                            <span class="fa fa-globe"></span>
                             <span class="lbl">Inicio</span>
                         </a>
                     </li>
@@ -66,6 +66,12 @@
                         <a href="..\MntUsuario\">
                             <span class="fa fa-user"></span>
                             <span class="lbl">Usuarios</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
+                        <a href="..\Reportes\">
+                            <span class="fa fa-file"></span>
+                            <span class="lbl">Reportes</span>
                         </a>
                     </li>
                 </ul>
