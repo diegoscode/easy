@@ -14,5 +14,16 @@
                 echo $html;
             }
         break;
+
+        case "combodos":
+            $datos = $categoria->get_categoria_ticket();
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $html.= "<option value='".$row['cat_id']."'>".$row['cat_tick']."</option>";
+                }
+                echo $html;
+            }
+        break;
     }
 ?>
