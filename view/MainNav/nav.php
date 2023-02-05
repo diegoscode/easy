@@ -18,25 +18,31 @@
                     <li class="blue-dirty">
                         <a href="..\PagoTransferencia\">
                         <span class="fa fa-chevron-right"></span>
-                        <span class="lbl">Reportar Transferencia</span>
+                        <span class="lbl">Transferencias</span>
                         </a>
                     </li>
                     <li class="blue-dirty">
                         <a href="..\PagoMovil\">
                         <span class="fa fa-chevron-right"></span>
-                        <span class="lbl">Reportar Pago Movil</span>
+                        <span class="lbl">Pago Movil</span>
                         </a>
                     </li>
                     <li class="blue-dirty">
                         <a href="..\NuevoTicket\">
                             <span class="fa fa-ticket"></span>
-                            <span class="lbl">Reportar Falla</span>
+                            <span class="lbl">Reclamos</span>
                         </a>
                     </li>
                     <li class="blue-dirty">
                         <a href="..\ConsultarTicket\">
                             <span class="fa fa-exclamation-triangle"></span>
-                            <span class="lbl">Consultar Falla</span>
+                            <span class="lbl">Consultas</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
+                        <a href="..\ReportesClientes\">
+                            <span class="fa fa-file"></span>
+                            <span class="lbl">Reportes</span>
                         </a>
                     </li>
                 </ul>
