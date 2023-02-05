@@ -30,7 +30,7 @@ $(document).ready(function() {
         ]
     });
 
-    $.post("../../controller/categoria.php?op=combo",function(data, status){
+    $.post("../../controller/categoria.php?op=combodos",function(data, status){
         $('#cat_id').html(data);
     });
 

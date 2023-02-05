@@ -62,7 +62,7 @@
             foreach($datos as $row){
                 $sub_array = array();
                 $sub_array[] = $row["tick_id"];
-                $sub_array[] = $row["cat_nom"];
+                $sub_array[] = $row["cat_tick"];
                 $sub_array[] = $row["tick_titulo"];
 
                 if ($row["tick_estado"]=="Abierto"){
@@ -106,7 +106,7 @@
             foreach($datos as $row){
                 $sub_array = array();
                 $sub_array[] = $row["tick_id"];
-                $sub_array[] = $row["cat_nom"];
+                $sub_array[] = $row["cat_tick"];
                 $sub_array[] = $row["tick_titulo"];
 
                 if ($row["tick_estado"]=="Abierto"){
@@ -215,7 +215,7 @@
                     $output["fech_crea"] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
                     $output["usu_nom"] = $row["usu_nom"];
                     $output["usu_ape"] = $row["usu_ape"];
-                    $output["cat_nom"] = $row["cat_nom"];
+                    $output["cat_tick"] = $row["cat_tick"];
                 }
                 echo json_encode($output);
             }   

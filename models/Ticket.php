@@ -31,16 +31,16 @@
                 tm_ticket.fech_crea,
                 tm_ticket.usu_asig,
                 tm_ticket.fech_asig,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_categoria.cat_nom
+                usuarios.usu_nom,
+                usuarios.usu_ape,
+                categoria_ticket.cat_tick
                 FROM 
                 tm_ticket
-                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+                INNER join categoria_ticket on tm_ticket.cat_id = categoria_ticket.cat_id
+                INNER join usuarios on tm_ticket.usu_id = usuarios.usu_id
                 WHERE
                 tm_ticket.est = 1
-                AND tm_usuario.usu_id=?";
+                AND usuarios.usu_id=?";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->execute();
@@ -58,14 +58,14 @@
                 tm_ticket.tick_descrip,
                 tm_ticket.tick_estado,
                 tm_ticket.fech_crea,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_usuario.usu_correo,
-                tm_categoria.cat_nom
+                usuarios.usu_nom,
+                usuarios.usu_ape,
+                usuarios.usu_correo,
+                categoria_ticket.cat_tick
                 FROM 
                 tm_ticket
-                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+                INNER join categoria_ticket on tm_ticket.cat_id = categoria_ticket.cat_id
+                INNER join usuarios on tm_ticket.usu_id = usuarios.usu_id
                 WHERE
                 tm_ticket.est = 1
                 AND tm_ticket.tick_id = ?";
@@ -88,13 +88,13 @@
                 tm_ticket.fech_crea,
                 tm_ticket.usu_asig,
                 tm_ticket.fech_asig,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_categoria.cat_nom
+                usuarios.usu_nom,
+                usuarios.usu_ape,
+                categoria_ticket.cat_tick
                 FROM 
                 tm_ticket
-                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+                INNER join categoria_ticket on tm_ticket.cat_id = categoria_ticket.cat_id
+                INNER join usuarios on tm_ticket.usu_id = usuarios.usu_id
                 WHERE
                 tm_ticket.est = 1
                 ";
@@ -110,12 +110,12 @@
                 td_ticketdetalle.tickd_id,
                 td_ticketdetalle.tickd_descrip,
                 td_ticketdetalle.fech_crea,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_usuario.rol_id
+                usuarios.usu_nom,
+                usuarios.usu_ape,
+                usuarios.rol_id
                 FROM 
                 td_ticketdetalle
-                INNER join tm_usuario on td_ticketdetalle.usu_id = tm_usuario.usu_id
+                INNER join usuarios on td_ticketdetalle.usu_id = usuarios.usu_id
                 WHERE 
                 tick_id =?";
             $sql=$conectar->prepare($sql);
@@ -235,13 +235,13 @@
         public function get_ticket_grafico(){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
+            $sql="SELECT categoria_ticket.cat_tick as nom,COUNT(*) AS total
                 FROM   tm_ticket  JOIN  
-                    tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
+                    categoria_ticket ON tm_ticket.cat_id = categoria_ticket.cat_id  
                 WHERE    
                 tm_ticket.est = 1
                 GROUP BY 
-                tm_categoria.cat_nom 
+                categoria_ticket.cat_tick 
                 ORDER BY total DESC";
             $sql=$conectar->prepare($sql);
             $sql->execute();
