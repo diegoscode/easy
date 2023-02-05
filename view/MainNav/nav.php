@@ -25,6 +25,16 @@
                             <span class="lbl">Reportar Pago Movil</span>
                         </a>
                     </li>
+                    <li class="blue-dirty">
+                        <a href="..\NuevoTicket\">
+                            <span class="lbl">Reportar falla</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
+                        <a href="..\ConsultarTicket\">
+                            <span class="lbl">Consultar Falla</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         <?php
@@ -72,6 +82,11 @@
                         <a href="..\Reportes\">
                             <span class="fa fa-file"></span>
                             <span class="lbl">Reportes</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
+                        <a href="..\ConsultarTicket\">
+                            <span class="lbl">Consultar Falla</span>
                         </a>
                     </li>
                 </ul>
