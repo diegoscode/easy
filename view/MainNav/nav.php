@@ -3,10 +3,16 @@
         ?>
             <nav class="side-menu">
                 <ul class="side-menu-list">
-                    <li class="blue-dirty">
+                <li class="blue-dirty">
                         <a href="..\Home\">
                             <span class="glyphicon glyphicon-th"></span>
                             <span class="lbl">Inicio</span>
+                        </a>
+                    </li>
+                    <li class="blue-dirty">
+                        <a href="..\ConsultarServicios\">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <span class="lbl">Consultar</span>
                         </a>
                     </li>
                 </ul>
@@ -16,6 +22,12 @@
         ?>
             <nav class="side-menu">
                 <ul class="side-menu-list">
+                <li class="blue-dirty">
+                        <a href="..\Home\">
+                            <span class="fa fa-sticky-note-o"></span>
+                            <span class="lbl">Inicio</span>
+                        </a>
+                    </li>
                     <li class="blue-dirty">
                         <a href="..\Contratos\">
                             <span class="fa fa-sticky-note-o"></span>
