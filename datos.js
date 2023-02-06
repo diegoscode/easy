@@ -7,15 +7,15 @@ $(document).ready(function() {
 
 $(document).on("click", "#btnsoporte", function () {
     if ($('#rol_id').val()==1){
-        $('#lbltitulo').html("Acceso Administrador");
-        $('#btnsoporte').html("Acceso Cliente");
+        $('#lbltitulo').html("Administrador");
+        $('#btnsoporte').html("Cliente");
         $('#rol_id').val(2);
-        $("#imgtipo").attr("src","public/2.jpg");
+        $("#imgtipo").attr("src","public/img/logoempresa.png");
     }else{
-        $('#lbltitulo').html("Acceso Cliente");
-        $('#btnsoporte').html("Acceso Administrador");
+        $('#lbltitulo').html("Cliente");
+        $('#btnsoporte').html("Administrador");
         $('#rol_id').val(1);
-        $("#imgtipo").attr("src","public/1.jpg");
+        $("#imgtipo").attr("src","public/img/logoempresa.png");
     }
 });
 
