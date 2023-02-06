@@ -2,6 +2,38 @@
 
 class Reportes extends Conectar
 {
+
+    function listarReportes($rol_id, $usu_id)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+
+        if ($rol_id === 2) {
+            $sql = 'SELECT reportes.*, LPAD(report_id, 4, 0) as codigo_report  FROM reportes';
+
+        } else {
+            $sql = "SELECT reportes.*, LPAD(report_id, 4, 0) as codigo_report FROM reportes WHERE usu_id = $usu_id";
+        }
+
+        $sql = $conectar->prepare($sql);
+        $sql->execute();
+
+        return $sql->fetchAll();
+    }
+
+    function encontrarReporte($report_id)
+    {
+        $conectar = parent::conexion();
+        parent::set_names();
+
+        $sql = 'SELECT reportes.*, LPAD(report_id, 4, 0) as codigo_report  FROM reportes WHERE report_id = ?';
+        $sql = $conectar->prepare($sql);
+        $sql->bindValue(1, $report_id);
+        $sql->execute();
+
+        return $sql->fetch();
+    }
+
     function insert_reporte($usu_id, $numero_referencia, $tip_pag, $origen, $telefono, $comprobante, $monto, $fech_trans)
     {
         $conectar = parent::conexion();

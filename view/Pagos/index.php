@@ -123,6 +123,7 @@ if (isset($_SESSION["usu_id"])) {
 
 						</tbody>
 					</table>
+
 				</div>
 
 			</div>

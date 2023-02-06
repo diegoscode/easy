@@ -87,6 +87,9 @@ class Contratos extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
+
+        $this->console_log($contrat_id);
+
         $sql = "UPDATE contratos 
         SET 
             contrat_est=?

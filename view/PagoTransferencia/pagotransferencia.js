@@ -1,5 +1,7 @@
 var formulario = $("#reporte_transferencia");
 
+var permitidos = ["pdf", "gif", "jpg", "png", "jpeg"];
+
 function init() {
   formulario.on("submit", function (e) {
     crearComprobante(e);
@@ -9,6 +11,18 @@ function init() {
 function crearComprobante(e) {
   e.preventDefault();
   var formData = new FormData(formulario[0]);
+
+  var filename = $("#comprobante")[0].files[0].name;
+  var fileExt =
+    filename.substring(filename.lastIndexOf(".") + 1, filename.length) ||
+    filename;
+
+  if (!permitidos.includes(fileExt)) {
+    return swal({
+      type: "error",
+      title: "Archivo no valido",
+    });
+  }
 
   formData.append("comprobante", $("#comprobante")[0].files[0]);
 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+
+        .recibo {
+            max-width: 550px;
+        }
+
+        .recibo h1 {
+            padding-bottom: 20px;
+            border-bottom: 10px solid black;
+            text-transform: uppercase;
+            display: block;
+            font-weight: 500;
+        }
+
+        .recibo table {
+            width: 100%;
+        }
+
+        .recibo ul {
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .recibo ul li {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .recibo .label {
+            border-bottom: grey solid 5px;
+            width: 50%;
+        }
+
+        .recibo .value {
+              text-align: right;
+              width: 50%;
+              border-bottom: #ccc solid 5px;
+        }
+
+        .recibo .w-100 {
+            width: 100%;
+        }
+    </style>
+    <div class="recibo">
+        <h1>Recibo</h1>
+        <ul>
+            <li>
+                <span class="label">N°</span>
+                <span class="value">12315</span>
+            </li>
+            <li>
+                <span class="label">fecha</span>
+                <span class="value">21/343&#$</span>
+            </li>
+            <li>
+                <span class="label">importe total</span>
+                <span class="value">34,324</span>
+            </li>
+            <li>
+                <span class="label w-100">forma de pago</span>
+            </li>
+            <li>
+                <span class="label">tarjeta debito</span>
+                <span class="value">34,324</span>
+            </li>
+        </ul>
+
+        Corporacion Telemic RIF. J-3031413513. Todos los derechos reservados. 2023
+    
+    </div>
+</body>
+</html>

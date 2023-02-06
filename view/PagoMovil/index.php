@@ -31,7 +31,7 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-sm-5">
 								<select id="exampleSelect" id="origen" name="origen" class="form-control">
 									<option value="">Seleccione Banco</option>
-									<option>Venezuela</option>
+									<option>Banco de Venezuela</option>
 									<option>Banesco</option>
 								</select>
 							</div>
@@ -74,7 +74,7 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-sm-5">
 								<p class="form-control-static"><input type="file" class="form-control" id="comprobante"
 										placeholder="Suba aqui el comprobante de la transferencia" name="comprobante"
-										required></p>
+										accept="image/png, image/jpeg, image/jpg, image/gif,application/pdf" required></p>
 							</div>
 						</div>
 

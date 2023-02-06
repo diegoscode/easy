@@ -6,3 +6,59 @@
 #modalcontratos .d-none {
     display: none;
 }
+
+#modalclientes .modal-dialog {
+    width: 80%;
+    max-width: 1020px;
+}
+
+#modalclientes .modal-image {
+    width: 100% ;
+}
+
+.recibo {
+    max-width: 540px;
+}
+
+.recibo h1 {
+    padding-bottom: 20px;
+    border-bottom: 10px solid black;
+    text-transform: uppercase;
+    display: block;
+    font-weight: 500;
+}
+
+.recibo table {
+    width: 100%;
+}
+
+.recibo ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recibo ul li {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.recibo .label {
+    border-bottom: grey solid 5px;
+    width: 50%;
+}
+
+.recibo .value {
+      text-align: right;
+      width: 50%;
+      border-bottom: #ccc solid 5px;
+}
+
+.recibo .w-100 {
+    width: 100%;
+}

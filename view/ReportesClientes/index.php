@@ -45,7 +45,12 @@ if (isset($_SESSION["usu_id"])) {
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Importe</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Comprobante</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Imprimir</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Imprimir </th>
+								<?php
+								if ($_SESSION['rol_id'] == 2) {
+									echo '<th class="d-none d-sm-table-cell" style="width: 5%;">Acciones</th>';
+								}
+								?>
 							</tr>
 						</thead>
 						<tbody>
@@ -62,8 +67,8 @@ if (isset($_SESSION["usu_id"])) {
 		<!-- Contenido -->
 
 		<?php require_once("../MainJs/js.php"); ?>
-
-		<script type="text/javascript" src="reportes.js"></script>
+		<?php require_once("modalimagen.php"); ?>
+		<script type="text/javascript" src="reportesclientes.js"></script>
 
 	</body>
 

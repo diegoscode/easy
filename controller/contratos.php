@@ -70,10 +70,10 @@ switch ($_GET["op"]) {
 
             if ($row["contrat_est"] == "Asociado") {
                 $contrato_estado = "'" . 'No Asociado' . "'";
-                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
+                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id_raw"] . ',' . $contrato_estado . ')"><span class="label label-pill label-success">Asociado</span></a>';
             } else {
                 $contrato_estado = "'" . 'Asociado' . "'";
-                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No Asociado</span></a>';
+                $sub_array[] = '<a onClick="cambiarEstado(' . $row["contrat_id_raw"] . ',' . $contrato_estado . ')"><span class="label label-pill label-danger">No Asociado</span></a>';
             }
 
 
