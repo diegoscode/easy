@@ -97,6 +97,15 @@ class Clientes extends Conectar
         echo $js_code;
     }
 
+    public function get_clientes_total(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT COUNT(*) as TOTAL FROM clientes";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll();
+    }
+
 }
 
 ?>

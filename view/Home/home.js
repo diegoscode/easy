@@ -10,16 +10,6 @@ $(document).ready(function(){
             data = JSON.parse(data);
             $('#lbltotal').html(data.TOTAL);
         }); 
-    
-        $.post("../../controller/usuario.php?op=totalabierto", {usu_id:usu_id}, function (data) {
-            data = JSON.parse(data);
-            $('#lbltotalabierto').html(data.TOTAL);
-        });
-    
-        $.post("../../controller/usuario.php?op=totalcerrado", {usu_id:usu_id}, function (data) {
-            data = JSON.parse(data);
-            $('#lbltotalcerrado').html(data.TOTAL);
-        });
 
         $.post("../../controller/usuario.php?op=grafico", {usu_id:usu_id},function (data) {
             data = JSON.parse(data);
@@ -35,20 +25,20 @@ $(document).ready(function(){
         }); 
 
     }else{
-        $.post("../../controller/ticket.php?op=total",function (data) {
+        $.post("../../controller/clientes.php?op=total",function (data) {
             data = JSON.parse(data);
-            $('#lbltotal').html(data.TOTAL);
-        }); 
-    
-        $.post("../../controller/ticket.php?op=totalabierto",function (data) {
-            data = JSON.parse(data);
-            $('#lbltotalabierto').html(data.TOTAL);
-        });
-    
-        $.post("../../controller/ticket.php?op=totalcerrado", function (data) {
-            data = JSON.parse(data);
-            $('#lbltotalcerrado').html(data.TOTAL);
+            $('#lblclientes').html(data.TOTAL);
         });  
+
+        $.post("../../controller/contratos.php?op=total",function (data) {
+            data = JSON.parse(data);
+            $('#lblcontratos').html(data.TOTAL);
+        }); 
+
+        $.post("../../controller/pagos.php?op=total",function (data) {
+            data = JSON.parse(data);
+            $('#lblpagos').html(data.TOTAL);
+        }); 
 
         $.post("../../controller/ticket.php?op=grafico",function (data) {
             data = JSON.parse(data);

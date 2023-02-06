@@ -50,7 +50,9 @@
 
                 <input type="hidden" id="rol_id" name="rol_id" value="1">
 
-                <header class="sign-title semibold" id="registro">Registro</header>
+                <div class="sign-avatar">
+                        <img src="public/img/logoempresa.png" alt="" id="imgtipo">
+                </div>
 
                 <input type="hidden" id="usu_id" name="usu_id">
 

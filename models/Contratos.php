@@ -219,6 +219,15 @@ class Contratos extends Conectar
         echo $js_code;
     }
 
+    public function get_contratos_total(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT COUNT(*) as TOTAL FROM contratos";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll();
+    }
+
 
 }
 ?>

@@ -83,5 +83,16 @@ switch ($_GET["op"]) {
         $pagos->cambiar_estado($_POST["pag_id"], $_POST["estado"]);
         break;
 
+    case "total";
+            $datos=$pagos->get_pagos_total();  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+
 }
 ?>

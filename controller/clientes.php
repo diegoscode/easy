@@ -62,6 +62,17 @@ switch ($_GET["op"]) {
     case "cambiarestado";
         $clientes->cambiar_estado($_POST["client_id"], $_POST["estado"]);
         break;
+
+    case "total";
+            $datos=$clientes->get_clientes_total();  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
 }
 
 

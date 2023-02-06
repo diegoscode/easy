@@ -108,6 +108,14 @@ class Pagos extends Conectar
         echo $js_code;
     }
 
+    public function get_pagos_total(){
+        $conectar= parent::conexion();
+        parent::set_names();
+        $sql="SELECT COUNT(*) as TOTAL FROM pagos";
+        $sql=$conectar->prepare($sql);
+        $sql->execute();
+        return $resultado=$sql->fetchAll();
+    }
 
 }
 ?>

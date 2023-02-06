@@ -150,5 +150,16 @@ switch ($_GET["op"]) {
         echo json_encode($datos);
         break;
 
+        case "total";
+        $datos=$contratos->get_contratos_total();  
+        if(is_array($datos)==true and count($datos)>0){
+            foreach($datos as $row)
+            {
+                $output["TOTAL"] = $row["TOTAL"];
+            }
+            echo json_encode($output);
+        }
+    break;
+
 }
 ?>

@@ -4,12 +4,6 @@
             <nav class="side-menu">
                 <ul class="side-menu-list">
                     <li class="blue-dirty">
-                        <a href="..\Home\">
-                            <span class="fa fa-globe"></span>
-                            <span class="lbl">Inicio</span>
-                        </a>
-                    </li>
-                    <li class="blue-dirty">
                         <a href="#">
                             <span class="fa fa-money"></span>
                             <span class="lbl">Pagos</span>
@@ -89,15 +83,9 @@
                         </a>
                     </li>
                     <li class="blue-dirty">
-                        <a href="..\Reportes\">
-                            <span class="fa fa-file"></span>
-                            <span class="lbl">Reportes</span>
-                        </a>
-                    </li>
-                    <li class="blue-dirty">
                         <a href="..\ConsultarTicket\">
                             <span class="fa fa-ticket"></span>
-                            <span class="lbl">Consultar Falla</span>
+                            <span class="lbl">Reclamos</span>
                         </a>
                     </li>
                 </ul>
