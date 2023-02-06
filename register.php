@@ -23,6 +23,24 @@
     <link rel="stylesheet" href="public/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/main.css">
 </head>
+
+<style>
+    body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: lightblue;
+        background: url("public/img/support.svg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+</style>
+
 <body>
 
     <div class="page-center">
@@ -71,7 +89,7 @@
                     <input type="text" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña"/>
                 </div>
 
-                <button type="submit" class="btn btn-rounded btn-success sign-up">Registrar</button>
+                <button type="submit" class="btn btn-rounded btn-primary sign-up">Registrar</button>
                 <p class="sign-note">¿Ya tienes una cuenta?<a href="login.php"> Inicia sesion</a></p>
 
                 </form>

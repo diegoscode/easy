@@ -26,6 +26,24 @@
     <link rel="stylesheet" href="public/css/lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/main.css">
 </head>
+
+<style>
+    body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: lightblue;
+        background: url("public/img/support.svg");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+</style>
+
 <body>
     <div class="page-center">
         <div class="page-center-in">
@@ -36,9 +54,8 @@
                     <input type="hidden" id="rol_id" name="rol_id" value="1">
 
                     <div class="sign-avatar">
-                        <img src="public/1.jpg" alt="" id="imgtipo">
+                        <img src="public/img/logoempresa.png" alt="" id="imgtipo">
                     </div>
-                    <header class="sign-title" id="lbltitulo">Acceso Cliente</header>
 
                     <?php
                         if (isset($_GET["m"])){
@@ -66,6 +83,18 @@
                                         </div>
                                     <?php
                                 break;
+
+                                case "3";
+                                    ?>
+                                        <div class="alert alert-warning alert-icon alert-close alert-dismissible fade in" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <i class="font-icon font-icon-warning"></i>
+                                            Formato de correo insuficiente: nombre@dominio.com
+                                        </div>
+                                    <?php
+                                break;
                             }
                         }
                     ?>
@@ -81,7 +110,7 @@
                             <a href="register.php">Registrate</a>
                         </div>
                         <div class="float-left reset">
-                            <a href="#" id="btnsoporte">Acceso Administrador</a>
+                            <a href="#" id="btnsoporte">Administrador</a>
                         </div>
                     </div>
                     <input type="hidden" name="enviar" class="form-control" value="si">
