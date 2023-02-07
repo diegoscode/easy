@@ -6,7 +6,7 @@ if (isset($_SESSION["usu_id"])) {
 	<html>
 	<?php require_once("../MainHead/head.php"); ?>
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-	<title>Inicio</title>
+	<title>Pago movil</title>
 	</head>
 
 	<body class="with-side-menu">
@@ -22,7 +22,7 @@ if (isset($_SESSION["usu_id"])) {
 			<div class="container-fluid">
 				<div class="box-typical box-typical-padding">
 
-					<h5 class="m-t-lg with-border">Apartado de pagos</h5>
+					<h5 class="m-t-lg with-border">Pago movil</h5>
 
 					<form id="reporte-form">
 

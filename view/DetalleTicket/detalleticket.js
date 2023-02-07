@@ -132,8 +132,8 @@ $(document).on("click","#btnenviar", function(){
 
 $(document).on("click","#btncerrarticket", function(){
     swal({
-        title: "HelpDesk",
-        text: "Esta seguro de Cerrar el Ticket?",
+        title: "Admin",
+        text: "¿Esta seguro de cerrar el reclamo?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-warning",
@@ -157,8 +157,8 @@ $(document).on("click","#btncerrarticket", function(){
             listardetalle(tick_id);
 
             swal({
-                title: "HelpDesk!",
-                text: "Ticket Cerrado correctamente.",
+                title: "Admin!",
+                text: "Cerrado correctamente.",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });
@@ -177,7 +177,7 @@ function listardetalle(tick_id){
         $('#lblnomusuario').html(data.usu_nom +' '+data.usu_ape);
         $('#lblfechcrea').html(data.fech_crea);
         
-        $('#lblnomidticket').html("Detalle Ticket - "+data.tick_id);
+        $('#lblnomidticket').html("Detalle - "+data.tick_id);
 
         $('#cat_nom').val(data.cat_nom);
         $('#tick_titulo').val(data.tick_titulo);

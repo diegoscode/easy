@@ -164,8 +164,8 @@ function guardar(e){
 
 function CambiarEstado(tick_id){
     swal({
-        title: "HelpDesk",
-        text: "Esta seguro de Reabrir el Ticket?",
+        title: "Admin",
+        text: "¿Esta seguro de reabrir el reclamo?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-warning",
@@ -182,8 +182,8 @@ function CambiarEstado(tick_id){
             $('#ticket_data').DataTable().ajax.reload();	
 
             swal({
-                title: "HelpDesk!",
-                text: "Ticket Abierto.",
+                title: "Admin!",
+                text: "Abierto.",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });

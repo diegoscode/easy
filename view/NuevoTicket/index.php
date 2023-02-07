@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/head.php");?>
-	<title>Nuevo Ticket</title>
+	<title>Reclamos</title>
 </head>
 <body class="with-side-menu">
 
@@ -23,10 +23,10 @@
 				<div class="tbl">
 					<div class="tbl-row">
 						<div class="tbl-cell">
-							<h3>Nuevo Ticket</h3>
+							<h3>Nuevo Reclamo</h3>
 							<ol class="breadcrumb breadcrumb-simple">
 								<li><a href="#">Home</a></li>
-								<li class="active">Nuevo Ticket</li>
+								<li class="active">Nuevo Reclamo</li>
 							</ol>
 						</div>
 					</div>
@@ -34,10 +34,7 @@
 			</header>
 
 			<div class="box-typical box-typical-padding">
-				<p>
-					Desde esta ventana podra generar nuevos tickets de HelpDesk.
-				</p>
-
+				
 				<h5 class="m-t-lg with-border">Ingresar Información</h5>
 
 				<div class="row">
@@ -47,8 +44,8 @@
 
 						<div class="col-lg-12">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="tick_titulo">Titulo</label>
-								<input type="text" class="form-control" id="tick_titulo" name="tick_titulo" placeholder="Ingrese Titulo">
+								<label class="form-label semibold" for="tick_titulo">Asunto</label>
+								<input type="text" class="form-control" id="tick_titulo" name="tick_titulo" placeholder="Ingrese Asunto">
 							</fieldset>
 						</div>
 

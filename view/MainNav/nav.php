@@ -4,20 +4,20 @@
             <nav class="side-menu">
                 <ul class="side-menu-list">
                     <li class="blue-dirty">
-                        <a href="#">
-                            <span class="fa fa-money"></span>
-                            <span class="lbl">Pagos</span>
+                        <a href="..\Home\">
+                            <span class="fa fa-globe"></span>
+                            <span class="lbl">Inicio</span>
                         </a>
                     </li>
                     <li class="blue-dirty">
                         <a href="..\PagoTransferencia\">
-                        <span class="fa fa-chevron-right"></span>
+                        <span class="fa fa-exchange"></span>
                         <span class="lbl">Transferencias</span>
                         </a>
                     </li>
                     <li class="blue-dirty">
                         <a href="..\PagoMovil\">
-                        <span class="fa fa-chevron-right"></span>
+                        <span class="fa fa-mobile"></span>
                         <span class="lbl">Pago Movil</span>
                         </a>
                     </li>

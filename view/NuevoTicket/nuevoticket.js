@@ -64,7 +64,7 @@ function guardaryeditar(e) {
 
         $("#tick_titulo").val("");
         $("#tick_descrip").summernote("reset");
-        swal("Correcto!", "Registrado Correctamente", "success");
+        swal("Correcto!", "Enviado Correctamente", "success");
       },
     });
   }

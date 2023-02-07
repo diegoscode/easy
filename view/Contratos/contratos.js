@@ -139,7 +139,7 @@ function initClientesSelect() {
   var selectModal = $("#contratos_form_modal #client_id");
 
   select.select2({
-    placeholder: "Seleccione un Cliente",
+    placeholder: "Seleccione un cliente",
   });
 
   selectModal.select2({
@@ -167,7 +167,7 @@ function initServiciosSelect() {
   var selectModal = $("#contratos_form_modal #servicios");
 
   select.select2({
-    placeholder: "Seleccione un Servicio",
+    placeholder: "Seleccione un servicio",
   });
 
   selectModal.select2();
