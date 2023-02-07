@@ -88,6 +88,12 @@
                             <span class="lbl">Reclamos</span>
                         </a>
                     </li>
+                    <li class="blue-dirty">
+                        <a href="..\ReportesClientes\">
+                            <span class="fa fa-file"></span>
+                            <span class="lbl">Reportes</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         <?php

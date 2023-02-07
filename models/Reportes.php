@@ -8,7 +8,7 @@ class Reportes extends Conectar
         $conectar = parent::conexion();
         parent::set_names();
 
-        if ($rol_id === 2) {
+        if ($rol_id == 2) {
             $sql = 'SELECT reportes.*, LPAD(report_id, 4, 0) as codigo_report  FROM reportes';
 
         } else {
