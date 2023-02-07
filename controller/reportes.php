@@ -56,8 +56,10 @@ switch ($_GET["op"]) {
             $sub_array[] = '<button onClick="imprimir(' . $row['report_id'] . ')" class="btn btn-secondary btn-sm">imprimir</button>';
 
             if ($_SESSION['rol_id'] == 2) {
-                $sub_array[] = '<button type="button" onClick="eliminar(' . $row["num_serv"] . ')"  id="' . $row["num_serv"] . '" class="btn btn-inline btn-danger btn-sm ladda-button"><i class="fa fa-trash"></i></button>';
-                $sub_array[] = '<button type="button" onClick="editar(' . $row["num_serv"] . ')"  id="' . $row["num_serv"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><i class="fa fa-edit"></i></button>';
+                $sub_array[] = '<div class="btn-group" role="group">'
+                    . '<button type="button" class="btn btn-sm btn-primary" onclick="editar(10)"><i class="fa fa-edit"></i></button>'
+                    . '<button type="button" class="btn btn-sm btn-danger" onclick="eliminar(10)"><i class="fa fa-trash"></i></button>'
+                    . '</div>';
             }
 
             $data[] = $sub_array;
