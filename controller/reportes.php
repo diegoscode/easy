@@ -31,7 +31,7 @@ switch ($_GET["op"]) {
             if ($_SESSION['rol_id'] == 2) {
                 $sub_array[] = $row["nombre"];
                 $sub_array[] = $row["cedula"];
-                $sub_array[] = $row['telefono'];
+                $sub_array[] = (empty($row['telefono'])) ? 'Sin telefono' : $row['telefono'];
             }
             $sub_array[] = $row["tip_pag"];
 
