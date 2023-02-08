@@ -39,9 +39,14 @@ if (isset($_SESSION["usu_id"])) {
 						<thead>
 							<tr>
 								<th style="width: 1%;">Numero de recibo</th>
+								<?php
+								if ($_SESSION['rol_id'] == 2) {
+									echo '<th style="width: 5%;">Nombre</th>
+									<th style="width: 5%;">Cedula</th>';
+								}
+								?>
 								<th style="width: 5%;">Tipo de pago</th>
-								<th style="width: 5%;">Nombre</th>
-								<th style="width: 5%;">Cedula</th>
+
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Origen</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha de la transaccion</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Importe</th>

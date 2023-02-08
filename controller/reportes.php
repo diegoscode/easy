@@ -29,8 +29,11 @@ switch ($_GET["op"]) {
             $sub_array = array();
             $sub_array[] = $row["codigo_report"];
             $sub_array[] = $row["tip_pag"];
-            $sub_array[] = $row["nombre"];
-            $sub_array[] = $row["cedula"];
+            if ($_SESSION['rol_id'] == 2) {
+                $sub_array[] = $row["nombre"];
+                $sub_array[] = $row["cedula"];
+            }
+
             $sub_array[] = $row["origen"];
             $sub_array[] = $row["fech_trans"];
             $sub_array[] = $row["monto"];
@@ -96,7 +99,14 @@ switch ($_GET["op"]) {
         $fech_trans = $reporte['fech_trans'];
         $monto = $reporte['monto'];
         $tip_pag = $reporte['tip_pag'];
+        $telefono = isset($reporte['telefono']) && !empty($reporte['telefono']);
         $currentYear = date("Y");
+        $telefonoHTML = $telefono ? 
+            '<li>
+        <span class="label">telefono</span>
+        <span class="value">' . $reporte['telefono'] . '</span> 
+        </li>' : '';
+
 
         $estilos = '<style>
         .recibo {
@@ -168,6 +178,7 @@ switch ($_GET["op"]) {
             <span class='label'>importe total</span>
             <span class='value'>$monto</span>
           </li>
+          " . $telefonoHTML . "
           <li>
             <span class='label w-100'>forma de pago</span>
           </li>
