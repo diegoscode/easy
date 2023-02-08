@@ -9,10 +9,23 @@ class Reportes extends Conectar
         parent::set_names();
 
         if ($rol_id == 2) {
-            $sql = 'SELECT reportes.*, LPAD(report_id, 4, 0) as codigo_report  FROM reportes';
+            $sql = 'SELECT LPAD(report_id, 4, 0) AS codigo_report,
+            report_id,
+            CL.doc_nac AS cedula,
+            CL.nom_emp AS nombre,
+            tip_pag,
+            origen,
+            fech_trans,
+            monto,
+            comprobante,
+            report_est
+            FROM reportes AS R
+            INNER JOIN clientes AS CL
+            ON CL.usu_id = R.usu_id
+            WHERE R.est = 1;';
 
         } else {
-            $sql = "SELECT reportes.*, LPAD(report_id, 4, 0) as codigo_report FROM reportes WHERE usu_id = $usu_id";
+            $sql = "SELECT reportes.*, LPAD(report_id, 4, 0) as codigo_report FROM reportes WHERE usu_id = $usu_id AND est = 1";
         }
 
         $sql = $conectar->prepare($sql);
