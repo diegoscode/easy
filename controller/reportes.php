@@ -28,11 +28,11 @@ switch ($_GET["op"]) {
         foreach ($datos as $row) {
             $sub_array = array();
             $sub_array[] = $row["codigo_report"];
-            $sub_array[] = $row["tip_pag"];
             if ($_SESSION['rol_id'] == 2) {
                 $sub_array[] = $row["nombre"];
                 $sub_array[] = $row["cedula"];
             }
+            $sub_array[] = $row["tip_pag"];
 
             $sub_array[] = $row["origen"];
             $sub_array[] = $row["fech_trans"];
