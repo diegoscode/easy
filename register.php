@@ -58,37 +58,32 @@
 
                 <div class="form-group">
                     <label class="form-label semibold" for="nom_emp">Nombre</label>
-                    <input type="text" id="nom_emp" name="nom_emp" class="form-control" placeholder="Nombre"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label semibold" for="usu_ape">Apellido</label>
-                    <input type="text" id="usu_ape" name="usu_ape" class="form-control" placeholder="Apellido"/>
+                    <input type="text" id="nom_emp" name="nom_emp" class="form-control" placeholder="Nombre" required/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
-                    <input type="text" id="doc_nac" name="doc_nac" class="form-control" placeholder="Documento de identidad o RIF"/>
+                    <input type="text" id="doc_nac" name="doc_nac" class="form-control" placeholder="Documento de identidad o RIF" required/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label semibold" for="direccion">Direccion</label>
-                    <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Direccion"/>
+                    <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Direccion" required/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label semibold" for="tip_per">Tipo de empresa o particular</label>
-                    <input type="text" id="tip_per" name="tip_per" class="form-control" placeholder="Tipo"/>
+                    <input type="text" id="tip_per" name="tip_per" class="form-control" placeholder="Tipo" required/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label semibold" for="usu_correo">Correo electronico</label>
-                    <input type="text" id="usu_correo" name="usu_correo" class="form-control" placeholder="Correo"/>
+                    <input type="email" id="usu_correo" name="usu_correo" class="form-control" placeholder="Correo" required/>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label semibold" for="usu_pass">Contraseña</label>
-                    <input type="text" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña"/>
+                    <input type="text" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña" required/>
                 </div>
 
                 <button type="submit" class="btn btn-rounded btn-primary sign-up">Registrar</button>

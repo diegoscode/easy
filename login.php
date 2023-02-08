@@ -83,24 +83,12 @@
                                         </div>
                                     <?php
                                 break;
-
-                                case "3";
-                                    ?>
-                                        <div class="alert alert-warning alert-icon alert-close alert-dismissible fade in" role="alert">
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                            <i class="font-icon font-icon-warning"></i>
-                                            Formato de correo insuficiente: nombre@dominio.com
-                                        </div>
-                                    <?php
-                                break;
                             }
                         }
                     ?>
 
                     <div class="form-group">
-                        <input type="text" id="usu_correo" name="usu_correo" class="form-control" placeholder="Correo"/>
+                        <input type="email" id="usu_correo" name="usu_correo" class="form-control" placeholder="Correo"/>
                     </div>
                     <div class="form-group">
                         <input type="password" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña"/>

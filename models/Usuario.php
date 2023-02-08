@@ -9,7 +9,7 @@
                 $pass = $_POST["usu_pass"];
                 $rol = $_POST["rol_id"];
                 if(empty($correo) and empty($pass)){
-                    header("Location:".conectar::ruta()."index.php?m=2");
+                    header("Location:".conectar::ruta()."login.php?m=2");
 					exit();
                 }else{
                     $sql = "SELECT * FROM usuarios WHERE usu_correo=? and usu_pass=? and rol_id=? and est=1";
@@ -27,7 +27,7 @@
                         header("Location:".Conectar::ruta()."view/Home/");
                         exit(); 
                     }else{
-                        header("Location:".Conectar::ruta()."index.php?m=1");
+                        header("Location:".Conectar::ruta()."login.php?m=1");
                         exit();
                     }
                 }

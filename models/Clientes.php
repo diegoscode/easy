@@ -48,10 +48,7 @@ class Clientes extends Conectar
     {
         $conectar = parent::conexion();
         parent::set_names();
-        $sql = "UPDATE clientes 
-            SET 
-                est='0'
-            where client_id=?";
+        $sql = "DELETE FROM clientes WHERE client_id=?";
         $sql = $conectar->prepare($sql);
         $sql->bindValue(1, $client_id);
         $sql->execute();
