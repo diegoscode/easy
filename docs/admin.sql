@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 07-02-2023 a las 04:12:53
+-- Tiempo de generación: 08-02-2023 a las 06:15:57
 -- Versión del servidor: 8.0.31
 -- Versión de PHP: 8.0.26
 
@@ -119,16 +119,14 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `client_est` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
 INSERT INTO `clientes` (`client_id`, `usu_id`, `nom_emp`, `doc_nac`, `direccion`, `tip_per`, `client_est`, `est`) VALUES
-(1, 2, 'Miguel', 789456, 'Milagro', 'Particular', 'Activo', 1),
-(2, NULL, 'Marli', 456789, 'Bella Vista', 'Particular', 'Activo', 1),
-(3, 3, 'Pepito', 789456, '5 de julio', 'Particular', 'Activo', 1);
+(1, 2, 'Marli Guerrero', 123456, 'milagro', 'particular', 'Activo', 1);
 
 -- --------------------------------------------------------
 
@@ -145,15 +143,14 @@ CREATE TABLE IF NOT EXISTS `contratos` (
   `fech_contrat` datetime DEFAULT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`contrat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `contratos`
 --
 
 INSERT INTO `contratos` (`contrat_id`, `client_id`, `contrato_plan`, `contrat_est`, `fech_contrat`, `est`) VALUES
-(1, 1, 1, 'Asociado', '2023-02-06 03:23:26', 1),
-(2, 2, 4, 'Asociado', '2023-02-06 03:49:13', 1);
+(1, 1, 1, 'Asociado', '2023-02-08 01:59:14', 1);
 
 -- --------------------------------------------------------
 
@@ -197,8 +194,7 @@ CREATE TABLE IF NOT EXISTS `contrato_servicio` (
 --
 
 INSERT INTO `contrato_servicio` (`contrat_id`, `num_serv`) VALUES
-(1, 7),
-(2, 3);
+(1, 7);
 
 -- --------------------------------------------------------
 
@@ -215,15 +211,14 @@ CREATE TABLE IF NOT EXISTS `pagos` (
   `pag_est` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`pag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pagos`
 --
 
 INSERT INTO `pagos` (`pag_id`, `contrat_id`, `cat_pag`, `fech_pag`, `pag_est`, `est`) VALUES
-(1, 1, '1', '2023-02-06 03:24:14', 'Cancelado', 1),
-(2, 2, '4', '2023-02-06 03:50:51', 'Cancelado', 1);
+(1, 1, '1', '2023-02-08 01:59:41', 'Cancelado', 1);
 
 -- --------------------------------------------------------
 
@@ -236,15 +231,14 @@ CREATE TABLE IF NOT EXISTS `pago_contrato` (
   `pag_id` int NOT NULL AUTO_INCREMENT,
   `contrat_id` int NOT NULL,
   PRIMARY KEY (`pag_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pago_contrato`
 --
 
 INSERT INTO `pago_contrato` (`pag_id`, `contrat_id`) VALUES
-(1, 1),
-(2, 2);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -273,8 +267,8 @@ CREATE TABLE IF NOT EXISTS `reportes` (
 --
 
 INSERT INTO `reportes` (`report_id`, `usu_id`, `numero_referencia`, `tip_pag`, `origen`, `telefono`, `comprobante`, `monto`, `fech_trans`, `report_est`, `est`) VALUES
-(1, 2, '102030456', 'Transferencia', '12345678998745612301', NULL, '../public/document/2-102030456-2023-02-06/logoempresa.png', 120, '2023-02-06', 'Esperando', 1),
-(2, 3, '123456', 'Pago Movil', 'Banco de Venezuela', '123456', '../public/document/3-123456-2023-02-06/WhatsApp Image 2023-02-04 at 2.19.03 PM.jpeg', 123, '2023-02-06', 'Esperando', 1);
+(1, 2, '123456789', 'Transferencia', '123456789', NULL, '../public/document/2-123456789-2023-02-08/Reporte.pdf', 1000, '2023-02-08', 'Esperando', 1),
+(2, 2, '123456789', 'Pago Movil', 'Banco de Venezuela', '123456789', '../public/document/2-123456789-2023-02-08/Reporte.pdf', 1000, '2023-02-08', 'Esperando', 1);
 
 -- --------------------------------------------------------
 
@@ -326,16 +320,14 @@ CREATE TABLE IF NOT EXISTS `td_documento` (
   `fech_crea` datetime NOT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`doc_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `td_documento`
 --
 
 INSERT INTO `td_documento` (`doc_id`, `tick_id`, `doc_nom`, `fech_crea`, `est`) VALUES
-(1, 1, 'logoempresa.png', '2023-02-06 03:33:05', 1),
-(2, 2, 'WhatsApp Image 2023-02-04 at 2.19.03 PM.jpeg', '2023-02-06 22:56:19', 1),
-(3, 1, 'WhatsApp Image 2023-02-04 at 2.19.03 PM.jpeg', '2023-02-06 22:59:31', 1);
+(1, 1, '20190118_164939.jpg', '2023-02-08 02:02:21', 1);
 
 -- --------------------------------------------------------
 
@@ -352,7 +344,16 @@ CREATE TABLE IF NOT EXISTS `td_ticketdetalle` (
   `fech_crea` datetime NOT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`tickd_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `td_ticketdetalle`
+--
+
+INSERT INTO `td_ticketdetalle` (`tickd_id`, `tick_id`, `usu_id`, `tickd_descrip`, `fech_crea`, `est`) VALUES
+(1, 1, 1, '<p>Buenos dias, podria otorgarnos mas detalles del problema?</p>', '2023-02-08 02:12:27', 1),
+(2, 1, 2, '<p>El equipo estuvo utilizandose durante un buen rato el dia de ayer y de pronto ocurrio un bajon de luz por lo que despues de eso no quiso encender mas</p>', '2023-02-08 02:13:42', 1),
+(3, 1, 2, 'Ticket Cerrado...', '2023-02-08 02:14:15', 1);
 
 -- --------------------------------------------------------
 
@@ -380,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `tm_ticket` (
 --
 
 INSERT INTO `tm_ticket` (`tick_id`, `usu_id`, `cat_id`, `tick_titulo`, `tick_descrip`, `tick_estado`, `fech_crea`, `usu_asig`, `fech_asig`, `est`) VALUES
-(1, 3, 1, 'test', '<p>test</p>', 'Abierto', '2023-02-06 22:59:31', NULL, NULL, 1);
+(1, 2, 1, 'Problema computadora', '<p>Computadora presenta problemas para encender</p>', 'Cerrado', '2023-02-08 02:02:21', 1, '2023-02-08 02:11:36', 1);
 
 -- --------------------------------------------------------
 
@@ -392,7 +393,6 @@ DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `usu_id` int NOT NULL AUTO_INCREMENT,
   `usu_nom` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `usu_ape` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `usu_correo` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `usu_pass` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `rol_id` int DEFAULT NULL,
@@ -401,16 +401,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `fech_elim` datetime DEFAULT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`usu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci COMMENT='Tabla Mantenedor de Usuarios';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci COMMENT='Tabla Mantenedor de Usuarios';
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`usu_id`, `usu_nom`, `usu_ape`, `usu_correo`, `usu_pass`, `rol_id`, `fech_crea`, `fech_modi`, `fech_elim`, `est`) VALUES
-(1, 'Diego', 'Bravo', 'diegobravo2030@gmail.com', '123456', 2, NULL, NULL, NULL, 1),
-(2, 'Miguel', 'Fernandez', 'miguel@gmail.com', '123456', 1, '2023-02-06 03:09:37', NULL, NULL, 1),
-(3, 'Pepito', 'Diaz', 'pepito@gmail.com', '123456', 1, '2023-02-06 22:36:20', NULL, NULL, 1);
+INSERT INTO `usuarios` (`usu_id`, `usu_nom`, `usu_correo`, `usu_pass`, `rol_id`, `fech_crea`, `fech_modi`, `fech_elim`, `est`) VALUES
+(1, 'Diego Bravo', 'diego@gmail.com', '123456', 2, NULL, NULL, NULL, 1),
+(2, 'Marli Guerrero', 'marli@gmail.com', '123456', 1, '2023-02-08 01:24:50', NULL, NULL, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

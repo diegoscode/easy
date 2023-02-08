@@ -161,13 +161,13 @@
                                                 <img src="../../public/<?php echo $row['rol_id'] ?>.jpg" alt="">
                                             </a>
                                         </div>
-                                        <div class="activity-line-item-user-name"><?php echo $row['usu_nom'].' '.$row['usu_ape'];?></div>
+                                        <div class="activity-line-item-user-name"><?php echo $row['usu_nom'];?></div>
                                         <div class="activity-line-item-user-status">
                                             <?php 
                                                 if ($row['rol_id']==1){
-                                                    echo 'Usuario';
+                                                    echo 'Cliente';
                                                 }else{
-                                                    echo 'Soporte';
+                                                    echo 'Administrador';
                                                 }
                                             ?>
                                         </div>
@@ -214,7 +214,6 @@
 
                     $output["fech_crea"] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
                     $output["usu_nom"] = $row["usu_nom"];
-                    $output["usu_ape"] = $row["usu_ape"];
                     $output["cat_tick"] = $row["cat_tick"];
                 }
                 echo json_encode($output);

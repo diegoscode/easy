@@ -23,7 +23,7 @@ if (isset($_SESSION["usu_id"])) {
 					<div class="tbl">
 						<div class="tbl-row">
 							<div class="tbl-cell">
-								<h3>Gestion de Clientes</h3>
+								<h3>Clientes</h3>
 								<ol class="breadcrumb breadcrumb-simple">
 									<li><a href="#">Home</a></li>
 									<li class="active">Nuevo Cliente</li>
@@ -41,7 +41,7 @@ if (isset($_SESSION["usu_id"])) {
 								<th style="width: 1%;">Codigo</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Cliente</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa o particular</th>
+								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de cliente</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Direccion</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Estado</th>
 								<th class="text-center" style="width: 5%;"></th>

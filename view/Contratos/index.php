@@ -36,8 +36,6 @@ if (isset($_SESSION["usu_id"])) {
 
 				<div class="box-typical box-typical-padding">
 
-					<h5 class="m-t-lg with-border">Registro de Contrato</h5>
-
 					<div class="row">
 						<form method="post" id="contratos_form">
 
@@ -53,9 +51,9 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="tip_per">Tipo de empresa</label>
+									<label class="form-label semibold" for="tip_per">Tipo de cliente</label>
 									<input type="text" class="form-control" id="tip_per" name="tip_per"
-										placeholder="Tipo de empresa" readonly>
+										placeholder="Empresa o particular" readonly>
 								</fieldset>
 							</div>
 
@@ -69,7 +67,7 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-3">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="nom_emp">Nombre de la empresa</label>
+									<label class="form-label semibold" for="nom_emp">Cliente</label>
 									<input type="text" class="form-control" id="nom_emp" name="nom_emp" placeholder="Nombre"
 										readonly>
 								</fieldset>
@@ -78,7 +76,7 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-lg-3">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
-									<input type="text" class="form-control" id="doc_nac" name="doc_nac" placeholder="RIF"
+									<input type="number" class="form-control" id="doc_nac" name="doc_nac" placeholder="CI o RIF"
 										readonly>
 								</fieldset>
 							</div>
@@ -87,7 +85,7 @@ if (isset($_SESSION["usu_id"])) {
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="cost_serv">Costo del servicio</label>
 									<input type="number" class="form-control" id="cost_serv" name="cost_serv"
-										placeholder="Monto a pagar" readonly>
+										placeholder="Costo" readonly>
 								</fieldset>
 							</div>
 
@@ -114,15 +112,15 @@ if (isset($_SESSION["usu_id"])) {
 					<table id="contratos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
-								<th style="width: 1%;">Numero de Contrato</th>
-								<th style="width: 1%;">Empresa</th>
-								<th style="width: 1%;">Tipo de Contrato</th>
+								<th style="width: 1%;">Numero de contrato</th>
+								<th style="width: 1%;">Cliente</th>
+								<th style="width: 1%;">Tipo de contrato</th>
 								<th style="width: 1%;">Horario</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento Nacional</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Tipo de empresa</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Servicio contratado</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Monto a pagar</th>
-								<th class="d-none d-sm-table-cell" style="width: 5%;">Fecha del contrato</th>
+								<th class="d-none d-sm-table-cell" style="width: 1%;">Documento de identidad o RIF</th>
+								<th class="d-none d-sm-table-cell" style="width: 1%;">Tipo de cliente</th>
+								<th class="d-none d-sm-table-cell" style="width: 1%;">Servicio contratado</th>
+								<th class="d-none d-sm-table-cell" style="width: 1%;">Costo</th>
+								<th class="d-none d-sm-table-cell" style="width: 1%;">Fecha del contrato</th>
 								<th class="d-none d-sm-table-cell" style="width: 1%;">Estado</th>
 								<th class="d-none d-sm-table-cell" style="width: 1%;">Acciones</th>
 							</tr>

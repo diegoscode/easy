@@ -22,7 +22,7 @@
                     if (is_array($resultado) and count($resultado)>0){
                         $_SESSION["usu_id"]=$resultado["usu_id"];
                         $_SESSION["usu_nom"]=$resultado["usu_nom"];
-                        $_SESSION["usu_ape"]=$resultado["usu_ape"];
+                        $_SESSION[""]=$resultado[""];
                         $_SESSION["rol_id"]=$resultado["rol_id"];
                         header("Location:".Conectar::ruta()."view/Home/");
                         exit(); 
@@ -34,17 +34,16 @@
             }
         }
 
-        public function insert_usuario($nom_emp,$usu_ape,$usu_correo,$usu_pass,$rol_id, $doc_nac, $tip_per, $direccion)
+        public function insert_usuario($nom_emp,$usu_correo,$usu_pass,$rol_id, $doc_nac, $tip_per, $direccion)
         {
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO usuarios (usu_id, usu_nom, usu_ape, usu_correo, usu_pass, rol_id, fech_crea, fech_modi, fech_elim, est) VALUES (NULL,?,?,?,?,?,now(), NULL, NULL, '1');";
+            $sql="INSERT INTO usuarios (usu_id, usu_nom, usu_correo, usu_pass, rol_id, fech_crea, fech_modi, fech_elim, est) VALUES (NULL,?,?,?,?,now(), NULL, NULL, '1');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $nom_emp);
-            $sql->bindValue(2, $usu_ape);
-            $sql->bindValue(3, $usu_correo);
-            $sql->bindValue(4, $usu_pass);
-            $sql->bindValue(5, $rol_id);
+            $sql->bindValue(2, $usu_correo);
+            $sql->bindValue(3, $usu_pass);
+            $sql->bindValue(4, $rol_id);
             $sql->execute();
 
             $lastInsertedIdUsuarioSql = "SELECT usu_id FROM usuarios ORDER BY usu_id DESC LIMIT 1";
@@ -73,12 +72,12 @@
             return $resultado = $sql->fetchAll();
         }
 
-        public function update_usuario($usu_id,$usu_nom,$usu_ape,$usu_correo,$usu_pass,$rol_id){
+        public function update_usuario($usu_id,$usu_nom,$usu_correo,$usu_pass,$rol_id){
             $conectar= parent::conexion();
             parent::set_names();
             $sql="UPDATE usuarios set
                 usu_nom = ?,
-                usu_ape = ?,
+                 = ?,
                 usu_correo = ?,
                 usu_pass = ?,
                 rol_id = ?
@@ -86,11 +85,10 @@
                 usu_id = ?";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_nom);
-            $sql->bindValue(2, $usu_ape);
-            $sql->bindValue(3, $usu_correo);
-            $sql->bindValue(4, $usu_pass);
-            $sql->bindValue(5, $rol_id);
-            $sql->bindValue(6, $usu_id);
+            $sql->bindValue(2, $usu_correo);
+            $sql->bindValue(3, $usu_pass);
+            $sql->bindValue(4, $rol_id);
+            $sql->bindValue(5, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }

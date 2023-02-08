@@ -107,6 +107,7 @@ function editar(client_id) {
       $("#nom_emp").val(data.nom_emp);
       $("#doc_nac").val(data.doc_nac);
       $("#tip_per").val(data.tip_per);
+      $("#direccion").val(data.direccion);
     }
   );
 
@@ -138,7 +139,7 @@ function eliminar(client_id){
 
             swal({
                 title: "Admin",
-                text: "cliente Eliminado",
+                text: "Cliente Eliminado",
                 type: "success",
                 confirmButtonClass: "btn-success"
             });

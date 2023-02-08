@@ -23,10 +23,10 @@ if (isset($_SESSION["usu_id"])) {
 					<div class="tbl">
 						<div class="tbl-row">
 							<div class="tbl-cell">
-								<h3>Crear servicios</h3>
+								<h3>Catalogo de Servicios</h3>
 								<ol class="breadcrumb breadcrumb-simple">
 									<li><a href="#">Home</a></li>
-									<li class="active">Nuevo servicios</li>
+									<li class="active">Nuevo servicio</li>
 								</ol>
 							</div>
 						</div>
@@ -38,7 +38,7 @@ if (isset($_SESSION["usu_id"])) {
 					<table id="servicios_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
 						<thead>
 							<tr>
-								<th style="width: 1%;">Numero de Servicios</th>
+								<th style="width: 1%;">Numero de Servicio</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Servicio</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Categoria</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Sub Categoria</th>

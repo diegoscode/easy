@@ -21,19 +21,18 @@
 
                     <div class="form-group">
                         <label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
-                        <input type="text" class="form-control" id="doc_nac" name="doc_nac"
-                            placeholder="Documento de identidad" required>
+                        <input type="number" class="form-control" id="doc_nac" name="doc_nac"
+                            placeholder="CI o RIF" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label semibold" for="tip_per">Tipo de empresa o particular</label>
-                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Tipo" required>
+                        <label class="form-label semibold" for="tip_per">Tipo de cliente</label>
+                        <input type="text" class="form-control" id="tip_per" name="tip_per" placeholder="Empresa o particular" required>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label semibold" for="direccion">Direccion</label>
-                        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion"
-                            required>
+                        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion" required>
                     </div>
 
                 </div>

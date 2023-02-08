@@ -32,7 +32,6 @@
                 tm_ticket.usu_asig,
                 tm_ticket.fech_asig,
                 usuarios.usu_nom,
-                usuarios.usu_ape,
                 categoria_ticket.cat_tick
                 FROM 
                 tm_ticket
@@ -59,7 +58,6 @@
                 tm_ticket.tick_estado,
                 tm_ticket.fech_crea,
                 usuarios.usu_nom,
-                usuarios.usu_ape,
                 usuarios.usu_correo,
                 categoria_ticket.cat_tick
                 FROM 
@@ -89,7 +87,6 @@
                 tm_ticket.usu_asig,
                 tm_ticket.fech_asig,
                 usuarios.usu_nom,
-                usuarios.usu_ape,
                 categoria_ticket.cat_tick
                 FROM 
                 tm_ticket
@@ -111,7 +108,6 @@
                 td_ticketdetalle.tickd_descrip,
                 td_ticketdetalle.fech_crea,
                 usuarios.usu_nom,
-                usuarios.usu_ape,
                 usuarios.rol_id
                 FROM 
                 td_ticketdetalle

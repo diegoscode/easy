@@ -36,8 +36,6 @@ if (isset($_SESSION["usu_id"])) {
 
 				<div class="box-typical box-typical-padding">
 
-					<h5 class="m-t-lg with-border">Pago del servicio</h5>
-
 					<div class="row">
 						<form method="post" id="pagos_form">
 
@@ -55,7 +53,7 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="nom_emp">Nombre de cliente o empresa</label>
+									<label class="form-label semibold" for="nom_emp">Cliente</label>
 									<input type="text" class="form-control" id="nom_emp" name="nom_emp" placeholder="Nombre"
 										readonly>
 								</fieldset>
@@ -73,14 +71,14 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
-									<input type="text" class="form-control" id="doc_nac" name="doc_nac"
-										placeholder="Documento Nacional" readonly>
+									<input type="number" class="form-control" id="doc_nac" name="doc_nac"
+										placeholder="CI o RIF" readonly>
 								</fieldset>
 							</div>
 
 							<div class="col-lg-4">
 								<fieldset class="form-group">
-									<label class="form-label semibold">Servicio contrato</label>
+									<label class="form-label semibold">Servicio</label>
 									<select name="servicios_select" id="servicios_select" class="form-control" multiple
 										disabled>
 
@@ -91,7 +89,7 @@ if (isset($_SESSION["usu_id"])) {
 							<div class="col-lg-4">
 								<fieldset class="form-group">
 									<label class="form-label semibold" for="cost_serv">Costo del servicio</label>
-									<input type="text" class="form-control" id="cost_serv" name="cost_serv"
+									<input type="number" class="form-control" id="cost_serv" name="cost_serv"
 										placeholder="Importe" readonly>
 								</fieldset>
 							</div>
@@ -111,7 +109,7 @@ if (isset($_SESSION["usu_id"])) {
 							<tr>
 								<th style="width: 1%;">Numero de pago</th>
 								<th style="width: 1%;">Numero de contrato</th>
-								<th style="width: 5%;">Nombre de cliente o empresa</th>
+								<th style="width: 5%;">Cliente</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Documento de identidad o RIF</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Metodo de pago</th>
 								<th class="d-none d-sm-table-cell" style="width: 5%;">Costo del servicio</th>

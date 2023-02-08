@@ -63,7 +63,7 @@
 
                 <div class="form-group">
                     <label class="form-label semibold" for="doc_nac">Documento de identidad o RIF</label>
-                    <input type="text" id="doc_nac" name="doc_nac" class="form-control" placeholder="Documento de identidad o RIF" required/>
+                    <input type="number" id="doc_nac" name="doc_nac" class="form-control" placeholder="CI o RIF" required/>
                 </div>
 
                 <div class="form-group">
@@ -72,8 +72,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label semibold" for="tip_per">Tipo de empresa o particular</label>
-                    <input type="text" id="tip_per" name="tip_per" class="form-control" placeholder="Tipo" required/>
+                    <label class="form-label semibold" for="tip_per">Tipo de cliente</label>
+                    <input type="text" id="tip_per" name="tip_per" class="form-control" placeholder="Empresa o particular" required/>
                 </div>
 
                 <div class="form-group">
@@ -83,7 +83,7 @@
 
                 <div class="form-group">
                     <label class="form-label semibold" for="usu_pass">Contraseña</label>
-                    <input type="text" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña" required/>
+                    <input type="password" id="usu_pass" name="usu_pass" class="form-control" placeholder="Contraseña" required/>
                 </div>
 
                 <button type="submit" class="btn btn-rounded btn-primary sign-up">Registrar</button>
