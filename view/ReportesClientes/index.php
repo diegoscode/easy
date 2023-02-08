@@ -42,7 +42,8 @@ if (isset($_SESSION["usu_id"])) {
 								<?php
 								if ($_SESSION['rol_id'] == 2) {
 									echo '<th style="width: 5%;">Nombre</th>
-									<th style="width: 5%;">Cedula</th>';
+									<th style="width: 5%;">Cedula</th>
+									<th style="width: 5%;">Telefono</th>';
 								}
 								?>
 								<th style="width: 5%;">Tipo de pago</th>

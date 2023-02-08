@@ -18,7 +18,8 @@ class Reportes extends Conectar
             fech_trans,
             monto,
             comprobante,
-            report_est
+            report_est,
+            telefono
             FROM reportes AS R
             INNER JOIN clientes AS CL
             ON CL.usu_id = R.usu_id
