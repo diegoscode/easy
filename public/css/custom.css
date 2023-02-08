@@ -1,3 +1,5 @@
+
+
 .servicios-button {
     background: white;
     border: 2px solid #ebebeb;
@@ -14,10 +16,6 @@
 
 #modalclientes .modal-image {
     width: 100% ;
-}
-
-.recibo {
-    max-width: 540px;
 }
 
 .recibo h1 {

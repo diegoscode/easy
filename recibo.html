@@ -27,18 +27,19 @@
 
         .recibo ul {
           padding: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
         }
 
         .recibo ul li {
             list-style: none;
-            display: flex;
-            gap: 20px;
             font-size: 22px;
             font-weight: 600;
             text-transform: uppercase;
+            padding-bottom: 25px;
+        }
+
+        .recibo .label, 
+        .recibo .value {
+            display: inline-block;
         }
 
         .recibo .label {
@@ -48,12 +49,17 @@
 
         .recibo .value {
               text-align: right;
-              width: 50%;
+              width: 49%;
               border-bottom: #ccc solid 5px;
         }
 
         .recibo .w-100 {
             width: 100%;
+        }
+
+        p {
+        
+            margin-top: -15px !important;
         }
     </style>
     <div class="recibo">
@@ -79,9 +85,7 @@
                 <span class="value">34,324</span>
             </li>
         </ul>
-
-        Smartech. Todos los derechos reservados. 2023
-    
+        <p> Smartech. Todos los derechos reservados. 2023</p>
     </div>
 </body>
 </html>

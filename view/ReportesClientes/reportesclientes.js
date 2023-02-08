@@ -2,6 +2,16 @@ var tabla;
 
 function init() {
   tabla = $("#reportes_data");
+  var ifr = document.createElement("iframe");
+  ifr.src = "../../controller/reportes.php?op=imprimir";
+  ifr.id = "PDF";
+
+  ifr.style.width = "0px";
+  ifr.style.height = "0px";
+  ifr.style.border = "none";
+
+  document.body.appendChild(ifr);
+
   listarReportes();
 }
 
@@ -12,36 +22,18 @@ function imprimir(report_id) {
     function (data) {
       const resp = JSON.parse(data);
 
-      var reciboHTML = `
-          <div class="recibo">
-          <h1>Recibo</h1>
-          <ul>
-            <li>
-              <span class="label">N°</span>
-              <span class="value">${resp.codigo_report}</span>
-            </li>
-            <li>
-              <span class="label">fecha</span>
-              <span class="value">${resp.fech_trans}</span>
-            </li>
-            <li>
-              <span class="label">importe total</span>
-              <span class="value">${resp.monto}</span>
-            </li>
-            <li>
-              <span class="label w-100">forma de pago</span>
-            </li>
-            <li>
-              <span class="label">${resp.tip_pag}</span>
-              <span class="value">${resp.monto}</span>
-            </li>
-          </ul>
-                
-          Corporacion Telemic RIF. J-3031413513. Todos los derechos reservados. ${new Date().getFullYear()}
-          </div>
-      `;
+      $.post(
+        "../../controller/reportes.php?op=imprimir",
+        { reporte: resp },
+        function (data) {
+          var data = JSON.parse(data);
 
-      $.post("../../controller/reportes.php?op=imprimir", { html: reciboHTML });
+          var link = document.createElement("a");
+          link.href = window.URL = "../../controller/recibo.pdf";
+          link.download = data.nombre_archivo;
+          link.click();
+        }
+      );
     }
   );
 }

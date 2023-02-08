@@ -1,6 +1,9 @@
 <?php
 require_once("../config/conexion.php");
 require_once("../models/Reportes.php");
+require_once("../vendor/autoload.php");
+
+use Dompdf\Dompdf;
 
 $reportes = new Reportes();
 
@@ -84,6 +87,110 @@ switch ($_GET["op"]) {
 
         break;
 
+    case 'imprimir':
+        $reporte = $_POST['reporte'];
+
+        $codigo_report = $reporte['codigo_report'];
+        $fech_trans = $reporte['fech_trans'];
+        $monto = $reporte['monto'];
+        $tip_pag = $reporte['tip_pag'];
+        $currentYear = date("Y");
+
+        $estilos = '<style>
+        .recibo {
+            max-width: 550px;
+        }
+
+        .recibo h1 {
+            padding-bottom: 20px;
+            border-bottom: 10px solid black;
+            text-transform: uppercase;
+            display: block;
+            font-weight: 500;
+        }
+
+        .recibo table {
+            width: 100%;
+        }
+
+        .recibo ul {
+          padding: 0;
+        }
+
+        .recibo ul li {
+            list-style: none;
+            font-size: 22px;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+        }
+
+        .recibo .label, 
+        .recibo .value {
+            display: inline-block;
+        }
+
+        .recibo .label {
+            border-bottom: grey solid 5px;
+            width: 50%;
+        }
+
+        .recibo .value {
+              text-align: right;
+              width: 49%;
+              border-bottom: #ccc solid 5px;
+        }
+
+        .recibo .w-100 {
+            width: 100%;
+        }
+
+        p {
+        
+            margin-top: -15px !important;
+        }
+    </style>';
+
+        $html = $estilos . "<div class='recibo'>
+        <h1>Recibo</h1>
+        <ul>
+          <li>
+            <span class='label'>N°</span>
+            <span class='value'>$codigo_report</span>
+          </li>
+          <li>
+            <span class='label'>fecha</span>
+            <span class='value'>$fech_trans</span>
+          </li>
+          <li>
+            <span class='label'>importe total</span>
+            <span class='value'>$monto</span>
+          </li>
+          <li>
+            <span class='label w-100'>forma de pago</span>
+          </li>
+          <li>
+            <span class='label'>$tip_pag</span>
+            <span class='value'>$monto </span>
+          </li>
+        </ul>
+              
+        <p> Smartech. Todos los derechos reservados. $currentYear</p> 
+        </div>";
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $pdf = $dompdf->output();
+        $nombre_archivo = 'recibo.pdf';
+
+        file_put_contents('recibo.pdf', $pdf);
+
+        $data['nombre_archivo'] = $nombre_archivo;
+
+        echo json_encode($data);
+
+        break;
 
     case 'insert':
 
