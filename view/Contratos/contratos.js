@@ -305,6 +305,27 @@ function editar(contrat_id) {
   $("#modalcontratos").modal("show");
 }
 
+function imprimir(contrat_id) {
+  $.post(
+    "../../controller/contratos.php?op=buscar",
+    { contrat_id },
+    function (data) {
+      resp = JSON.parse(data);
+      $.post(
+        "../../controller/contratos.php?op=imprimir",
+        { contrato: resp },
+        function (data) {
+          var data = JSON.parse(data);
+          var link = document.createElement("a");
+          link.href = window.URL = "../../controller/contrato.pdf";
+          link.download = data.nombre_archivo;
+          link.click();
+        }
+      );
+    }
+  );
+}
+
 function cambiarEstado(contrat_id, estado) {
   $.post(
     "../../controller/contratos.php?op=cambiarestado",
