@@ -91,9 +91,9 @@ if (isset($_SESSION["usu_id"])) {
 
 							<div class="col-lg-3">
 								<fieldset class="form-group">
-									<label class="form-label semibold" for="contrato_plan">Tipo de contrato</label>
+									<label class="form-label semibold" for="contrato_plan">Tipos de planes</label>
 									<select class="form-control" name="contrato_plan" id="contrato_plan">
-										<option value="">Seleccione un contrato
+										<option value="">Seleccione
 										</option>
 									</select>
 								</fieldset>

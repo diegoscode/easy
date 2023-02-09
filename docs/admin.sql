@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-02-2023 a las 06:15:57
+-- Tiempo de generación: 09-02-2023 a las 06:45:15
 -- Versión del servidor: 8.0.31
 -- Versión de PHP: 8.0.26
 
@@ -119,14 +119,15 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `client_est` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`client_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
 INSERT INTO `clientes` (`client_id`, `usu_id`, `nom_emp`, `doc_nac`, `direccion`, `tip_per`, `client_est`, `est`) VALUES
-(1, 2, 'Marli Guerrero', 123456, 'milagro', 'particular', 'Activo', 1);
+(1, 2, 'Marli Guerrero', 123456, 'milagro', 'particular', 'Activo', 1),
+(2, NULL, 'Miguel Fernandez', 2147483647, 'la lago', 'particular', 'Activo', 1);
 
 -- --------------------------------------------------------
 
@@ -143,14 +144,17 @@ CREATE TABLE IF NOT EXISTS `contratos` (
   `fech_contrat` datetime DEFAULT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`contrat_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `contratos`
 --
 
 INSERT INTO `contratos` (`contrat_id`, `client_id`, `contrato_plan`, `contrat_est`, `fech_contrat`, `est`) VALUES
-(1, 1, 1, 'Asociado', '2023-02-08 01:59:14', 1);
+(1, 1, 1, 'Asociado', '2023-02-08 01:59:14', 1),
+(2, 2, 0, 'Asociado', '2023-02-08 22:08:24', 1),
+(3, 2, 1, 'Asociado', '2023-02-08 22:08:40', 1),
+(4, 1, 5, 'Asociado', '2023-02-08 22:18:35', 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `contrato_plan` (
   `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `horario` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `contrato_plan`
@@ -174,7 +178,8 @@ INSERT INTO `contrato_plan` (`id`, `tipo`, `horario`) VALUES
 (1, 'Hierro', 'Remoto en horario semanal'),
 (2, 'Bronce', 'Horario semanal 8 AM a 5 PM'),
 (3, 'Plata', 'Horario de lunes a sabado hasta las 10 PM'),
-(4, 'Oro', 'Todos los dias hasta las 10 PM');
+(4, 'Oro', 'Todos los dias hasta las 10 PM'),
+(5, 'Sin plan', 'Solo servicio');
 
 -- --------------------------------------------------------
 
@@ -194,7 +199,11 @@ CREATE TABLE IF NOT EXISTS `contrato_servicio` (
 --
 
 INSERT INTO `contrato_servicio` (`contrat_id`, `num_serv`) VALUES
-(1, 7);
+(1, 7),
+(2, 12),
+(3, 6),
+(4, 7),
+(4, 9);
 
 -- --------------------------------------------------------
 
@@ -260,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `reportes` (
   `report_est` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`report_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `reportes`
@@ -268,7 +277,8 @@ CREATE TABLE IF NOT EXISTS `reportes` (
 
 INSERT INTO `reportes` (`report_id`, `usu_id`, `numero_referencia`, `tip_pag`, `origen`, `telefono`, `comprobante`, `monto`, `fech_trans`, `report_est`, `est`) VALUES
 (1, 2, '123456789', 'Transferencia', '123456789', NULL, '../public/document/2-123456789-2023-02-08/Reporte.pdf', 1000, '2023-02-08', 'Esperando', 1),
-(2, 2, '123456789', 'Pago Movil', 'Banco de Venezuela', '123456789', '../public/document/2-123456789-2023-02-08/Reporte.pdf', 1000, '2023-02-08', 'Esperando', 1);
+(2, 2, '123456789', 'Pago Movil', 'Banco de Venezuela', '123456789', '../public/document/2-123456789-2023-02-08/Reporte.pdf', 1000, '2023-02-08', 'Esperando', 1),
+(3, 2, '123456', 'Pago Movil', 'Banco de Venezuela', '123456', '../public/document/2-123456-2023-02-08/20190118_165808.jpg', 3000, '2023-02-08', 'Esperando', 1);
 
 -- --------------------------------------------------------
 
@@ -344,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `td_ticketdetalle` (
   `fech_crea` datetime NOT NULL,
   `est` int NOT NULL,
   PRIMARY KEY (`tickd_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `td_ticketdetalle`
@@ -353,7 +363,8 @@ CREATE TABLE IF NOT EXISTS `td_ticketdetalle` (
 INSERT INTO `td_ticketdetalle` (`tickd_id`, `tick_id`, `usu_id`, `tickd_descrip`, `fech_crea`, `est`) VALUES
 (1, 1, 1, '<p>Buenos dias, podria otorgarnos mas detalles del problema?</p>', '2023-02-08 02:12:27', 1),
 (2, 1, 2, '<p>El equipo estuvo utilizandose durante un buen rato el dia de ayer y de pronto ocurrio un bajon de luz por lo que despues de eso no quiso encender mas</p>', '2023-02-08 02:13:42', 1),
-(3, 1, 2, 'Ticket Cerrado...', '2023-02-08 02:14:15', 1);
+(3, 1, 2, 'Ticket Cerrado...', '2023-02-08 02:14:15', 1),
+(4, 1, 1, 'Ticket Re-Abierto...', '2023-02-08 02:31:17', 1);
 
 -- --------------------------------------------------------
 
@@ -381,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `tm_ticket` (
 --
 
 INSERT INTO `tm_ticket` (`tick_id`, `usu_id`, `cat_id`, `tick_titulo`, `tick_descrip`, `tick_estado`, `fech_crea`, `usu_asig`, `fech_asig`, `est`) VALUES
-(1, 2, 1, 'Problema computadora', '<p>Computadora presenta problemas para encender</p>', 'Cerrado', '2023-02-08 02:02:21', 1, '2023-02-08 02:11:36', 1);
+(1, 2, 1, 'Problema computadora', '<p>Computadora presenta problemas para encender</p>', 'Abierto', '2023-02-08 02:02:21', 1, '2023-02-08 02:11:36', 1);
 
 -- --------------------------------------------------------
 
